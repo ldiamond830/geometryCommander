@@ -1,0 +1,41 @@
+#pragma once
+#define SFML_STATIC
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
+#include "GamePiece.h"
+enum gridBoxType 
+{
+	empty,
+	occupied,
+	halfCover,
+	fullCover
+};
+class GridBox
+{
+	public:
+	GridBox(int width, int height, gridBoxType type, float xPos, float yPos);
+	~GridBox();
+	void SetType(gridBoxType newType);
+	void Draw(sf::RenderWindow* window);
+	void SetHCost(int endX, int endY);
+	int GetFCost(); 
+	int GetGCost();
+	int GetHCost();
+	GridBox* GetParent();
+	bool SetParentIsCheaper(GridBox* possibleParent);
+	float xPos;
+	float yPos;
+	GamePiece* occupyingPiece;
+	sf::Vector2f GetCenter();
+	
+private:
+	sf::RectangleShape* visual;
+	gridBoxType type;
+	int height;
+	int width;
+	int moveCost;
+	void SetTypeValues();
+	int hCost = 0;
+	GridBox* parent;
+};
+
