@@ -36,7 +36,11 @@ int main()
         PlayerPiece* playerPiece = new PlayerPiece(spawnPoint->GetCenter().x, spawnPoint->GetCenter().y);
         playerPieceList.push_back(playerPiece);
         spawnPoint->occupyingPiece = playerPiece;
+
+        grid.FindPath(grid.gridBoxes[0][0], grid.gridBoxes[3][3]);
     }
+
+
     
     // run the program as long as the window is open
     while (window.isOpen())
