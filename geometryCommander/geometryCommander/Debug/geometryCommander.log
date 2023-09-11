@@ -1,9 +1,28 @@
-﻿  GamePiece.cpp
+﻿  EnemyPiece.cpp
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GridBox.h(29,11): error C2143: syntax error: missing ';' before '*'
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GridBox.h(29,11): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GridBox.h(29,37): error C2238: unexpected token(s) preceding ';'
+D:\Github\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(7,15): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\Github\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(8,15): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\Github\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(16,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Github\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(16,35): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  GamePiece.cpp
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GridBox.h(29,11): error C2143: syntax error: missing ';' before '*'
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GridBox.h(29,11): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GridBox.h(29,37): error C2238: unexpected token(s) preceding ';'
 D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(22,20): warning C4390: ';': empty controlled statement found; is this the intent?
   geometryCommander.cpp
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(27,23): error C2065: 'GridBox': undeclared identifier
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(27,31): error C2059: syntax error: '>'
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(28,18): error C2061: syntax error: identifier 'GridBox'
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(24,23): error C2065: 'GridBox': undeclared identifier
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(24,31): error C2059: syntax error: '>'
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(25,18): error C2061: syntax error: identifier 'GridBox'
 D:\Github\geometryCommander\geometryCommander\geometryCommander\geometryCommander.cpp(18,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 D:\Github\geometryCommander\geometryCommander\geometryCommander\geometryCommander.cpp(31,94): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
           with
@@ -26,9 +45,9 @@ D:\Github\geometryCommander\geometryCommander\geometryCommander\geometryCommande
               T=float
           ]
   Grid.cpp
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(27,23): error C2065: 'GridBox': undeclared identifier
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(27,31): error C2059: syntax error: '>'
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(28,18): error C2061: syntax error: identifier 'GridBox'
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(24,23): error C2065: 'GridBox': undeclared identifier
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(24,31): error C2059: syntax error: '>'
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(25,18): error C2061: syntax error: identifier 'GridBox'
 D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(13,29): warning C4018: '<': signed/unsigned mismatch
 D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(15,30): warning C4018: '<': signed/unsigned mismatch
 D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(17,111): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
@@ -65,10 +84,13 @@ D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(65,15):
           ]
 D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(116,24): warning C4018: '<': signed/unsigned mismatch
 D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(133,22): warning C4018: '<': signed/unsigned mismatch
+D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(155,24): error C2664: 'void GamePiece::Move(unknown-type)': cannot convert argument 1 from 'std::stack<GridBox *,std::deque<GridBox *,std::allocator<GridBox *>>>' to 'unknown-type'
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(24,7): message : see declaration of 'GamePiece::Move'
+D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(155,24): message : while trying to match the argument list '(std::stack<GridBox *,std::deque<GridBox *,std::allocator<GridBox *>>>)'
   GridBox.cpp
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(27,23): error C2065: 'GridBox': undeclared identifier
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(27,31): error C2059: syntax error: '>'
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(28,18): error C2061: syntax error: identifier 'GridBox'
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(24,23): error C2065: 'GridBox': undeclared identifier
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(24,31): error C2059: syntax error: '>'
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(25,18): error C2061: syntax error: identifier 'GridBox'
 D:\Github\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(13,54): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
@@ -103,6 +125,9 @@ D:\Github\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(82,1
 D:\Github\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(84,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 D:\Github\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(86,20): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   PlayerPiece.cpp
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GridBox.h(29,11): error C2143: syntax error: missing ';' before '*'
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GridBox.h(29,11): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GridBox.h(29,37): error C2238: unexpected token(s) preceding ';'
 D:\Github\geometryCommander\geometryCommander\geometryCommander\PlayerPiece.cpp(5,15): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 D:\Github\geometryCommander\geometryCommander\geometryCommander\PlayerPiece.cpp(6,15): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 D:\Github\geometryCommander\geometryCommander\geometryCommander\PlayerPiece.cpp(14,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
@@ -116,5 +141,3 @@ D:\Github\geometryCommander\geometryCommander\geometryCommander\PlayerPiece.cpp(
               T=float
           ]
   Generating Code...
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(33): error C4716: 'GamePiece::MoveToNext': must return a value
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(27): warning C4717: 'GamePiece::Move': recursive on all control paths, function will cause runtime stack overflow

@@ -4,9 +4,6 @@
 #include <SFML/Graphics.hpp>
 #include <stack>
 #include "GridBox.h"
-#define SFML_STATIC
-#include <SFML/Window.hpp>
-#include <SFML/Graphics.hpp>
 
 class GamePiece
 {

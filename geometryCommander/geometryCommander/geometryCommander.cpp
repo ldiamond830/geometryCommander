@@ -30,12 +30,12 @@ int main()
         GridBox* spawnPoint = grid.gridBoxes[0][0];
         EnemyPiece* enemy = new EnemyPiece(spawnPoint->GetCenter().x, spawnPoint->GetCenter().y);
         enemyList.push_back(enemy);
-        //spawnPoint->occupyingPiece = enemy;
+        spawnPoint->occupyingPiece = enemy;
 
         spawnPoint = grid.gridBoxes[0][1];
         PlayerPiece* playerPiece = new PlayerPiece(spawnPoint->GetCenter().x, spawnPoint->GetCenter().y);
         playerPieceList.push_back(playerPiece);
-        //spawnPoint->occupyingPiece = playerPiece;
+        spawnPoint->occupyingPiece = playerPiece;
 
         grid.MovePiece(spawnPoint, grid.gridBoxes[4][4]);
     }
