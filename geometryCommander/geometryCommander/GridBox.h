@@ -26,7 +26,7 @@ class GridBox
 	bool SetParentIfCheaper(GridBox* possibleParent);
 	float xPos;
 	float yPos;
-	GamePiece* occupyingPiece;
+	
 	sf::Vector2f GetCenter();
 	gridBoxType GetType();
 	sf::Vector2f index;
@@ -40,5 +40,6 @@ private:
 	void SetTypeValues();
 	int hCost = 0;
 	GridBox* parent = nullptr;
+	
 };
 

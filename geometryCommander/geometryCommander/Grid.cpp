@@ -53,7 +53,7 @@ void Grid::CalculateHCosts(int endX, int endY)
 void Grid::FindPath(GridBox* start, GridBox* end)
 {
 	CalculateHCosts(end->index.x, end->index.y);
-	std::stack<GridBox*> path;
+	
 	std::vector<GridBox*> openList;
 	std::vector<GridBox*> closeList;
 
@@ -145,5 +145,16 @@ void Grid::FindPath(GridBox* start, GridBox* end)
 			//no path found
 			pathMatchesInput = true;
 		}
+	}
+}
+
+void Grid::MovePiece(GridBox* start, GridBox* end)
+{
+	FindPath(start, end);
+	if (!path.empty()) {
+		start->occupyingPiece->Move(path);
+	}
+	else {
+		printf("pathing error");
 	}
 }

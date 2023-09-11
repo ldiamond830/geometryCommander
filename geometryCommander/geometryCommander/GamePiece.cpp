@@ -14,3 +14,21 @@ void GamePiece::TakeDamage(int damage)
 		isDead = true;
 	}
 }
+
+void GamePiece::Move(std::stack<GridBox*> path)
+{
+	MoveToNext(path.top());
+	path.pop();
+	if (!path.empty());
+	{
+		Move(path);
+	}
+
+}
+
+bool GamePiece::MoveToNext(GridBox* desination)
+{
+	xPos = desination->GetCenter().x;
+	yPos = desination->GetCenter().y;
+}
+

@@ -1,4 +1,74 @@
-﻿  GridBox.cpp
+﻿  GamePiece.cpp
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(22,20): warning C4390: ';': empty controlled statement found; is this the intent?
+  geometryCommander.cpp
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(27,23): error C2065: 'GridBox': undeclared identifier
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(27,31): error C2059: syntax error: '>'
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(28,18): error C2061: syntax error: identifier 'GridBox'
+D:\Github\geometryCommander\geometryCommander\geometryCommander\geometryCommander.cpp(18,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\Github\geometryCommander\geometryCommander\geometryCommander\geometryCommander.cpp(31,94): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Github\geometryCommander\geometryCommander\geometryCommander\geometryCommander.cpp(31,67): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Github\geometryCommander\geometryCommander\geometryCommander\geometryCommander.cpp(36,102): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Github\geometryCommander\geometryCommander\geometryCommander\geometryCommander.cpp(36,75): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Grid.cpp
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(27,23): error C2065: 'GridBox': undeclared identifier
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(27,31): error C2059: syntax error: '>'
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(28,18): error C2061: syntax error: identifier 'GridBox'
+D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(13,29): warning C4018: '<': signed/unsigned mismatch
+D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(15,30): warning C4018: '<': signed/unsigned mismatch
+D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(17,111): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(17,109): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(17,91): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(17,76): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(55,42): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(55,28): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(64,14): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(65,15): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(116,24): warning C4018: '<': signed/unsigned mismatch
+D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(133,22): warning C4018: '<': signed/unsigned mismatch
+  GridBox.cpp
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(27,23): error C2065: 'GridBox': undeclared identifier
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(27,31): error C2059: syntax error: '>'
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(28,18): error C2061: syntax error: identifier 'GridBox'
 D:\Github\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(13,54): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
@@ -32,4 +102,19 @@ D:\Github\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(82,1
           ]
 D:\Github\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(84,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 D:\Github\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(86,20): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  geometryCommander.vcxproj -> D:\Github\geometryCommander\geometryCommander\Debug\geometryCommander.exe
+  PlayerPiece.cpp
+D:\Github\geometryCommander\geometryCommander\geometryCommander\PlayerPiece.cpp(5,15): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\Github\geometryCommander\geometryCommander\geometryCommander\PlayerPiece.cpp(6,15): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\Github\geometryCommander\geometryCommander\geometryCommander\PlayerPiece.cpp(14,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Github\geometryCommander\geometryCommander\geometryCommander\PlayerPiece.cpp(14,35): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Generating Code...
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(33): error C4716: 'GamePiece::MoveToNext': must return a value
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(27): warning C4717: 'GamePiece::Move': recursive on all control paths, function will cause runtime stack overflow

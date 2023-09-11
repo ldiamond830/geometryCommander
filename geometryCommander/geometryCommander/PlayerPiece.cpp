@@ -22,5 +22,6 @@ PlayerPiece::~PlayerPiece()
 
 void PlayerPiece::Draw(sf::RenderWindow* window)
 {
+	visual->setPosition(xPos, yPos);
 	window->draw(*visual);
 }
