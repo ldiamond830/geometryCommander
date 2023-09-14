@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <stack>
 #include "GridBox.h"
-
+#include "Grid.h";
 class GamePiece
 {
 protected:
@@ -19,11 +19,12 @@ protected:
 	//each child class will need to define visual since SMFL doesn't seem to allow the generic shape class to be used
 
 public:
+	GamePiece();
 	virtual void Draw(sf::RenderWindow* window);
 	virtual void TakeDamage(int damage);
 	void Move(std::stack<GridBox*> path);
 	bool MoveToNext(GridBox* desination);
-	
+	Grid* test;
 
 };
 

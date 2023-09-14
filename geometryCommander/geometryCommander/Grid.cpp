@@ -152,7 +152,7 @@ void Grid::MovePiece(GridBox* start, GridBox* end)
 {
 	FindPath(start, end);
 	if (!path.empty()) {
-		start->occupyingPiece->Move(path);
+		//start->occupyingPiece->Move(path);
 	}
 	else {
 		printf("pathing error");

@@ -1,5 +1,15 @@
 #include "GamePiece.h"
 
+GamePiece::GamePiece()
+{
+	xPos = 0;
+	 yPos = 0;
+	 health = 10;
+	 moveRange = 5;
+	 maxDamage = 1;
+	 minDamage = 0;
+}
+
 void GamePiece::Draw(sf::RenderWindow* window)
 {
 	//error
@@ -30,5 +40,6 @@ bool GamePiece::MoveToNext(GridBox* desination)
 {
 	xPos = desination->GetCenter().x;
 	yPos = desination->GetCenter().y;
+	return true;
 }
 

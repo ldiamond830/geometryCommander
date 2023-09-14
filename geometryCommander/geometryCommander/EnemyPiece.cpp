@@ -2,10 +2,10 @@
 #define SFML_STATIC
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-EnemyPiece::EnemyPiece(int xPos, int yPos)
+EnemyPiece::EnemyPiece(int _xPos, int _yPos)
 {
-	this->xPos = xPos;
-	this->yPos = yPos;
+	xPos = _xPos;
+	yPos = _yPos;
 	health = 10;
 	maxDamage = 3;
 	minDamage = 1;
