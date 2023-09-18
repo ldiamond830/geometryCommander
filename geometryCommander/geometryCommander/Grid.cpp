@@ -1,8 +1,10 @@
-#include "Grid.h"
-#include <stack>
+#pragma once
 #define SFML_STATIC
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include "Grid.h"
+#include <stack>
+
 Grid::Grid(int screenWidth, int screenHeight, int rowSize, int columnSize)
 {
 	this->gridWidth = rowSize;

@@ -1,7 +1,8 @@
-#include "GridBox.h"
+
 #define SFML_STATIC
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include "GridBox.h"
 GridBox::GridBox(int _width, int _height, gridBoxType _type, float _xPos, float _yPos, sf::Vector2f _index)
 {
 	width = _width;

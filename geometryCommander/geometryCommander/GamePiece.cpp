@@ -1,5 +1,5 @@
 #include "GamePiece.h"
-
+#include "GridBox.h"
 GamePiece::GamePiece()
 {
 	xPos = 0;
@@ -31,7 +31,7 @@ void GamePiece::Move(std::stack<GridBox*> path)
 	path.pop();
 	if (!path.empty());
 	{
-		Move(path);
+		//Move(path);
 	}
 
 }

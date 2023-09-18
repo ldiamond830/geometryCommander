@@ -1,5 +1,9 @@
 #pragma once
+#define SFML_STATIC
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 #include <vector>
+#include <stack>
 #include "GridBox.h"
 class Grid
 {

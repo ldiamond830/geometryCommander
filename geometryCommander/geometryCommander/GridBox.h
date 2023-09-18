@@ -2,7 +2,7 @@
 #define SFML_STATIC
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-#include "GamePiece.h"
+class GamePiece;
 
 enum gridBoxType 
 {
@@ -27,7 +27,7 @@ class GridBox
 	bool SetParentIfCheaper(GridBox* possibleParent);
 	float xPos;
 	float yPos;
-	GridBox* occupyingPiece = nullptr;
+	GamePiece* occupyingPiece = nullptr;
 	sf::Vector2f GetCenter();
 	gridBoxType GetType();
 	sf::Vector2f index;
