@@ -27,13 +27,14 @@ GridBox::GridBox(const GridBox& other)
 	type = other.type;
 	index = other.index;
 	parent = other.parent;
-	gCost = other.gCost;
+	
 	hCost = other.hCost;
 	visual = new sf::RectangleShape(sf::Vector2f(width, height));
 	visual->setOutlineThickness(2);
 	visual->setOutlineColor(sf::Color(255, 255, 255));
 	visual->setPosition(sf::Vector2f(xPos, yPos));
 	SetTypeValues();
+	gCost = other.gCost;
 }
 
 GridBox::~GridBox()
@@ -83,8 +84,8 @@ bool GridBox::SetParentIfCheaper(GridBox* possibleParent)
 {
 	int xDist = index.x - possibleParent->index.x;
 	int yDist = index.y - possibleParent->index.y;
-
-	float moveCost = possibleParent->GetGCost() + sqrt(pow(xDist, 2) + pow(yDist, 2));
+	auto test = possibleParent->GetGCost();
+	float moveCost = test + sqrt(pow(xDist, 2) + pow(yDist, 2));
 	if (parent == nullptr || moveCost < GetGCost()) {
 		gCost = moveCost;
 		parent = possibleParent;
@@ -115,8 +116,14 @@ int GridBox::GetHeight()
 
 void GridBox::ResetParent()
 {
+	delete parent;
 	parent = nullptr;
 	SetTypeValues();
+}
+
+void GridBox::SetGCost(int value)
+{
+	gCost = value;
 }
 
 void GridBox::SetTypeValues()

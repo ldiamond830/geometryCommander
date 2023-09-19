@@ -34,6 +34,7 @@ class GridBox
 	int GetWidth();
 	int GetHeight();
 	void ResetParent();
+	void SetGCost(int);
 
 
 private:

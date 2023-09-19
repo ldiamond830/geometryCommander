@@ -12,11 +12,11 @@ Grid::Grid(int screenWidth, int screenHeight, int rowSize, int columnSize)
 	pathMatchesInput = false;
 	int boxWidth = screenWidth / rowSize;
 	int boxHeight = screenHeight / columnSize;
-	for (unsigned int i = 0; i < columnSize; i++) {
+	for (unsigned int i = 0; i < rowSize; i++) {
 		gridBoxes.push_back(std::vector<GridBox*>());
-		for (unsigned int j = 0; j < rowSize; j++)
+		for (unsigned int j = 0; j < columnSize; j++)
 		{
-			gridBoxes[i].push_back(new GridBox(boxWidth, boxHeight, empty, boxWidth * j, boxHeight * i, sf::Vector2f(j,i)));
+			gridBoxes[i].push_back(new GridBox(boxWidth, boxHeight, empty, boxWidth * i, boxHeight * j, sf::Vector2f(i,j)));
 		}
 	}
 	//gridBoxes[0][4]->SetType(fullCover);
@@ -57,7 +57,7 @@ void Grid::CalculateHCosts(int endX, int endY)
 void Grid::FindPath(GridBox* start, GridBox* end)
 {
 	CalculateHCosts(end->index.x, end->index.y);
-	
+	start->SetGCost(0);
 	std::vector<GridBox*> openList;
 	std::vector<GridBox*> closeList;
 

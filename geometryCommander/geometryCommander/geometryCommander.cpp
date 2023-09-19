@@ -42,6 +42,7 @@ int main()
         spawnPoint->occupyingPiece = playerPiece;
 
         grid.MovePiece(spawnPoint, grid.gridBoxes[4][4]);
+        grid.MovePiece(grid.gridBoxes[4][4], grid.gridBoxes[5][2]);
     }
 
 
