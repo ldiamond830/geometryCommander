@@ -27,6 +27,8 @@ GridBox::GridBox(const GridBox& other)
 	type = other.type;
 	index = other.index;
 	parent = other.parent;
+	gCost = other.gCost;
+	hCost = other.hCost;
 	visual = new sf::RectangleShape(sf::Vector2f(width, height));
 	visual->setOutlineThickness(2);
 	visual->setOutlineColor(sf::Color(255, 255, 255));
@@ -59,12 +61,12 @@ void GridBox::SetHCost(int endX, int endY)
 
 int GridBox::GetFCost()
 {
-	return moveCost + hCost;
+	return gCost + hCost;
 }
 
 int GridBox::GetGCost()
 {
-	return moveCost;
+	return gCost;
 }
 
 int GridBox::GetHCost()
@@ -84,13 +86,10 @@ bool GridBox::SetParentIfCheaper(GridBox* possibleParent)
 
 	float moveCost = possibleParent->GetGCost() + sqrt(pow(xDist, 2) + pow(yDist, 2));
 	if (parent == nullptr || moveCost < GetGCost()) {
-		this->moveCost = moveCost;
+		gCost = moveCost;
 		parent = possibleParent;
 		return true;
-
 	}
-
-
 	return false;
 }
 
@@ -104,23 +103,40 @@ gridBoxType GridBox::GetType()
 	return type;
 }
 
+int GridBox::GetWidth()
+{
+	return width;
+}
+
+int GridBox::GetHeight()
+{
+	return height;
+}
+
+void GridBox::ResetParent()
+{
+	parent = nullptr;
+	SetTypeValues();
+}
+
 void GridBox::SetTypeValues()
 {
+	auto test = this;
 	switch (type) {
 	case empty:
-		moveCost = 1;
+		gCost = 1;
 		visual->setFillColor(sf::Color(0, 0, 0));
 		break;
 	case occupied:
-		moveCost = INT_MAX;
+		gCost = INT_MAX;
 		visual->setFillColor(sf::Color(0, 0, 0));
 		break;
 	case halfCover:
-		moveCost = 3;
+		gCost = 3;
 		visual->setFillColor(sf::Color(128, 128, 128));
 		break;
 	case fullCover:
-		moveCost = INT_MAX;
+		gCost = INT_MAX;
 		visual->setFillColor(sf::Color(255, 255, 255));
 		break;
 	}

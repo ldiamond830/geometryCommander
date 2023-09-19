@@ -20,5 +20,6 @@ public:
 		void CalculateHCosts(int, int);
 		void FindPath(GridBox* start, GridBox* end);
 		void MovePiece(GridBox*, GridBox*);
+		GridBox* GetBoxFromPosition(sf::Vector2i);
 };
 

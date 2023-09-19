@@ -2,7 +2,7 @@
 #include "GridBox.h"
 GamePiece::GamePiece()
 {
-	xPos = 0;
+	 xPos = 0;
 	 yPos = 0;
 	 health = 10;
 	 moveRange = 5;
@@ -25,21 +25,15 @@ void GamePiece::TakeDamage(int damage)
 	}
 }
 
-void GamePiece::Move(std::stack<GridBox*> path)
+bool GamePiece::MoveToNext(sf::Vector2f desination)
 {
-	MoveToNext(path.top());
-	path.pop();
-	if (!path.empty());
-	{
-		//Move(path);
-	}
-
+	xPos = desination.x;
+	yPos = desination.y;
+	return true;
 }
 
-bool GamePiece::MoveToNext(GridBox* desination)
+sf::Vector2i GamePiece::GetPosition()
 {
-	xPos = desination->GetCenter().x;
-	yPos = desination->GetCenter().y;
-	return true;
+	return sf::Vector2i(xPos, yPos);
 }
 

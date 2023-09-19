@@ -19,6 +19,7 @@ Grid::Grid(int screenWidth, int screenHeight, int rowSize, int columnSize)
 			gridBoxes[i].push_back(new GridBox(boxWidth, boxHeight, empty, boxWidth * j, boxHeight * i, sf::Vector2f(j,i)));
 		}
 	}
+	//gridBoxes[0][4]->SetType(fullCover);
 }
 
 Grid::~Grid()
@@ -48,6 +49,7 @@ void Grid::CalculateHCosts(int endX, int endY)
 		for (int y = 0; y < gridWidth; y++)
 		{
 			gridBoxes[x][y]->SetHCost(endX, endY);
+			gridBoxes[x][y]->ResetParent();
 		}
 	}
 }
@@ -61,6 +63,13 @@ void Grid::FindPath(GridBox* start, GridBox* end)
 
 	closeList.push_back(start);
 	GridBox* currentCell = start;
+	pathMatchesInput = false;
+	if (!path.empty()) {
+		for (int i = 0; i < path.size(); i++) {
+			path.pop();
+		}
+	}
+	
 
 	while (!pathMatchesInput) {
 		for (int x = currentCell->index.x - 1; x <= currentCell->index.x + 1; x++) {
@@ -153,10 +162,35 @@ void Grid::FindPath(GridBox* start, GridBox* end)
 void Grid::MovePiece(GridBox* start, GridBox* end)
 {
 	FindPath(start, end);
-	if (!path.empty()) {
-		//start->occupyingPiece->Move(path);
+	while (!path.empty()) 
+	{
+		start->occupyingPiece->MoveToNext(path.top()->GetCenter());
+		path.pop();
 	}
-	else {
-		printf("pathing error");
+	end->occupyingPiece = start->occupyingPiece;
+	start->occupyingPiece = nullptr;
+	start->SetType(gridBoxType::empty);
+	end->SetType(gridBoxType::occupied);
+}
+
+GridBox* Grid::GetBoxFromPosition(sf::Vector2i position)
+{
+	for (std::vector<GridBox*> boxList : gridBoxes) {
+		for (GridBox* box : boxList) {
+			//check if position is to the right of current box
+			if (box->GetCenter().x + box->GetWidth() / 2 < position.x)
+				continue;
+			//check if position is to the left of current box
+			if (box->GetCenter().x - box->GetWidth() / 2 >= position.x)
+				continue;
+			//check if position is above current box
+			if (box->GetCenter().y + box->GetHeight() / 2 < position.y)
+				continue;
+			if (box->GetCenter().y - box->GetHeight() / 2 >= position.y)
+				continue;
+
+			return box;
+		}
 	}
+	return nullptr;
 }

@@ -13,6 +13,9 @@
 #include <memory>
 using namespace std;
 
+void PlayerInput(Grid*, PlayerPiece*, sf::Window*);
+
+
 int main()
 {
     srand(time(NULL));
@@ -30,12 +33,13 @@ int main()
         GridBox* spawnPoint = grid.gridBoxes[0][0];
         EnemyPiece* enemy = new EnemyPiece(spawnPoint->GetCenter().x, spawnPoint->GetCenter().y);
         enemyList.push_back(enemy);
-        //spawnPoint->occupyingPiece = enemy;
+        spawnPoint->occupyingPiece = enemy;
+        
 
         spawnPoint = grid.gridBoxes[0][1];
         PlayerPiece* playerPiece = new PlayerPiece(spawnPoint->GetCenter().x, spawnPoint->GetCenter().y);
         playerPieceList.push_back(playerPiece);
-        //spawnPoint->occupyingPiece = playerPiece;
+        spawnPoint->occupyingPiece = playerPiece;
 
         grid.MovePiece(spawnPoint, grid.gridBoxes[4][4]);
     }
@@ -45,6 +49,11 @@ int main()
     // run the program as long as the window is open
     while (window.isOpen())
     {
+        //update
+        {
+            PlayerInput(&grid, playerPieceList[0], &window);
+        }
+
         // check all the window's events that were triggered since the last iteration of the loop
         sf::Event event;
         while (window.pollEvent(event))
@@ -75,6 +84,18 @@ int main()
     }
 
     return 0;
+}
+
+void PlayerInput(Grid* grid, PlayerPiece* selectedPiece, sf::Window* window) 
+{
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+       auto clickedBox = grid->GetBoxFromPosition(sf::Mouse::getPosition(*window));
+       if (clickedBox != nullptr) {
+           if (clickedBox->GetType() == gridBoxType::empty) {
+               grid->MovePiece(grid->GetBoxFromPosition(selectedPiece->GetPosition()), clickedBox);
+           }
+       }
+    }
 }
 
 

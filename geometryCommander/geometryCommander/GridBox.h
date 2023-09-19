@@ -2,7 +2,7 @@
 #define SFML_STATIC
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-class GamePiece;
+#include "GamePiece.h"
 
 enum gridBoxType 
 {
@@ -31,13 +31,17 @@ class GridBox
 	sf::Vector2f GetCenter();
 	gridBoxType GetType();
 	sf::Vector2f index;
+	int GetWidth();
+	int GetHeight();
+	void ResetParent();
+
 
 private:
 	sf::RectangleShape* visual;
 	gridBoxType type;
 	int height;
 	int width;
-	int moveCost;
+	int gCost;
 	void SetTypeValues();
 	int hCost = 0;
 	GridBox* parent = nullptr;
