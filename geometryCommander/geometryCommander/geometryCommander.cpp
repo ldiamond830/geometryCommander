@@ -112,7 +112,7 @@ void PlayerInput(Grid* grid, PlayerPiece* selectedPiece, sf::Window* window)
     }
     
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
-
+        
     }
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
 
