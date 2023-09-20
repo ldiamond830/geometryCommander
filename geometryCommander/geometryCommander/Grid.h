@@ -14,6 +14,7 @@ private:
 	std::stack<GridBox*> path;
 public:
 		std::vector<std::vector<GridBox*>> gridBoxes;
+		Grid();
 		Grid(int screenWidth, int screenHeight, int rowSize, int columnSize);
 		~Grid();
 		void Draw(sf::RenderWindow* window);

@@ -133,6 +133,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="EnemyPiece.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GamePiece.cpp" />
     <ClCompile Include="geometryCommander.cpp" />
     <ClCompile Include="Grid.cpp" />
@@ -141,6 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EnemyPiece.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="GamePiece.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="GridBox.h" />

@@ -7,6 +7,8 @@ public:
 	~PlayerPiece();
 	void Draw(sf::RenderWindow* window) override;
 	void Select();
+	void Deselect();
+
 
 private:
 	sf::CircleShape* visual;

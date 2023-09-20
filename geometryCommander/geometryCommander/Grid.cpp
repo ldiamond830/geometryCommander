@@ -5,6 +5,10 @@
 #include "Grid.h"
 #include <stack>
 
+Grid::Grid() : Grid(800, 600, 10, 10)
+{
+}
+
 Grid::Grid(int screenWidth, int screenHeight, int rowSize, int columnSize)
 {
 	this->gridWidth = rowSize;

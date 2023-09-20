@@ -30,3 +30,8 @@ void PlayerPiece::Select()
 {
 	visual->setFillColor(sf::Color(0, 0, 255));
 }
+
+void PlayerPiece::Deselect()
+{
+	visual->setFillColor(sf::Color(0, 255, 0));
+}
