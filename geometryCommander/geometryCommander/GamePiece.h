@@ -16,6 +16,7 @@ protected:
 	bool isDead = false;
 	bool atDestination = false;
 	bool turnTaken = false;
+	int CalcDamage();
 	//each child class will need to define visual since SMFL doesn't seem to allow the generic shape class to be used
 
 public:
@@ -25,6 +26,8 @@ public:
 	//void Move(std::stack<GridBox*> path);
 	bool MoveToNext(sf::Vector2f desination);
 	sf::Vector2i GetPosition();
+	void Attack(GamePiece* target);
+	
 
 };
 

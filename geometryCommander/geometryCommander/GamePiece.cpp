@@ -1,5 +1,15 @@
 #include "GamePiece.h"
 #include "GridBox.h"
+int GamePiece::CalcDamage()
+{
+	float damage = rand() % maxDamage;
+
+	if (damage < minDamage)
+		damage = minDamage;
+
+	return damage;
+}
+
 GamePiece::GamePiece()
 {
 	 xPos = 0;
@@ -35,5 +45,10 @@ bool GamePiece::MoveToNext(sf::Vector2f desination)
 sf::Vector2i GamePiece::GetPosition()
 {
 	return sf::Vector2i(xPos, yPos);
+}
+
+void GamePiece::Attack(GamePiece* target)
+{
+	target->TakeDamage(CalcDamage());
 }
 

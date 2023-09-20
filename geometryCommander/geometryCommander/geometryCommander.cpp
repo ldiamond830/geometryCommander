@@ -23,7 +23,8 @@ int main()
     int screenHeight = 600;
     sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "Game");
     Grid grid = Grid(screenWidth, screenHeight, 10, 10);
-    
+    PlayerPiece* selectedPiece;
+    int selectedIndex = 0;
    
 
     vector<EnemyPiece*> enemyList;
@@ -34,25 +35,33 @@ int main()
         EnemyPiece* enemy = new EnemyPiece(spawnPoint->GetCenter().x, spawnPoint->GetCenter().y);
         enemyList.push_back(enemy);
         spawnPoint->occupyingPiece = enemy;
+        spawnPoint->SetType(gridBoxType::occupied);
         
 
         spawnPoint = grid.gridBoxes[0][1];
         PlayerPiece* playerPiece = new PlayerPiece(spawnPoint->GetCenter().x, spawnPoint->GetCenter().y);
         playerPieceList.push_back(playerPiece);
         spawnPoint->occupyingPiece = playerPiece;
+        spawnPoint->SetType(gridBoxType::occupied);
+
+        spawnPoint = grid.gridBoxes[0][2];
+        PlayerPiece* playerPiece2 = new PlayerPiece(spawnPoint->GetCenter().x, spawnPoint->GetCenter().y);
+        playerPieceList.push_back(playerPiece2);
+        spawnPoint->occupyingPiece = playerPiece2;
+        spawnPoint->SetType(gridBoxType::occupied);
 
         grid.MovePiece(spawnPoint, grid.gridBoxes[4][4]);
         grid.MovePiece(grid.gridBoxes[4][4], grid.gridBoxes[5][2]);
     }
 
-
+    selectedPiece = playerPieceList[selectedIndex];
     
     // run the program as long as the window is open
     while (window.isOpen())
     {
         //update
         {
-            PlayerInput(&grid, playerPieceList[0], &window);
+            PlayerInput(&grid, selectedPiece, &window);
         }
 
         // check all the window's events that were triggered since the last iteration of the loop
@@ -95,7 +104,18 @@ void PlayerInput(Grid* grid, PlayerPiece* selectedPiece, sf::Window* window)
            if (clickedBox->GetType() == gridBoxType::empty) {
                grid->MovePiece(grid->GetBoxFromPosition(selectedPiece->GetPosition()), clickedBox);
            }
+           else if (clickedBox->GetType() == gridBoxType::occupied && dynamic_cast<EnemyPiece*>(clickedBox->occupyingPiece) != nullptr) 
+           {
+               selectedPiece->Attack(clickedBox->occupyingPiece);
+           }
        }
+    }
+    
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
+
+    }
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
+
     }
 }
 

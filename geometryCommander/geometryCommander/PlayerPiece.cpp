@@ -25,3 +25,8 @@ void PlayerPiece::Draw(sf::RenderWindow* window)
 	visual->setPosition(xPos, yPos);
 	window->draw(*visual);
 }
+
+void PlayerPiece::Select()
+{
+	visual->setFillColor(sf::Color(0, 0, 255));
+}
