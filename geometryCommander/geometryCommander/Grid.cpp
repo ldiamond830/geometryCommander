@@ -23,8 +23,13 @@ Grid::Grid(int screenWidth, int screenHeight, int rowSize, int columnSize)
 			gridBoxes[i].push_back(new GridBox(boxWidth, boxHeight, empty, boxWidth * i, boxHeight * j, sf::Vector2f(i,j)));
 		}
 	}
-	//gridBoxes[0][4]->SetType(fullCover);
+	//testing cover
+	gridBoxes[0][columnSize - 2]->SetType(gridBoxType::halfCover);
+	gridBoxes[1][columnSize - 2]->SetType(gridBoxType::fullCover);
+	gridBoxes[3][1]->SetType(gridBoxType::halfCover);
+	gridBoxes[4][0]->SetType(gridBoxType::halfCover);
 }
+
 
 Grid::~Grid()
 {
@@ -171,10 +176,67 @@ void Grid::MovePiece(GridBox* start, GridBox* end)
 		start->occupyingPiece->MoveToNext(path.top()->GetCenter());
 		path.pop();
 	}
-	end->occupyingPiece = start->occupyingPiece;
+	UpdateOccupyingPiece(end, start->occupyingPiece);
 	start->occupyingPiece = nullptr;
 	start->SetType(gridBoxType::empty);
-	end->SetType(gridBoxType::occupied);
+}
+
+void Grid::UpdateOccupyingPiece(GridBox* box, GamePiece* piece)
+{
+	box->SetOccupyingPiece(piece);
+	box->SetType(gridBoxType::occupied);
+	piece->coverMap.clear();
+	for (int x = box->index.x - 1; x <= box->index.x + 1; x++) {
+		for (int y = box->index.y - 1; y <= box->index.y + 1; y++) {
+
+			//skip current cell
+			if (x == box->index.x && y == box->index.y) {
+				continue;
+			}
+
+			//skips diagonals
+			if ((x == box->index.x - 1 && y == box->index.y - 1) ||
+				(x == box->index.x - 1 && y == box->index.y + 1) ||
+				(x == box->index.x + 1 && y == box->index.y - 1) ||
+				(x == box->index.x + 1 && y == box->index.y + 1)) {
+				continue;
+			}
+
+			//Don't check out of bounds of the grid.
+			if (x < 0 || x > gridWidth - 1 || y < 0 || y > gridHeight - 1) {
+				continue;
+			}
+
+			if (gridBoxes[x][y]->GetType() == halfCover) {
+				if (x > box->index.x) {
+					piece->coverMap.emplace(RIGHT, 25);
+				}
+				else if (x < box->index.x) {
+					piece->coverMap.emplace(LEFT, 25);
+				}
+				else if (y > box->index.y) {
+					piece->coverMap.emplace(DOWN, 25);
+				}
+				else {
+					piece->coverMap.emplace(UP,25);
+				}
+			}
+			else if (gridBoxes[x][y]->GetType() == fullCover) {
+				if (x > box->index.x) {
+					piece->coverMap.emplace(RIGHT, 50);
+				}
+				else if (x < box->index.x) {
+					piece->coverMap.emplace(LEFT, 50);
+				}
+				else if (y > box->index.y) {
+					piece->coverMap.emplace(DOWN, 50);
+				}
+				else {
+					piece->coverMap.emplace(UP, 50);
+				}
+			}
+		}
+	}
 }
 
 GridBox* Grid::GetBoxFromPosition(sf::Vector2i position)

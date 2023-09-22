@@ -3,7 +3,13 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <stack>
-
+#include <map>
+enum coverDirection {
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT
+};
 class GamePiece
 {
 protected:
@@ -15,7 +21,6 @@ protected:
 	int minDamage;
 	bool isDead = false;
 	bool atDestination = false;
-	bool turnTaken = false;
 	int CalcDamage();
 	//each child class will need to define visual since SMFL doesn't seem to allow the generic shape class to be used
 
@@ -27,7 +32,7 @@ public:
 	bool MoveToNext(sf::Vector2f desination);
 	sf::Vector2i GetPosition();
 	void Attack(GamePiece* target);
-	
+	std::map<coverDirection, int> coverMap;
 
 };
 

@@ -35,7 +35,7 @@ class GridBox
 	int GetHeight();
 	void ResetParent();
 	void SetGCost(int);
-
+	void SetOccupyingPiece(GamePiece* piece);
 
 private:
 	sf::RectangleShape* visual;

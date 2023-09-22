@@ -126,6 +126,12 @@ void GridBox::SetGCost(int value)
 	gCost = value;
 }
 
+void GridBox::SetOccupyingPiece(GamePiece* piece)
+{
+	occupyingPiece = piece;
+	type = gridBoxType::occupied;
+}
+
 void GridBox::SetTypeValues()
 {
 	auto test = this;

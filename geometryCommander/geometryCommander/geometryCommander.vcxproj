@@ -138,6 +138,7 @@
     <ClCompile Include="geometryCommander.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="GridBox.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="PlayerPiece.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -146,6 +147,7 @@
     <ClInclude Include="GamePiece.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="GridBox.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="PlayerPiece.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

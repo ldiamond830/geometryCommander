@@ -8,6 +8,7 @@
 #include "PlayerPiece.h"
 #include <vector>
 #include <memory>
+#include "InputManager.h"
 enum gameState {
 	playerTurn,
 	enemyTurn
@@ -24,6 +25,7 @@ private:
 	gameState currentState;
 	void PlayerInput();
 	void SelectPiece(int index);
+	InputManager input;
 
 public:
 	GameManager(sf::RenderWindow*, int screenWidth, int screenHeight, int rowSize, int columnSize, int playerPieceCount, int enemyPieceCount);

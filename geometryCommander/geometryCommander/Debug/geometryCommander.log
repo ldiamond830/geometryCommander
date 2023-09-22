@@ -1,40 +1,49 @@
-﻿  GameManager.cpp
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(7,29): warning C4018: '<': signed/unsigned mismatch
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(8,118): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+﻿  Grid.cpp
+D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(19,29): warning C4018: '<': signed/unsigned mismatch
+D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(21,30): warning C4018: '<': signed/unsigned mismatch
+D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(23,111): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(8,80): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(23,109): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(12,29): warning C4018: '<': signed/unsigned mismatch
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(13,141): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(23,91): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(23,76): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(68,42): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(13,90): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(68,28): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-  PlayerPiece.cpp
-D:\Github\geometryCommander\geometryCommander\geometryCommander\PlayerPiece.cpp(5,15): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-D:\Github\geometryCommander\geometryCommander\geometryCommander\PlayerPiece.cpp(6,15): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-D:\Github\geometryCommander\geometryCommander\geometryCommander\PlayerPiece.cpp(14,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(77,21): warning C4018: '<': signed/unsigned mismatch
+D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(84,14): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-D:\Github\geometryCommander\geometryCommander\geometryCommander\PlayerPiece.cpp(14,35): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(85,15): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-  geometryCommander.cpp
-D:\Github\geometryCommander\geometryCommander\geometryCommander\geometryCommander.cpp(18,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Generating Code...
+D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(136,24): warning C4018: '<': signed/unsigned mismatch
+D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(153,22): warning C4018: '<': signed/unsigned mismatch
+D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(189,13): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Github\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(190,14): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
   geometryCommander.vcxproj -> D:\Github\geometryCommander\geometryCommander\Debug\geometryCommander.exe
