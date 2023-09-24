@@ -22,6 +22,8 @@ protected:
 	bool isDead = false;
 	bool atDestination = false;
 	int CalcDamage();
+	bool ChanceToHit(GamePiece* target);
+	sf::Vector2f index;
 	//each child class will need to define visual since SMFL doesn't seem to allow the generic shape class to be used
 
 public:
@@ -33,6 +35,6 @@ public:
 	sf::Vector2i GetPosition();
 	void Attack(GamePiece* target);
 	std::map<coverDirection, int> coverMap;
-
+	void SetIndex(sf::Vector2f _index);
 };
 

@@ -26,8 +26,10 @@ Grid::Grid(int screenWidth, int screenHeight, int rowSize, int columnSize)
 	//testing cover
 	gridBoxes[0][columnSize - 2]->SetType(gridBoxType::halfCover);
 	gridBoxes[1][columnSize - 2]->SetType(gridBoxType::fullCover);
+	gridBoxes[4][columnSize - 1]->SetType(gridBoxType::fullCover);
 	gridBoxes[3][1]->SetType(gridBoxType::halfCover);
 	gridBoxes[4][0]->SetType(gridBoxType::halfCover);
+	
 }
 
 

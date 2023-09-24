@@ -40,6 +40,8 @@ GridBox::GridBox(const GridBox& other)
 GridBox::~GridBox()
 {
 	delete visual;
+	delete occupyingPiece;
+	delete parent;
 }
 
 void GridBox::SetType(gridBoxType newType)
@@ -129,6 +131,7 @@ void GridBox::SetGCost(int value)
 void GridBox::SetOccupyingPiece(GamePiece* piece)
 {
 	occupyingPiece = piece;
+	occupyingPiece->SetIndex(this->index);
 	type = gridBoxType::occupied;
 }
 

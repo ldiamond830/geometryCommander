@@ -22,6 +22,7 @@ GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenH
 
 GameManager::~GameManager()
 {
+	delete grid;
 	for (PlayerPiece* p : playerPieceList) {
 		delete p;
 	}
@@ -54,10 +55,10 @@ void GameManager::PlayerInput()
 		if (clickedBox != nullptr) {
 			if (clickedBox->GetType() == gridBoxType::empty) {
 				grid->MovePiece(grid->GetBoxFromPosition(selectedPiece->GetPosition()), clickedBox);
-				selectedPiece->turnTaken = true;
-				SelectPiece((selectedIndex + 1) % playerPieceList.size());
+				//selectedPiece->turnTaken = true;
+				//SelectPiece((selectedIndex + 1) % playerPieceList.size());
 				while (selectedPiece->turnTaken) {
-					SelectPiece((selectedIndex + 1) % playerPieceList.size());
+					//SelectPiece((selectedIndex + 1) % playerPieceList.size());
 				}
 			}
 			else if (clickedBox->GetType() == gridBoxType::occupied && dynamic_cast<EnemyPiece*>(clickedBox->occupyingPiece) != nullptr)

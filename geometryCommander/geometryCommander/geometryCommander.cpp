@@ -11,17 +11,27 @@
 #include "GameManager.h"
 using namespace std;
 
-
+void wrapper();
 
 int main()
 {
+    wrapper();
+
+    if (_CrtDumpMemoryLeaks()) {
+        cout << "memory leak";
+    }
+    return 0;
+}
+
+void wrapper(){
+
     srand(time(NULL));
     int screenWidth = 800;
     int screenHeight = 600;
     sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "Game");
     GameManager gameManger = GameManager(&window, screenWidth, screenHeight, 10, 10, 4, 4);
 
-    
+
     // run the program as long as the window is open
     while (window.isOpen())
     {
@@ -46,11 +56,8 @@ int main()
         window.display();
     }
 
-    
 
-    return 0;
+
 }
-
-
 
 
