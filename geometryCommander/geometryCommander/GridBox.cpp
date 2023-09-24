@@ -39,9 +39,10 @@ GridBox::GridBox(const GridBox& other)
 
 GridBox::~GridBox()
 {
-	delete visual;
-	delete occupyingPiece;
-	delete parent;
+	if (visual != nullptr) {
+		delete visual;
+	}
+	//delete occupyingPiece;
 }
 
 void GridBox::SetType(gridBoxType newType)

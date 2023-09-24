@@ -29,7 +29,9 @@ Grid::Grid(int screenWidth, int screenHeight, int rowSize, int columnSize)
 	gridBoxes[4][columnSize - 1]->SetType(gridBoxType::fullCover);
 	gridBoxes[3][1]->SetType(gridBoxType::halfCover);
 	gridBoxes[4][0]->SetType(gridBoxType::halfCover);
-	
+	gridBoxes[6][0]->SetType(gridBoxType::fullCover);
+	gridBoxes[5][1]->SetType(gridBoxType::fullCover);
+	gridBoxes[6][2]->SetType(gridBoxType::fullCover);
 }
 
 
@@ -60,7 +62,7 @@ void Grid::CalculateHCosts(int endX, int endY)
 		for (int y = 0; y < gridWidth; y++)
 		{
 			gridBoxes[x][y]->SetHCost(endX, endY);
-			gridBoxes[x][y]->ResetParent();
+			
 		}
 	}
 }
@@ -166,6 +168,13 @@ void Grid::FindPath(GridBox* start, GridBox* end)
 		else {
 			//no path found
 			pathMatchesInput = true;
+		}
+	}
+	for (int x = 0; x < gridHeight; x++)
+	{
+		for (int y = 0; y < gridWidth; y++)
+		{
+			gridBoxes[x][y]->ResetParent();
 		}
 	}
 }

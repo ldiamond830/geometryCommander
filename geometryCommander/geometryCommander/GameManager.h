@@ -32,6 +32,7 @@ public:
 	~GameManager();
 	void Update();
 	void Draw();
+	bool gameRunning = true;
 	
 
 };

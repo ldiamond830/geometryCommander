@@ -24,6 +24,7 @@ protected:
 	int CalcDamage();
 	bool ChanceToHit(GamePiece* target);
 	sf::Vector2f index;
+	int accuracy = 75;
 	//each child class will need to define visual since SMFL doesn't seem to allow the generic shape class to be used
 
 public:

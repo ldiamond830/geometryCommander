@@ -14,7 +14,7 @@ int GamePiece::CalcDamage()
 
 bool GamePiece::ChanceToHit(GamePiece* target)
 {
-	float chanceToHit = 75;
+	float chanceToHit = accuracy;
 	//move both manhatann distance calculations to a utils class
 	float dist = abs(index.x - target->index.x) + abs(index.y - target->index.y);
 	bool flank = false;

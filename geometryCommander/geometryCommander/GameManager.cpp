@@ -14,6 +14,9 @@ GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenH
 		grid->UpdateOccupyingPiece(grid->gridBoxes[i][columnSize - 1], enemyPiece);
 		enemyPieceList.push_back(enemyPiece);
 	}
+	EnemyPiece* enemyPiece = new EnemyPiece(grid->gridBoxes[6][1]->GetCenter().x, grid->gridBoxes[6][1]->GetCenter().y);
+	grid->UpdateOccupyingPiece(grid->gridBoxes[6][1], enemyPiece);
+	enemyPieceList.push_back(enemyPiece);
 	SelectPiece(0);
 	//player always goes first, at least for now
 	currentState = gameState::playerTurn;
@@ -64,10 +67,10 @@ void GameManager::PlayerInput()
 			else if (clickedBox->GetType() == gridBoxType::occupied && dynamic_cast<EnemyPiece*>(clickedBox->occupyingPiece) != nullptr)
 			{
 				selectedPiece->Attack(clickedBox->occupyingPiece);
-				selectedPiece->turnTaken = true;
-				SelectPiece((selectedIndex + 1) % playerPieceList.size());
+				//selectedPiece->turnTaken = true;
+				//SelectPiece((selectedIndex + 1) % playerPieceList.size());
 				while (selectedPiece->turnTaken) {
-					SelectPiece((selectedIndex + 1) % playerPieceList.size());
+					//SelectPiece((selectedIndex + 1) % playerPieceList.size());
 				}
 			}
 		}

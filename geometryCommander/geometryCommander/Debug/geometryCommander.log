@@ -1,15 +1,35 @@
-﻿  GamePiece.cpp
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(7,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(10,12): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(12,9): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(91,28): warning C4244: 'argument': conversion from 'float' to 'T', possible loss of data
+﻿  GridBox.cpp
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(14,54): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
-              T=int
+              T=float
           ]
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(91,22): warning C4244: 'argument': conversion from 'float' to 'T', possible loss of data
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(14,47): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
-              T=int
+              T=float
           ]
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(32,54): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(32,47): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(63,13): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(88,12): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(89,12): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(91,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(93,11): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   geometryCommander.vcxproj -> D:\Github\geometryCommander\geometryCommander\Debug\geometryCommander.exe
