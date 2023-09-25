@@ -39,9 +39,7 @@ GridBox::GridBox(const GridBox& other)
 
 GridBox::~GridBox()
 {
-	if (visual != nullptr) {
-		delete visual;
-	}
+	delete visual;
 	//delete occupyingPiece;
 }
 

@@ -18,13 +18,18 @@ int main()
     wrapper();
 
     if (_CrtDumpMemoryLeaks()) {
-        cout << "memory leak";
+         cout << "memory leak";
     }
     return 0;
 }
 
 void wrapper(){
+    //EnemyPiece* enemyLeakTest = new EnemyPiece(0,0);
+    //PlayerPiece* playerLeakTest = new PlayerPiece(0, 0);
+    sf::RenderWindow window(sf::VideoMode(1, 1), "Game");
+    GameManager* gameManagerLeakTest = new GameManager(&window, 1, 1, 10, 10, 4, 4);
 
+    /*
     srand(time(NULL));
     int screenWidth = 800;
     int screenHeight = 600;
@@ -55,9 +60,12 @@ void wrapper(){
         // end the current frame
         window.display();
     }
+    */
 
-
-
+    //delete enemyLeakTest;
+    //delete playerLeakTest;
+    delete gameManagerLeakTest;
+    //delete &window;
 }
 
 
