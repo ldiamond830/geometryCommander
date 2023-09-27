@@ -132,6 +132,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BehaviorTreeActionNode.cpp" />
+    <ClCompile Include="BehaviorTreeConditionalNode.cpp" />
+    <ClCompile Include="BehaviorTreeNode.cpp" />
     <ClCompile Include="EnemyPiece.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GamePiece.cpp" />
@@ -142,6 +145,9 @@
     <ClCompile Include="PlayerPiece.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BehaviorTreeActionNode.h" />
+    <ClInclude Include="BehaviorTreeConditionalNode.h" />
+    <ClInclude Include="BehaviorTreeNode.h" />
     <ClInclude Include="EnemyPiece.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GamePiece.h" />

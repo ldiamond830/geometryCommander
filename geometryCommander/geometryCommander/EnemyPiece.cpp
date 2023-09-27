@@ -21,6 +21,7 @@ EnemyPiece::EnemyPiece(int _xPos, int _yPos)
 EnemyPiece::~EnemyPiece()
 {
 	delete visual;
+	delete BehaviorTreeRoot;
 }
 
 void EnemyPiece::Draw(sf::RenderWindow* window)
