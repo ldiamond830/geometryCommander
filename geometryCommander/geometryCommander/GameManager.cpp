@@ -36,7 +36,22 @@ GameManager::~GameManager()
 
 void GameManager::Update()
 {
-	PlayerInput();
+	switch (currentState) {
+	
+		case gameState::playerTurn:
+		PlayerInput();
+		if (CheckPlayerEndTurn(playerPieceList)) {
+			currentState = gameState::enemyTurn;
+		}
+		break;
+
+		case gameState::enemyTurn:
+		if (CheckEnemyEndTurn(enemyPieceList)) {
+			currentState = gameState::playerTurn;
+		}
+		break;
+	}
+	
 }
 
 void GameManager::Draw()
@@ -58,35 +73,23 @@ void GameManager::PlayerInput()
 		if (clickedBox != nullptr) {
 			if (clickedBox->GetType() == gridBoxType::empty) {
 				grid->MovePiece(grid->GetBoxFromPosition(selectedPiece->GetPosition()), clickedBox);
-				//selectedPiece->turnTaken = true;
-				//SelectPiece((selectedIndex + 1) % playerPieceList.size());
-				while (selectedPiece->turnTaken) {
-					//SelectPiece((selectedIndex + 1) % playerPieceList.size());
-				}
+				selectedPiece->turnTaken = true;
+				NextPiece(1);
 			}
 			else if (clickedBox->GetType() == gridBoxType::occupied && dynamic_cast<EnemyPiece*>(clickedBox->occupyingPiece) != nullptr)
 			{
 				selectedPiece->Attack(clickedBox->occupyingPiece);
-				//selectedPiece->turnTaken = true;
-				//SelectPiece((selectedIndex + 1) % playerPieceList.size());
-				while (selectedPiece->turnTaken) {
-					//SelectPiece((selectedIndex + 1) % playerPieceList.size());
-				}
+				selectedPiece->turnTaken = true;
+				NextPiece(1);
 			}
 		}
 	}
 
 	if (input.isKeyReleased(sf::Keyboard::Q)) {
-		SelectPiece((selectedIndex - 1) % playerPieceList.size());
-		while (selectedPiece->turnTaken) {
-			SelectPiece((selectedIndex - 1) % playerPieceList.size());
-		}
+		NextPiece(-1);
 	}
 	else if (input.isKeyReleased(sf::Keyboard::E)) {
-		SelectPiece((selectedIndex + 1) % playerPieceList.size());
-		while (selectedPiece->turnTaken) {
-			SelectPiece((selectedIndex + 1) % playerPieceList.size());
-		}
+		NextPiece(1);
 	}
 }
 
@@ -102,4 +105,33 @@ void GameManager::SelectPiece(int index)
 	
 	selectedPiece = playerPieceList[selectedIndex];
 	selectedPiece->Select();
+}
+
+bool GameManager::CheckPlayerEndTurn(std::vector<PlayerPiece*> list)
+{
+	endTurn = true;
+	for (unsigned int i = 0; i < list.size(); i++) {
+		if (!list[i]->turnTaken) {
+			endTurn = false;
+		}
+	}
+	return endTurn;
+}
+
+bool GameManager::CheckEnemyEndTurn(std::vector<EnemyPiece*> list)
+{
+	endTurn = true;
+	for (unsigned int i = 0; i < list.size(); i++) {
+		if (!list[i]->turnTaken) {
+			endTurn = false;
+		}
+	}
+	return endTurn;
+}
+
+void GameManager::NextPiece(int index)
+{
+	do {
+		SelectPiece((selectedIndex + index) % playerPieceList.size());
+	} while (selectedPiece->turnTaken);
 }

@@ -37,5 +37,6 @@ public:
 	void Attack(GamePiece* target);
 	std::map<coverDirection, int> coverMap;
 	void SetIndex(sf::Vector2f _index);
+	bool turnTaken = false;
 };
 

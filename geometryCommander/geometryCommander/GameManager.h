@@ -26,6 +26,10 @@ private:
 	void PlayerInput();
 	void SelectPiece(int index);
 	InputManager input;
+	bool endTurn;
+	bool CheckPlayerEndTurn(std::vector<PlayerPiece*>);
+	bool CheckEnemyEndTurn(std::vector<EnemyPiece*>);
+	void NextPiece(int index);
 
 public:
 	GameManager(sf::RenderWindow*, int screenWidth, int screenHeight, int rowSize, int columnSize, int playerPieceCount, int enemyPieceCount);

@@ -8,7 +8,6 @@ public:
 	void Draw(sf::RenderWindow* window) override;
 	void Select();
 	void Deselect();
-	bool turnTaken = false;
 
 private:
 	sf::CircleShape* visual;

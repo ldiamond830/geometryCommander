@@ -13,12 +13,6 @@ BehaviorTreeNode::BehaviorTreeNode()
 	rightChild = nullptr;
 }
 
-BehaviorTreeNode::BehaviorTreeNode(BehaviorTreeNode* _leftChild, BehaviorTreeNode* _rightChild)
-{
-	leftChild = _leftChild;
-	rightChild = _rightChild;
-}
-
 BehaviorTreeNode::~BehaviorTreeNode()
 {
 	delete leftChild;

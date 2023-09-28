@@ -170,6 +170,7 @@ void Grid::FindPath(GridBox* start, GridBox* end)
 			pathMatchesInput = true;
 		}
 	}
+	//bugged
 	for (int x = 0; x < gridHeight; x++)
 	{
 		for (int y = 0; y < gridWidth; y++)
