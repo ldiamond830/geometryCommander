@@ -27,8 +27,7 @@ private:
 	void SelectPiece(int index);
 	InputManager input;
 	bool endTurn;
-	bool CheckPlayerEndTurn(std::vector<PlayerPiece*>);
-	bool CheckEnemyEndTurn(std::vector<EnemyPiece*>);
+	bool CheckEndTurn(bool isPlayer);
 	void NextPiece(int index);
 
 public:

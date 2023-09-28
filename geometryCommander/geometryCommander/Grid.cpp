@@ -123,10 +123,10 @@ void Grid::FindPath(GridBox* start, GridBox* end)
 					closeList.push_back(end);
 
 					GridBox* pathCell = end;
-					path.push(end);
+					path.push(new GridBox(*end));
 					//Vertex* currentParent = pathCell->GetParent();
 					while (pathCell->index.x != start->index.x || pathCell->index.y != start->index.y) {
-						path.push(pathCell->GetParent());
+						path.push(new GridBox(*pathCell->GetParent()));
 						pathCell = pathCell->GetParent();
 					}
 					path.pop();
@@ -170,7 +170,6 @@ void Grid::FindPath(GridBox* start, GridBox* end)
 			pathMatchesInput = true;
 		}
 	}
-	//bugged
 	for (int x = 0; x < gridHeight; x++)
 	{
 		for (int y = 0; y < gridWidth; y++)

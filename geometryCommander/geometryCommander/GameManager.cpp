@@ -40,14 +40,23 @@ void GameManager::Update()
 	
 		case gameState::playerTurn:
 		PlayerInput();
-		if (CheckPlayerEndTurn(playerPieceList)) {
+		if (!CheckEndTurn(true)) {
 			currentState = gameState::enemyTurn;
+			//removes the blue color for the duration of the enemy turn 
+			selectedPiece->Deselect();
+			for (PlayerPiece* piece : playerPieceList) {
+				piece->turnTaken = false;
+			}
 		}
 		break;
 
 		case gameState::enemyTurn:
-		if (CheckEnemyEndTurn(enemyPieceList)) {
+		if (!CheckEndTurn(false)) {
 			currentState = gameState::playerTurn;
+			selectedPiece->Select();
+			for (EnemyPiece* piece : enemyPieceList) {
+				piece->turnTaken = false;
+			}
 		}
 		break;
 	}
@@ -107,12 +116,21 @@ void GameManager::SelectPiece(int index)
 	selectedPiece->Select();
 }
 
-bool GameManager::CheckPlayerEndTurn(std::vector<PlayerPiece*> list)
+bool GameManager::CheckEndTurn(bool isPlayer)
 {
-	endTurn = true;
-	for (unsigned int i = 0; i < list.size(); i++) {
-		if (!list[i]->turnTaken) {
-			endTurn = false;
+	endTurn = false;
+	if (isPlayer) {
+		for (unsigned int i = 0; i < playerPieceList.size(); i++) {
+			if (!playerPieceList[i]->turnTaken) {
+				endTurn = true;
+			}
+		}
+	}
+	else {
+		for (unsigned int i = 0; i < enemyPieceList.size(); i++) {
+			if (!enemyPieceList[i]->turnTaken) {
+				endTurn = true;
+			}
 		}
 	}
 	return endTurn;
@@ -133,5 +151,5 @@ void GameManager::NextPiece(int index)
 {
 	do {
 		SelectPiece((selectedIndex + index) % playerPieceList.size());
-	} while (selectedPiece->turnTaken);
+	} while (selectedPiece->turnTaken && CheckEndTurn(true));
 }
