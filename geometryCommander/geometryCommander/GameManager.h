@@ -29,14 +29,16 @@ private:
 	bool endTurn;
 	bool CheckEndTurn(bool isPlayer);
 	void NextPiece(int index);
+	static GameManager* instance;
+	GameManager(sf::RenderWindow*, int screenWidth, int screenHeight, int rowSize, int columnSize, int playerPieceCount, int enemyPieceCount);
 
 public:
-	GameManager(sf::RenderWindow*, int screenWidth, int screenHeight, int rowSize, int columnSize, int playerPieceCount, int enemyPieceCount);
 	~GameManager();
 	void Update();
 	void Draw();
 	bool gameRunning = true;
-	
-
+	static GameManager* GetInstance();
+	static GameManager* CreateInstance(sf::RenderWindow*, int screenWidth, int screenHeight, int rowSize, int columnSize, int playerPieceCount, int enemyPieceCount);
+	static void DeleteInstance();
 };
 

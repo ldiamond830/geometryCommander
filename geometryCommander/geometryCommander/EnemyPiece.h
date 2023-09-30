@@ -12,9 +12,14 @@ public:
 	void Draw(sf::RenderWindow* window) override;
 	void TakeTurn();
 	virtual void ConstructBehaviorTree();
-private:
+protected:
 	sf::CircleShape* visual;
 	float radius = 10;
 	BehaviorTreeNode* BehaviorTreeRoot;
+	//B Tree condition methods
+	bool IsInCover();
+	//B Tree Behavior methods
+	void MoveToCover();
+	void Attack();
 };
 

@@ -15,6 +15,7 @@ EnemyPiece::EnemyPiece(int _xPos, int _yPos)
 	visual->setOrigin(radius , radius);
 	visual->setPosition(sf::Vector2f(xPos, yPos));
 	visual->setFillColor(sf::Color(255, 0, 0));
+	ConstructBehaviorTree();
 	//visual->setOutlineThickness(5.0f);
 }
 
@@ -27,6 +28,12 @@ EnemyPiece::~EnemyPiece()
 void EnemyPiece::Draw(sf::RenderWindow* window)
 {
 	window->draw(*visual);
+}
+
+void EnemyPiece::TakeTurn()
+{
+	turnTaken = true;
+	BehaviorTreeRoot->Traverse();
 }
 
 void EnemyPiece::ConstructBehaviorTree()

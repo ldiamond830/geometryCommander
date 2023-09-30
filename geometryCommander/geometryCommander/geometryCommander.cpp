@@ -36,13 +36,13 @@ void wrapper(){
     int screenWidth = 800;
     int screenHeight = 600;
     sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "Game");
-    GameManager gameManger = GameManager(&window, screenWidth, screenHeight, 10, 10, 4, 4);
+    GameManager* gameManger = GameManager::CreateInstance(&window, screenWidth, screenHeight, 10, 10, 4, 4);
 
 
     // run the program as long as the window is open
     while (window.isOpen())
     {
-        gameManger.Update();
+        gameManger->Update();
 
         // check all the window's events that were triggered since the last iteration of the loop
         sf::Event event;
@@ -58,11 +58,11 @@ void wrapper(){
 
         // draw everything here...
         // window.draw(...);
-        gameManger.Draw();
+        gameManger->Draw();
         // end the current frame
         window.display();
     }
-    
+    GameManager::DeleteInstance();
     //delete enemyLeakTest;
     //delete playerLeakTest;
     //delete gameManagerLeakTest;

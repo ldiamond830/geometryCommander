@@ -1,5 +1,5 @@
 #include "GameManager.h"
-
+GameManager* GameManager::instance = nullptr;
 GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenHeight, int rowSize, int columnSize, int playerPieceCount, int enemyPieceCount)
 {
 	window = _window;
@@ -42,7 +42,7 @@ void GameManager::Update()
 		PlayerInput();
 		if (!CheckEndTurn(true)) {
 			currentState = gameState::enemyTurn;
-			//removes the blue color for the duration of the enemy turn 
+			//hides the blue color for the duration of the enemy turn 
 			selectedPiece->Deselect();
 			for (PlayerPiece* piece : playerPieceList) {
 				piece->turnTaken = false;
@@ -51,8 +51,12 @@ void GameManager::Update()
 		break;
 
 		case gameState::enemyTurn:
+			for (int i = 0; i < enemyPieceList.size(); i++) {
+				enemyPieceList[i]->TakeTurn();
+			}
 		if (!CheckEndTurn(false)) {
 			currentState = gameState::playerTurn;
+			//reveal the blue color on the selected piece
 			selectedPiece->Select();
 			for (EnemyPiece* piece : enemyPieceList) {
 				piece->turnTaken = false;
@@ -71,6 +75,29 @@ void GameManager::Draw()
 	}
 	for (PlayerPiece* playerPiece : playerPieceList) {
 		playerPiece->Draw(window);
+	}
+}
+
+GameManager* GameManager::GetInstance()
+{
+	if (instance == nullptr) {
+		throw std::invalid_argument("Instance not initialized");
+	}
+
+	return instance;
+}
+
+GameManager* GameManager::CreateInstance(sf::RenderWindow* window, int screenWidth, int screenHeight, int rowSize, int columnSize, int playerPieceCount, int enemyPieceCount)
+{
+	instance = new GameManager(window, screenWidth, screenHeight, rowSize, columnSize, playerPieceCount, enemyPieceCount);
+	return instance;
+}
+
+void GameManager::DeleteInstance()
+{
+	if (instance != nullptr) {
+		delete instance;
+		instance = nullptr;
 	}
 }
 
@@ -131,17 +158,6 @@ bool GameManager::CheckEndTurn(bool isPlayer)
 			if (!enemyPieceList[i]->turnTaken) {
 				endTurn = true;
 			}
-		}
-	}
-	return endTurn;
-}
-
-bool GameManager::CheckEnemyEndTurn(std::vector<EnemyPiece*> list)
-{
-	endTurn = true;
-	for (unsigned int i = 0; i < list.size(); i++) {
-		if (!list[i]->turnTaken) {
-			endTurn = false;
 		}
 	}
 	return endTurn;
