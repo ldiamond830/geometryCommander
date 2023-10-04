@@ -39,6 +39,9 @@ Z_DELETE
 *.stackdump
 *.opendb
 *.db
+
+*.obj
+
 .vs/
 _Binary/*_d.ini
 /include/glm/out/build/x64-Debug

@@ -42,12 +42,6 @@
     <ClCompile Include="BehaviorTreeNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BehaviorTreeConditionalNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BehaviorTreeActionNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Grid.h">

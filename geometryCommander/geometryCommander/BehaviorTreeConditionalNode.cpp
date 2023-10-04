@@ -1,6 +1,6 @@
 #include "BehaviorTreeConditionalNode.h"
-
-BehaviorTreeConditionalNode::BehaviorTreeConditionalNode(BehaviorTreeNode* _leftChild, BehaviorTreeNode* _rightChild, bool(*_condition)()) : BehaviorTreeNode(_leftChild, _rightChild)
+/*
+BehaviorTreeConditionalNode::BehaviorTreeConditionalNode(BehaviorTreeNode* _leftChild, BehaviorTreeNode* _rightChild, bool(EnemyPiece::*_condition)()) : BehaviorTreeNode(_leftChild, _rightChild)
 {
 	condition = _condition;
 }
@@ -14,3 +14,4 @@ void BehaviorTreeConditionalNode::Traverse()
 		rightChild->Traverse();
 	}
 }
+*/

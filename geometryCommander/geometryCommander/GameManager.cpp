@@ -101,6 +101,11 @@ void GameManager::DeleteInstance()
 	}
 }
 
+std::vector<PlayerPiece*> GameManager::GetPlayerPieces()
+{
+	return playerPieceList;
+}
+
 void GameManager::PlayerInput()
 {
 	input.PlayerInput();

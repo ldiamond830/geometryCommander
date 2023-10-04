@@ -40,5 +40,6 @@ public:
 	static GameManager* GetInstance();
 	static GameManager* CreateInstance(sf::RenderWindow*, int screenWidth, int screenHeight, int rowSize, int columnSize, int playerPieceCount, int enemyPieceCount);
 	static void DeleteInstance();
+	std::vector<PlayerPiece*> GetPlayerPieces();
 };
 
