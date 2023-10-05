@@ -39,5 +39,6 @@ public:
 	void SetIndex(sf::Vector2f _index);
 	bool turnTaken = false;
 	bool isDead = false;
+	sf::Vector2f GetIndex();
 };
 

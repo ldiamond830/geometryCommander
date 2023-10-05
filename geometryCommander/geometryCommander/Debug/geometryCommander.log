@@ -1,5 +1,49 @@
-﻿  MyUtils.cpp
-D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\MyUtils.cpp(24,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\MyUtils.cpp(25,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\MyUtils.cpp(26,14): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-  geometryCommander.vcxproj -> D:\Profiles\lgd1649\Source\Repos\geometryCommander\geometryCommander\Debug\geometryCommander.exe
+﻿  Grid.cpp
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(19,29): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(21,30): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(23,111): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(23,109): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(23,91): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(23,76): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(86,42): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(86,28): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(95,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(102,14): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(103,15): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(154,24): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(171,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(253,14): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(254,15): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+  geometryCommander.vcxproj -> C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\Debug\geometryCommander.exe

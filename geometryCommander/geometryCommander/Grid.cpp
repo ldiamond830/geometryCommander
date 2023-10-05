@@ -24,14 +24,28 @@ Grid::Grid(int screenWidth, int screenHeight, int rowSize, int columnSize)
 		}
 	}
 	//testing cover
-	gridBoxes[0][columnSize - 2]->SetType(gridBoxType::halfCover);
-	gridBoxes[1][columnSize - 2]->SetType(gridBoxType::fullCover);
-	gridBoxes[4][columnSize - 1]->SetType(gridBoxType::fullCover);
-	gridBoxes[3][1]->SetType(gridBoxType::halfCover);
-	gridBoxes[4][0]->SetType(gridBoxType::halfCover);
-	gridBoxes[6][0]->SetType(gridBoxType::fullCover);
-	gridBoxes[5][1]->SetType(gridBoxType::fullCover);
-	gridBoxes[6][2]->SetType(gridBoxType::fullCover);
+	gridBoxes[0][1]->SetType(halfCover);
+	gridBoxes[2][1]->SetType(halfCover);
+	gridBoxes[4][1]->SetType(halfCover);
+	gridBoxes[6][1]->SetType(halfCover);
+	gridBoxes[8][1]->SetType(halfCover);
+
+	gridBoxes[1][7]->SetType(halfCover);
+	gridBoxes[3][7]->SetType(halfCover);
+	gridBoxes[5][7]->SetType(halfCover);
+	gridBoxes[7][7]->SetType(halfCover);
+
+	gridBoxes[3][3]->SetType(fullCover);
+	gridBoxes[2][4]->SetType(fullCover);
+	gridBoxes[3][4]->SetType(fullCover);
+	gridBoxes[4][4]->SetType(fullCover);
+	gridBoxes[3][5]->SetType(fullCover);
+
+	gridBoxes[7][3]->SetType(fullCover);
+	gridBoxes[6][4]->SetType(fullCover);
+	gridBoxes[7][4]->SetType(fullCover);
+	gridBoxes[8][4]->SetType(fullCover);
+	gridBoxes[7][5]->SetType(fullCover);
 }
 
 
