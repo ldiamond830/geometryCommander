@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <stack>
+#include <map>
 #include "GridBox.h"
 class Grid
 {
@@ -24,5 +25,9 @@ public:
 		//separate from move so it can be called when pieces are spawned, not just moved
 		void UpdateOccupyingPiece(GridBox* box, GamePiece* piece);
 		GridBox* GetBoxFromPosition(sf::Vector2i);
+		int GetWidth();
+		int GetHeight();
+		std::map<coverDirection, int> GetCoverAtPosition(GridBox* box);
+
 };
 

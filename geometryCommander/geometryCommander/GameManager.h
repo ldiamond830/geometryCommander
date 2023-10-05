@@ -31,6 +31,7 @@ private:
 	void NextPiece(int index);
 	static GameManager* instance;
 	GameManager(sf::RenderWindow*, int screenWidth, int screenHeight, int rowSize, int columnSize, int playerPieceCount, int enemyPieceCount);
+	
 
 public:
 	~GameManager();
@@ -41,5 +42,6 @@ public:
 	static GameManager* CreateInstance(sf::RenderWindow*, int screenWidth, int screenHeight, int rowSize, int columnSize, int playerPieceCount, int enemyPieceCount);
 	static void DeleteInstance();
 	std::vector<PlayerPiece*> GetPlayerPieces();
+	Grid* GetGrid();
 };
 

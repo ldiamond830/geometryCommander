@@ -176,3 +176,8 @@ void GamePiece::SetIndex(sf::Vector2f _index)
 	index = _index;
 }
 
+sf::Vector2f GamePiece::GetIndex()
+{
+	return index;
+}
+

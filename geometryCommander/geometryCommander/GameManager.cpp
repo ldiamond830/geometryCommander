@@ -23,6 +23,11 @@ GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenH
 	input = InputManager();
 }
 
+Grid* GameManager::GetGrid()
+{
+	return grid;
+}
+
 GameManager::~GameManager()
 {
 	delete grid;
@@ -64,7 +69,22 @@ void GameManager::Update()
 		}
 		break;
 	}
-	
+
+	//check for dead pieces at the end of each turn
+	for (unsigned int i = 0; i < playerPieceList.size(); i++)
+	{
+		if (playerPieceList[i]->isDead) {
+			delete playerPieceList[i];
+			playerPieceList.erase(playerPieceList.begin() + i);
+		}
+	}
+	for (unsigned int i = 0; i < enemyPieceList.size(); i++)
+	{
+		if (enemyPieceList[i]->isDead) {
+			delete enemyPieceList[i];
+			enemyPieceList.erase(enemyPieceList.begin() + i);
+		}
+	}
 }
 
 void GameManager::Draw()

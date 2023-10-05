@@ -140,6 +140,7 @@
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="GridBox.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="MyUtils.cpp" />
     <ClCompile Include="PlayerPiece.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +154,7 @@
     <ClInclude Include="GridBox.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="PlayerPiece.h" />
+    <ClInclude Include="MyUtils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

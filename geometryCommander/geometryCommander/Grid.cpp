@@ -196,58 +196,9 @@ void Grid::UpdateOccupyingPiece(GridBox* box, GamePiece* piece)
 {
 	box->SetOccupyingPiece(piece);
 	box->SetType(gridBoxType::occupied);
+
 	piece->coverMap.clear();
-	for (int x = box->index.x - 1; x <= box->index.x + 1; x++) {
-		for (int y = box->index.y - 1; y <= box->index.y + 1; y++) {
-
-			//skip current cell
-			if (x == box->index.x && y == box->index.y) {
-				continue;
-			}
-
-			//skips diagonals
-			if ((x == box->index.x - 1 && y == box->index.y - 1) ||
-				(x == box->index.x - 1 && y == box->index.y + 1) ||
-				(x == box->index.x + 1 && y == box->index.y - 1) ||
-				(x == box->index.x + 1 && y == box->index.y + 1)) {
-				continue;
-			}
-
-			//Don't check out of bounds of the grid.
-			if (x < 0 || x > gridWidth - 1 || y < 0 || y > gridHeight - 1) {
-				continue;
-			}
-
-			if (gridBoxes[x][y]->GetType() == halfCover) {
-				if (x > box->index.x) {
-					piece->coverMap.emplace(RIGHT, 25);
-				}
-				else if (x < box->index.x) {
-					piece->coverMap.emplace(LEFT, 25);
-				}
-				else if (y > box->index.y) {
-					piece->coverMap.emplace(DOWN, 25);
-				}
-				else {
-					piece->coverMap.emplace(UP,25);
-				}
-			}
-			else if (gridBoxes[x][y]->GetType() == fullCover) {
-				if (x > box->index.x) {
-					piece->coverMap.emplace(RIGHT, 50);
-				}
-				else if (x < box->index.x) {
-					piece->coverMap.emplace(LEFT, 50);
-				}
-				else if (y > box->index.y) {
-					piece->coverMap.emplace(DOWN, 50);
-				}
-				else {
-					piece->coverMap.emplace(UP, 50);
-				}
-			}
-		}
-	}
+	piece->coverMap = std::map<coverDirection, int>(GetCoverAtPosition(box));
 }
 
 GridBox* Grid::GetBoxFromPosition(sf::Vector2i position)
@@ -270,4 +221,72 @@ GridBox* Grid::GetBoxFromPosition(sf::Vector2i position)
 		}
 	}
 	return nullptr;
+}
+
+int Grid::GetWidth()
+{
+	return gridWidth;
+}
+
+int Grid::GetHeight()
+{
+	return gridHeight;
+}
+
+std::map<coverDirection, int> Grid::GetCoverAtPosition(GridBox* box)
+{
+	 std::map<coverDirection, int> mapToReturn = std::map<coverDirection, int>();
+	 for (int x = box->index.x - 1; x <= box->index.x + 1; x++) {
+		 for (int y = box->index.y - 1; y <= box->index.y + 1; y++) {
+
+			 //skip current cell
+			 if (x == box->index.x && y == box->index.y) {
+				 continue;
+			 }
+
+			 //skips diagonals
+			 if ((x == box->index.x - 1 && y == box->index.y - 1) ||
+				 (x == box->index.x - 1 && y == box->index.y + 1) ||
+				 (x == box->index.x + 1 && y == box->index.y - 1) ||
+				 (x == box->index.x + 1 && y == box->index.y + 1)) {
+				 continue;
+			 }
+
+			 //Don't check out of bounds of the grid.
+			 if (x < 0 || x > gridWidth - 1 || y < 0 || y > gridHeight - 1) {
+				 continue;
+			 }
+
+			 if (gridBoxes[x][y]->GetType() == halfCover) {
+				 if (x > box->index.x) {
+					 mapToReturn.emplace(RIGHT, 25);
+				 }
+				 else if (x < box->index.x) {
+					 mapToReturn.emplace(LEFT, 25);
+				 }
+				 else if (y > box->index.y) {
+					 mapToReturn.emplace(DOWN, 25);
+				 }
+				 else {
+					mapToReturn.emplace(UP, 25);
+				 }
+			 }
+			 else if (gridBoxes[x][y]->GetType() == fullCover) {
+				 if (x > box->index.x) {
+					 mapToReturn.emplace(RIGHT, 50);
+				 }
+				 else if (x < box->index.x) {
+					 mapToReturn.emplace(LEFT, 50);
+				 }
+				 else if (y > box->index.y) {
+					 mapToReturn.emplace(DOWN, 50);
+				 }
+				 else {
+					 mapToReturn.emplace(UP, 50);
+				 }
+			 }
+
+		 }
+	 }
+	 return mapToReturn;
 }

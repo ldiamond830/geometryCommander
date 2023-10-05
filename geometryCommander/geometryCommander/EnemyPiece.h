@@ -4,6 +4,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include "BehaviorTreeNode.h"
+#include "MyUtils.h"
 class EnemyPiece : public GamePiece
 {
 public:
@@ -21,7 +22,6 @@ protected:
 	bool IsInCover();
 	//B Tree Behavior methods
 	void MoveToCover();
-	void Attack();
-	
+	void AttackPlayerPiece();
 };
 

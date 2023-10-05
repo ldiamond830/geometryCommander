@@ -7,11 +7,11 @@ private:
 	bool(t::*condition)();
 	t* parent;
 public:
-	BehaviorTreeConditionalNode(t* _parent, BehaviorTreeNode* _leftChild, BehaviorTreeNode* _rightChild, bool(t::* _condition)()) {
+	BehaviorTreeConditionalNode(t* _parent, BehaviorTreeNode* _trueChild, BehaviorTreeNode* _falseChild, bool(t::* _condition)()) {
 		condition = _condition;
 		parent = _parent;
-		leftChild = _leftChild;
-		rightChild = _rightChild;
+		leftChild = _trueChild;
+		rightChild = _falseChild;
 	}
 	void Traverse() override {
 		if ((parent->*condition)()) {

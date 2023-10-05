@@ -19,7 +19,7 @@ protected:
 	int moveRange;
 	int maxDamage;
 	int minDamage;
-	bool isDead = false;
+	
 	bool atDestination = false;
 	int CalcDamage();
 	bool ChanceToHit(GamePiece* target);
@@ -38,5 +38,6 @@ public:
 	std::map<coverDirection, int> coverMap;
 	void SetIndex(sf::Vector2f _index);
 	bool turnTaken = false;
+	bool isDead = false;
 };
 
