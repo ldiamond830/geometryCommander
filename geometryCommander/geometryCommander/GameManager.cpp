@@ -71,6 +71,7 @@ void GameManager::Update()
 	}
 
 	//check for dead pieces at the end of each turn
+	//NOTE: needs to update gridbox occupying piece
 	for (unsigned int i = 0; i < playerPieceList.size(); i++)
 	{
 		if (playerPieceList[i]->isDead) {

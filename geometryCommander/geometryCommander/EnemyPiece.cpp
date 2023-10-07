@@ -30,6 +30,7 @@ EnemyPiece::~EnemyPiece()
 
 void EnemyPiece::Draw(sf::RenderWindow* window)
 {
+	visual->setPosition(xPos, yPos);
 	window->draw(*visual);
 }
 
@@ -58,22 +59,24 @@ void EnemyPiece::MoveToCover()
 	Grid* grid = gameManagerInstance->GetGrid();
 	GridBox* currentPosition = grid->GetBoxFromPosition(sf::Vector2i(xPos, yPos));
 	std::map<coverDirection, int> tempMap = std::map<coverDirection, int>();
-	bool notFlanked = true;
+	
 	
 	for (unsigned int x = 0; x < grid->gridBoxes.size(); x++) {
 		for (unsigned int y = 0; y < grid->gridBoxes[x].size(); y++) {
+			bool notFlanked = true;
 			//box is in move range
-			if (MyUtils::GetInstance()->ManhattanDistance(currentPosition->xPos, currentPosition->yPos, grid->gridBoxes[x][y]->xPos, grid->gridBoxes[x][y]->yPos) <= moveRange) {
+			if (MyUtils::GetInstance()->ManhattanDistance(GetIndex().x, GetIndex().y, grid->gridBoxes[x][y]->index.x, grid->gridBoxes[x][y]->index.y) <= moveRange) {
 				//box can be moved to 
-				if (grid->gridBoxes[x][y]->GetType() != occupied && grid->gridBoxes[x][y]->GetType() != fullCover) {
+				if (grid->gridBoxes[x][y]->GetType() == empty) {
 					tempMap = grid->GetCoverAtPosition(grid->gridBoxes[x][y]);
 
 					if (tempMap.count(coverDirection::UP) != 0) {
 						for (PlayerPiece* playerPiece : gameManagerInstance->GetPlayerPieces())
 						{
 							//there is a piece behind the position being checked
-							if (playerPiece->GetIndex().y > grid->gridBoxes[x][y]->index.y) {
+							if (playerPiece->GetIndex().y >= grid->gridBoxes[x][y]->index.y) {
 								notFlanked = false;
+								//checks if the prospective position has cover from multiple angles making the flank not apply
 								if (tempMap.count(coverDirection::RIGHT) != 0 && playerPiece->GetIndex().x > grid->gridBoxes[x][y]->index.x) {
 									notFlanked = true;
 								}
@@ -92,7 +95,7 @@ void EnemyPiece::MoveToCover()
 						for (PlayerPiece* playerPiece : gameManagerInstance->GetPlayerPieces())
 						{
 							//there is a piece above the position being checked
-							if (playerPiece->GetIndex().y <= index.y) {
+							if (playerPiece->GetIndex().y <= grid->gridBoxes[x][y]->index.y) {
 								notFlanked = false;
 								if (tempMap.count(coverDirection::RIGHT) != 0 && playerPiece->GetIndex().x > grid->gridBoxes[x][y]->index.x) {
 									notFlanked = true;
@@ -111,7 +114,7 @@ void EnemyPiece::MoveToCover()
 						for (PlayerPiece* playerPiece : gameManagerInstance->GetPlayerPieces())
 						{
 							//there is a piece to the right of the position being checked
-							if (playerPiece->GetIndex().x > index.x) {
+							if (playerPiece->GetIndex().x >= grid->gridBoxes[x][y]->index.x) {
 								notFlanked = false;
 								if (tempMap.count(coverDirection::UP) != 0 && playerPiece->GetIndex().y > grid->gridBoxes[x][y]->index.y) {
 									notFlanked = true;
@@ -130,7 +133,7 @@ void EnemyPiece::MoveToCover()
 						for (PlayerPiece* playerPiece : gameManagerInstance->GetPlayerPieces())
 						{
 							//there is a piece to the left of the position being checked
-							if (playerPiece->GetIndex().x <= index.x) {
+							if (playerPiece->GetIndex().x <= grid->gridBoxes[x][y]->index.x) {
 								notFlanked = false;
 								if (tempMap.count(coverDirection::UP) != 0 && playerPiece->GetIndex().y > grid->gridBoxes[x][y]->index.y) {
 									notFlanked = true;
