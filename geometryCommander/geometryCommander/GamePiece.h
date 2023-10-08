@@ -17,9 +17,10 @@ protected:
 	float yPos;
 	int health;
 	int moveRange;
+	int attackRange;
 	int maxDamage;
 	int minDamage;
-	
+	float radius;
 	bool atDestination = false;
 	int CalcDamage();
 	bool ChanceToHit(GamePiece* target);

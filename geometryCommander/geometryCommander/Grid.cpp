@@ -46,6 +46,8 @@ Grid::Grid(int screenWidth, int screenHeight, int rowSize, int columnSize)
 	gridBoxes[7][4]->SetType(fullCover);
 	gridBoxes[8][4]->SetType(fullCover);
 	gridBoxes[7][5]->SetType(fullCover);
+
+	gridBoxes[1][5]->SetType(fullCover);
 }
 
 
@@ -234,6 +236,20 @@ GridBox* Grid::GetBoxFromPosition(sf::Vector2i position)
 			return box;
 		}
 	}
+	return nullptr;
+}
+
+GridBox* Grid::GetBoxFromOccupyingPiece(GamePiece* piece)
+{
+	for (std::vector<GridBox*> boxList : gridBoxes)
+	{
+		for (GridBox* box : boxList) {
+			if (box->occupyingPiece == piece) {
+				return box;
+			}
+		}
+	}
+	//error case
 	return nullptr;
 }
 

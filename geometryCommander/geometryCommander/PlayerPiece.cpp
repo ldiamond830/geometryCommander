@@ -7,8 +7,9 @@ PlayerPiece::PlayerPiece(int xPos, int yPos)
 	health = 10;
 	maxDamage = 3;
 	minDamage = 1;
-	moveRange = 3;
-
+	moveRange = 5;
+	attackRange = 7;
+	radius = 20;
 	visual = new sf::CircleShape(radius);
 	visual->setOrigin(radius, radius);
 	visual->setPosition(sf::Vector2f(xPos, yPos));

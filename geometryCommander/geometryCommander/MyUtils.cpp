@@ -25,3 +25,8 @@ int MyUtils::ManhattanDistance(int startX, int startY, int endX, int endY)
     float y = abs(startY - endY);
     return x + y;
 }
+
+int MyUtils::ManhattanDistance(GridBox* start, GridBox* end)
+{
+    return ManhattanDistance(start->index.x, start->index.y, end->index.x, end->index.y);
+}

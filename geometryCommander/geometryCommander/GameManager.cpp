@@ -18,8 +18,7 @@ GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenH
 	grid->UpdateOccupyingPiece(grid->gridBoxes[6][1], enemyPiece);
 	enemyPieceList.push_back(enemyPiece);
 	SelectPiece(0);
-	//player always goes first, at least for now
-	currentState = gameState::playerTurn;
+	currentState = gameState::enemyTurn;
 	input = InputManager();
 }
 
@@ -71,17 +70,19 @@ void GameManager::Update()
 	}
 
 	//check for dead pieces at the end of each turn
-	//NOTE: needs to update gridbox occupying piece
 	for (unsigned int i = 0; i < playerPieceList.size(); i++)
 	{
 		if (playerPieceList[i]->isDead) {
+			grid->GetBoxFromOccupyingPiece(playerPieceList[i])->occupyingPiece = nullptr;
 			delete playerPieceList[i];
 			playerPieceList.erase(playerPieceList.begin() + i);
+			
 		}
 	}
 	for (unsigned int i = 0; i < enemyPieceList.size(); i++)
 	{
 		if (enemyPieceList[i]->isDead) {
+			grid->GetBoxFromOccupyingPiece(enemyPieceList[i])->occupyingPiece = nullptr;
 			delete enemyPieceList[i];
 			enemyPieceList.erase(enemyPieceList.begin() + i);
 		}
@@ -136,7 +137,7 @@ void GameManager::PlayerInput()
 		auto clickedBox = grid->GetBoxFromPosition(sf::Mouse::getPosition(*window));
 		if (clickedBox != nullptr) {
 			if (clickedBox->GetType() == gridBoxType::empty) {
-				grid->MovePiece(grid->GetBoxFromPosition(selectedPiece->GetPosition()), clickedBox);
+				grid->MovePiece(grid->GetBoxFromOccupyingPiece(selectedPiece), clickedBox);
 				selectedPiece->turnTaken = true;
 				NextPiece(1);
 			}
@@ -191,9 +192,9 @@ bool GameManager::CheckEndTurn(bool isPlayer)
 	return endTurn;
 }
 
-void GameManager::NextPiece(int index)
+void GameManager::NextPiece(int iterator)
 {
 	do {
-		SelectPiece((selectedIndex + index) % playerPieceList.size());
+		SelectPiece((selectedIndex + iterator) % playerPieceList.size());
 	} while (selectedPiece->turnTaken && CheckEndTurn(true));
 }

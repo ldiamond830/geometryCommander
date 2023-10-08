@@ -11,6 +11,5 @@ public:
 
 private:
 	sf::CircleShape* visual;
-	float radius = 10;
 };
 

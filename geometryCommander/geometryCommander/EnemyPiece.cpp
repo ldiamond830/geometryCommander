@@ -13,7 +13,8 @@ EnemyPiece::EnemyPiece(int _xPos, int _yPos)
 	maxDamage = 3;
 	minDamage = 1;
 	moveRange = 5;
-
+	attackRange = 7;
+	radius = 20;
 	visual = new sf::CircleShape(radius);
 	visual->setOrigin(radius , radius);
 	visual->setPosition(sf::Vector2f(xPos, yPos));
@@ -57,7 +58,7 @@ void EnemyPiece::MoveToCover()
 {
 	GameManager* gameManagerInstance = GameManager::GetInstance();
 	Grid* grid = gameManagerInstance->GetGrid();
-	GridBox* currentPosition = grid->GetBoxFromPosition(sf::Vector2i(xPos, yPos));
+	GridBox* currentPosition = grid->GetBoxFromOccupyingPiece(this);
 	std::map<coverDirection, int> tempMap = std::map<coverDirection, int>();
 	
 	
@@ -80,7 +81,7 @@ void EnemyPiece::MoveToCover()
 								if (tempMap.count(coverDirection::RIGHT) != 0 && playerPiece->GetIndex().x > grid->gridBoxes[x][y]->index.x) {
 									notFlanked = true;
 								}
-								else if (tempMap.count(coverDirection::LEFT) != 0 && playerPiece->GetIndex().x >= grid->gridBoxes[x][y]->index.x) {
+								else if (tempMap.count(coverDirection::LEFT) != 0 && playerPiece->GetIndex().x < grid->gridBoxes[x][y]->index.x) {
 									notFlanked = true;
 								}
 
@@ -100,8 +101,12 @@ void EnemyPiece::MoveToCover()
 								if (tempMap.count(coverDirection::RIGHT) != 0 && playerPiece->GetIndex().x > grid->gridBoxes[x][y]->index.x) {
 									notFlanked = true;
 								}
-								else if (tempMap.count(coverDirection::LEFT) != 0 && playerPiece->GetIndex().x >= grid->gridBoxes[x][y]->index.x) {
+								else if (tempMap.count(coverDirection::LEFT) != 0 && playerPiece->GetIndex().x < grid->gridBoxes[x][y]->index.x) {
 									notFlanked = true;
+								}
+								else {
+									//if one piece is flanking ends the loop and moves on without checking any others
+									break;
 								}
 							}
 						}
@@ -119,8 +124,12 @@ void EnemyPiece::MoveToCover()
 								if (tempMap.count(coverDirection::UP) != 0 && playerPiece->GetIndex().y > grid->gridBoxes[x][y]->index.y) {
 									notFlanked = true;
 								}
-								else if (tempMap.count(coverDirection::DOWN) != 0 && playerPiece->GetIndex().y <= grid->gridBoxes[x][y]->index.y) {
+								else if (tempMap.count(coverDirection::DOWN) != 0 && playerPiece->GetIndex().y < grid->gridBoxes[x][y]->index.y) {
 									notFlanked = true;
+								}
+								else {
+									//if one piece is flanking ends the loop and moves on without checking any others
+									break;
 								}
 							}
 						}
@@ -138,8 +147,12 @@ void EnemyPiece::MoveToCover()
 								if (tempMap.count(coverDirection::UP) != 0 && playerPiece->GetIndex().y > grid->gridBoxes[x][y]->index.y) {
 									notFlanked = true;
 								}
-								else if (tempMap.count(coverDirection::DOWN) != 0 && playerPiece->GetIndex().y <= grid->gridBoxes[x][y]->index.y) {
+								else if (tempMap.count(coverDirection::DOWN) != 0 && playerPiece->GetIndex().y < grid->gridBoxes[x][y]->index.y) {
 									notFlanked = true;
+								}
+								else {
+									//if one piece is flanking ends the loop and moves on without checking any others
+									break;
 								}
 							}
 						}
@@ -158,7 +171,101 @@ void EnemyPiece::MoveToCover()
 
 void EnemyPiece::AttackPlayerPiece()
 {
+	Attack(SelectTarget());
+}
+
+GamePiece* EnemyPiece::SelectTarget()
+{
 	GameManager* gameManagerInstance = GameManager::GetInstance();
+	Grid* grid = gameManagerInstance->GetGrid();
+	//GamePiece* currentTarget;
 	//this is just a temp in the future this will impliment target selection
-	Attack(gameManagerInstance->GetPlayerPieces()[0]);
+	for (PlayerPiece* playerPiece : gameManagerInstance->GetPlayerPieces()) {
+		int distance = MyUtils::GetInstance()->ManhattanDistance(grid->GetBoxFromOccupyingPiece(this), grid->GetBoxFromOccupyingPiece(playerPiece));
+		if (distance <= attackRange) {
+			//target is within point blank range
+			if (distance <= 2) {
+				return playerPiece;
+			}
+			//target is out of cover
+			else if (playerPiece->coverMap.empty()) {
+				return playerPiece;
+			}
+			//checks induvidual flank conditions
+			else {
+				if (index.y <= playerPiece->GetIndex().y && playerPiece->coverMap.count(UP) == 0) {
+					if (playerPiece->coverMap.count(RIGHT) == 0 && playerPiece->coverMap.count(LEFT) == 0) {
+						return playerPiece;
+					}
+					else {
+						if (playerPiece->coverMap.count(RIGHT) != 0) {
+							if (index.x >= playerPiece->GetIndex().x) {
+								return playerPiece;
+							}
+						}
+						else if (playerPiece->coverMap.count(LEFT) != 0) {
+							if (index.x <= playerPiece->GetIndex().x) {
+								return playerPiece;
+							}
+						}
+					}
+				}
+				else if (index.y >= playerPiece->GetIndex().y && playerPiece->coverMap.count(DOWN) == 0) {
+					if (playerPiece->coverMap.count(RIGHT) == 0 && playerPiece->coverMap.count(LEFT) == 0) {
+						return playerPiece;
+					}
+					else {
+						if (playerPiece->coverMap.count(RIGHT) != 0) {
+							if (index.x >= playerPiece->GetIndex().x) {
+								return playerPiece;
+							}
+						}
+						else if (playerPiece->coverMap.count(LEFT) != 0) {
+							if (index.x <= playerPiece->GetIndex().x) {
+								return playerPiece;
+							}
+						}
+					}
+				}
+				else if (index.x >= playerPiece->GetIndex().x && playerPiece->coverMap.count(RIGHT) == 0) {
+					if (playerPiece->coverMap.count(UP) == 0 && playerPiece->coverMap.count(DOWN) == 0) {
+						return playerPiece;
+					}
+					else {
+						if (playerPiece->coverMap.count(DOWN) != 0) {
+							if (index.y <= playerPiece->GetIndex().y) {
+								return playerPiece;
+							}
+						}
+						else if (playerPiece->coverMap.count(UP) != 0) {
+							if (index.y >= playerPiece->GetIndex().y) {
+								return playerPiece;
+							}
+						}
+					}
+				}
+				else if (index.x <= playerPiece->GetIndex().x && playerPiece->coverMap.count(LEFT) == 0) {
+					if (playerPiece->coverMap.count(DOWN) != 0) {
+						if (index.y <= playerPiece->GetIndex().y) {
+							return playerPiece;
+						}
+					}
+					else if (playerPiece->coverMap.count(UP) != 0) {
+						if (index.y >= playerPiece->GetIndex().y) {
+							return playerPiece;
+						}
+					}
+				}
+			}
+		}
+	}
+	//if there are no special targeting conditions found returns the first player piece in range
+	for (PlayerPiece* playerPiece : gameManagerInstance->GetPlayerPieces()) {
+		int distance = MyUtils::GetInstance()->ManhattanDistance(grid->GetBoxFromOccupyingPiece(this), grid->GetBoxFromOccupyingPiece(playerPiece));
+		if (distance <= attackRange) {
+			return playerPiece;
+		}
+	}
+	//if there are no targets in range
+	return nullptr;
 }

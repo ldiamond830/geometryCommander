@@ -15,7 +15,6 @@ public:
 	
 protected:
 	sf::CircleShape* visual;
-	float radius = 10;
 	BehaviorTreeNode* BehaviorTreeRoot;
 	virtual void ConstructBehaviorTree();
 	//B Tree condition methods
@@ -23,5 +22,6 @@ protected:
 	//B Tree Behavior methods
 	void MoveToCover();
 	void AttackPlayerPiece();
+	GamePiece* SelectTarget();
 };
 
