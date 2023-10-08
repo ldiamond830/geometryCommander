@@ -11,7 +11,9 @@
 #include "InputManager.h"
 enum gameState {
 	playerTurn,
-	enemyTurn
+	enemyTurn,
+	playerWon,
+	enemyWon
 };
 class GameManager
 {
@@ -43,5 +45,6 @@ public:
 	static void DeleteInstance();
 	std::vector<PlayerPiece*> GetPlayerPieces();
 	Grid* GetGrid();
+	//sf::Font UIFont;
 };
 

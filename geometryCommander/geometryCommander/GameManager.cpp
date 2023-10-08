@@ -1,7 +1,13 @@
 #include "GameManager.h"
+#include <iostream>
 GameManager* GameManager::instance = nullptr;
 GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenHeight, int rowSize, int columnSize, int playerPieceCount, int enemyPieceCount)
 {
+	/*
+	if (!UIFont.loadFromFile("vgafix.ttf")) {
+		std::cout << "Error";
+	}
+	*/
 	window = _window;
 	grid = new Grid(screenWidth, screenHeight, rowSize, columnSize);
 	for (unsigned int i = 0; i < playerPieceCount; i++) {
@@ -76,7 +82,9 @@ void GameManager::Update()
 			grid->GetBoxFromOccupyingPiece(playerPieceList[i])->occupyingPiece = nullptr;
 			delete playerPieceList[i];
 			playerPieceList.erase(playerPieceList.begin() + i);
-			
+			if (playerPieceList.size() == 0) {
+				currentState = enemyWon;
+			}
 		}
 	}
 	for (unsigned int i = 0; i < enemyPieceList.size(); i++)
@@ -85,6 +93,9 @@ void GameManager::Update()
 			grid->GetBoxFromOccupyingPiece(enemyPieceList[i])->occupyingPiece = nullptr;
 			delete enemyPieceList[i];
 			enemyPieceList.erase(enemyPieceList.begin() + i);
+			if (enemyPieceList.size() == 0) {
+				currentState = playerWon;
+			}
 		}
 	}
 }
