@@ -41,5 +41,6 @@ public:
 	bool turnTaken = false;
 	bool isDead = false;
 	sf::Vector2f GetIndex();
+	int GetHealth();
 };
 

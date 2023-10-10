@@ -1,61 +1,25 @@
 ﻿  EnemyPiece.cpp
 D:\Github\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(10,9): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 D:\Github\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(11,9): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-D:\Github\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(69,138): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+D:\Github\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(86,138): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-D:\Github\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(69,106): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+D:\Github\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(86,106): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-D:\Github\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(69,74): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+D:\Github\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(86,74): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-D:\Github\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(69,60): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+D:\Github\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(86,60): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-  GameManager.cpp
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(13,29): warning C4018: '<': signed/unsigned mismatch
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(14,118): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
-          with
-          [
-              T=float
-          ]
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(14,80): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
-          with
-          [
-              T=float
-          ]
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(18,29): warning C4018: '<': signed/unsigned mismatch
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(19,141): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
-          with
-          [
-              T=float
-          ]
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(19,90): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
-          with
-          [
-              T=float
-          ]
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(23,114): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
-          with
-          [
-              T=float
-          ]
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(23,76): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
-          with
-          [
-              T=float
-          ]
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(64,22): warning C4018: '<': signed/unsigned mismatch
-  geometryCommander.cpp
-D:\Github\geometryCommander\geometryCommander\geometryCommander\geometryCommander.cpp(35,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Generating Code...
+D:\Github\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(308): warning C4715: 'EnemyPiece::isPositionFlanked': not all control paths return a value
   geometryCommander.vcxproj -> D:\Github\geometryCommander\geometryCommander\Debug\geometryCommander.exe

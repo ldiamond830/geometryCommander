@@ -54,11 +54,28 @@ bool EnemyPiece::IsInCover()
 	return !coverMap.empty();
 }
 
+bool EnemyPiece::IsFlanked()
+{
+	return isPositionFlanked(GameManager::GetInstance()->GetGrid()->GetBoxFromOccupyingPiece(this));
+}
+
+bool EnemyPiece::AnyTargetInRange()
+{
+	
+	for (PlayerPiece* playerPiece : GameManager::GetInstance()->GetPlayerPieces()) {
+		//if even one target is in range returns true
+		if (TargetInRange(playerPiece)) {
+			return true;
+		}
+	}
+	//if all targets are out of range returns false
+	return false;
+}
+
 void EnemyPiece::MoveToCover()
 {
 	GameManager* gameManagerInstance = GameManager::GetInstance();
 	Grid* grid = gameManagerInstance->GetGrid();
-	GridBox* currentPosition = grid->GetBoxFromOccupyingPiece(this);
 	std::map<coverDirection, int> tempMap = std::map<coverDirection, int>();
 	
 	
@@ -69,98 +86,14 @@ void EnemyPiece::MoveToCover()
 			if (MyUtils::GetInstance()->ManhattanDistance(GetIndex().x, GetIndex().y, grid->gridBoxes[x][y]->index.x, grid->gridBoxes[x][y]->index.y) <= moveRange) {
 				//box can be moved to 
 				if (grid->gridBoxes[x][y]->GetType() == empty) {
-					tempMap = grid->GetCoverAtPosition(grid->gridBoxes[x][y]);
-
-					if (tempMap.count(coverDirection::UP) != 0) {
-						for (PlayerPiece* playerPiece : gameManagerInstance->GetPlayerPieces())
-						{
-							//there is a piece behind the position being checked
-							if (playerPiece->GetIndex().y >= grid->gridBoxes[x][y]->index.y) {
-								notFlanked = false;
-								//checks if the prospective position has cover from multiple angles making the flank not apply
-								if (tempMap.count(coverDirection::RIGHT) != 0 && playerPiece->GetIndex().x > grid->gridBoxes[x][y]->index.x) {
-									notFlanked = true;
-								}
-								else if (tempMap.count(coverDirection::LEFT) != 0 && playerPiece->GetIndex().x < grid->gridBoxes[x][y]->index.x) {
-									notFlanked = true;
-								}
-
-							}
-						}
-						if (notFlanked) {
-							grid->MovePiece(currentPosition, grid->gridBoxes[x][y]);
+					std::map<coverDirection, int> tempMap = grid->GetCoverAtPosition(grid->gridBoxes[x][y]);
+					if (!tempMap.empty()) {
+						if (!isPositionFlanked(grid->gridBoxes[x][y])) {
+							grid->MovePiece(grid->GetBoxFromOccupyingPiece(this), grid->gridBoxes[x][y]);
 							return;
 						}
 					}
-					else if (tempMap.count(coverDirection::DOWN) != 0) {
-						for (PlayerPiece* playerPiece : gameManagerInstance->GetPlayerPieces())
-						{
-							//there is a piece above the position being checked
-							if (playerPiece->GetIndex().y <= grid->gridBoxes[x][y]->index.y) {
-								notFlanked = false;
-								if (tempMap.count(coverDirection::RIGHT) != 0 && playerPiece->GetIndex().x > grid->gridBoxes[x][y]->index.x) {
-									notFlanked = true;
-								}
-								else if (tempMap.count(coverDirection::LEFT) != 0 && playerPiece->GetIndex().x < grid->gridBoxes[x][y]->index.x) {
-									notFlanked = true;
-								}
-								else {
-									//if one piece is flanking ends the loop and moves on without checking any others
-									break;
-								}
-							}
-						}
-						if (notFlanked) {
-							grid->MovePiece(currentPosition, grid->gridBoxes[x][y]);
-							return;
-						}
-					}
-					else if (tempMap.count(coverDirection::LEFT) != 0) {
-						for (PlayerPiece* playerPiece : gameManagerInstance->GetPlayerPieces())
-						{
-							//there is a piece to the right of the position being checked
-							if (playerPiece->GetIndex().x >= grid->gridBoxes[x][y]->index.x) {
-								notFlanked = false;
-								if (tempMap.count(coverDirection::UP) != 0 && playerPiece->GetIndex().y > grid->gridBoxes[x][y]->index.y) {
-									notFlanked = true;
-								}
-								else if (tempMap.count(coverDirection::DOWN) != 0 && playerPiece->GetIndex().y < grid->gridBoxes[x][y]->index.y) {
-									notFlanked = true;
-								}
-								else {
-									//if one piece is flanking ends the loop and moves on without checking any others
-									break;
-								}
-							}
-						}
-						if (notFlanked) {
-							grid->MovePiece(currentPosition, grid->gridBoxes[x][y]);
-							return;
-						}
-					}
-					else if (tempMap.count(coverDirection::RIGHT) != 0) {
-						for (PlayerPiece* playerPiece : gameManagerInstance->GetPlayerPieces())
-						{
-							//there is a piece to the left of the position being checked
-							if (playerPiece->GetIndex().x <= grid->gridBoxes[x][y]->index.x) {
-								notFlanked = false;
-								if (tempMap.count(coverDirection::UP) != 0 && playerPiece->GetIndex().y > grid->gridBoxes[x][y]->index.y) {
-									notFlanked = true;
-								}
-								else if (tempMap.count(coverDirection::DOWN) != 0 && playerPiece->GetIndex().y < grid->gridBoxes[x][y]->index.y) {
-									notFlanked = true;
-								}
-								else {
-									//if one piece is flanking ends the loop and moves on without checking any others
-									break;
-								}
-							}
-						}
-						if (notFlanked) {
-							grid->MovePiece(currentPosition, grid->gridBoxes[x][y]);
-							return;
-						}
-					}
+					
 				}
 			}
 		}
@@ -171,7 +104,10 @@ void EnemyPiece::MoveToCover()
 
 void EnemyPiece::AttackPlayerPiece()
 {
-	Attack(SelectTarget());
+	if (AnyTargetInRange()) {
+		Attack(SelectTarget());
+	}
+	
 }
 
 GamePiece* EnemyPiece::SelectTarget()
@@ -189,6 +125,10 @@ GamePiece* EnemyPiece::SelectTarget()
 			}
 			//target is out of cover
 			else if (playerPiece->coverMap.empty()) {
+				return playerPiece;
+			}
+			//target is low health
+			else if (playerPiece->GetHealth() <= maxDamage) {
 				return playerPiece;
 			}
 			//checks induvidual flank conditions
@@ -266,6 +206,103 @@ GamePiece* EnemyPiece::SelectTarget()
 			return playerPiece;
 		}
 	}
-	//if there are no targets in range
+	//error case, should never be returned since the method call checks if there are any targets in range before hand
 	return nullptr;
+}
+
+bool EnemyPiece::TargetInRange(GamePiece* playerPiece)
+{
+	Grid* grid = GameManager::GetInstance()->GetGrid();
+	return (MyUtils::GetInstance()->ManhattanDistance(grid->GetBoxFromOccupyingPiece(this), grid->GetBoxFromOccupyingPiece(playerPiece)) <= attackRange);
+}
+
+bool EnemyPiece::isPositionFlanked(GridBox* position)
+{
+
+	GameManager* gameManagerInstance = GameManager::GetInstance();
+	bool flanked = false;
+	Grid* grid = gameManagerInstance->GetGrid();
+	std::map<coverDirection, int> tempMap = grid->GetCoverAtPosition(position);
+	
+	if (tempMap.count(coverDirection::UP) != 0) {
+		for (PlayerPiece* playerPiece : gameManagerInstance->GetPlayerPieces())
+		{
+			//there is a piece behind the position being checked
+			if (playerPiece->GetIndex().y >= position->index.y) {
+				flanked = true;
+				//checks if the prospective position has cover from multiple angles making the flank not apply
+				if (tempMap.count(coverDirection::RIGHT) != 0 && playerPiece->GetIndex().x > position->index.x) {
+					flanked = false;
+				}
+				else if (tempMap.count(coverDirection::LEFT) != 0 && playerPiece->GetIndex().x < position->index.x) {
+					flanked = false;
+				}
+				else {
+					//if one piece is flanking ends the loop and moves on without checking any others
+					break;
+				}
+			}
+		}
+		return flanked;
+	}
+	else if (tempMap.count(coverDirection::DOWN) != 0) {
+		for (PlayerPiece* playerPiece : gameManagerInstance->GetPlayerPieces())
+		{
+			//there is a piece above the position being checked
+			if (playerPiece->GetIndex().y <= position->index.y) {
+				flanked = true;
+				if (tempMap.count(coverDirection::RIGHT) != 0 && playerPiece->GetIndex().x > position->index.x) {
+					flanked = false;
+				}
+				else if (tempMap.count(coverDirection::LEFT) != 0 && playerPiece->GetIndex().x < position->index.x) {
+					flanked = false;
+				}
+				else {
+					//if one piece is flanking ends the loop and moves on without checking any others
+					break;
+				}
+			}
+		}
+		return flanked;
+	}
+	else if (tempMap.count(coverDirection::LEFT) != 0) {
+		for (PlayerPiece* playerPiece : gameManagerInstance->GetPlayerPieces())
+		{
+			//there is a piece to the right of the position being checked
+			if (playerPiece->GetIndex().x >= position->index.x) {
+				flanked = true;
+				if (tempMap.count(coverDirection::UP) != 0 && playerPiece->GetIndex().y > position->index.y) {
+					flanked = false;
+				}
+				else if (tempMap.count(coverDirection::DOWN) != 0 && playerPiece->GetIndex().y < position->index.y) {
+					flanked = false;
+				}
+				else {
+					//if one piece is flanking ends the loop and moves on without checking any others
+					break;
+				}
+			}
+		}
+		return flanked;
+	}
+	else if (tempMap.count(coverDirection::RIGHT) != 0) {
+		for (PlayerPiece* playerPiece : gameManagerInstance->GetPlayerPieces())
+		{
+			//there is a piece to the left of the position being checked
+			if (playerPiece->GetIndex().x <= position->index.x) {
+				flanked = true;
+				if (tempMap.count(coverDirection::UP) != 0 && playerPiece->GetIndex().y > position->index.y) {
+					flanked = false;
+				}
+				else if (tempMap.count(coverDirection::DOWN) != 0 && playerPiece->GetIndex().y < position->index.y) {
+					flanked = false;
+				}
+				else {
+					//if one piece is flanking ends the loop and moves on without checking any others
+					break;
+				}
+			}
+		}
+		return flanked;
+	}
 }

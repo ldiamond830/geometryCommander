@@ -19,9 +19,17 @@ protected:
 	virtual void ConstructBehaviorTree();
 	//B Tree condition methods
 	bool IsInCover();
+	bool IsFlanked();
+	bool FlankInRange();
+	bool AnyTargetInRange();
 	//B Tree Behavior methods
 	void MoveToCover();
 	void AttackPlayerPiece();
+	void MoveToFlank();
+	void Advance();
+	//helper methods
 	GamePiece* SelectTarget();
+	bool TargetInRange(GamePiece*);
+	bool isPositionFlanked(GridBox*);
 };
 

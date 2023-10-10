@@ -181,3 +181,8 @@ sf::Vector2f GamePiece::GetIndex()
 	return index;
 }
 
+int GamePiece::GetHealth()
+{
+	return health;
+}
+
