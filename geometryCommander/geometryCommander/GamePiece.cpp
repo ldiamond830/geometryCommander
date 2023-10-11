@@ -1,7 +1,8 @@
 #include "GamePiece.h"
-#include "GridBox.h"
+//#include "GridBox.h"
 //#include "Utils.h"
 #include <iostream>
+#include "GameManager.h"
 int GamePiece::CalcDamage()
 {
 	float damage = rand() % maxDamage;
@@ -185,4 +186,6 @@ int GamePiece::GetHealth()
 {
 	return health;
 }
+
+
 

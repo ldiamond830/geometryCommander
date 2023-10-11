@@ -8,6 +8,7 @@ public:
 	void Draw(sf::RenderWindow* window) override;
 	void Select();
 	void Deselect();
+	bool isPositionFlanked(sf::Vector2f);
 
 private:
 	sf::CircleShape* visual;

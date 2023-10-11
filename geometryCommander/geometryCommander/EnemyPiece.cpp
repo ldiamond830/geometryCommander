@@ -5,6 +5,7 @@
 #include "BehaviorTreeActionNode.h"
 #include "BehaviorTreeConditionalNode.h"
 #include "GameManager.h"
+#include <iostream>
 EnemyPiece::EnemyPiece(int _xPos, int _yPos)
 {
 	xPos = _xPos;
@@ -26,6 +27,9 @@ EnemyPiece::EnemyPiece(int _xPos, int _yPos)
 EnemyPiece::~EnemyPiece()
 {
 	delete visual;
+	if (flankPosition != nullptr) {
+		delete flankPosition;
+	}
 	//delete BehaviorTreeRoot;
 }
 
@@ -57,6 +61,28 @@ bool EnemyPiece::IsInCover()
 bool EnemyPiece::IsFlanked()
 {
 	return isPositionFlanked(GameManager::GetInstance()->GetGrid()->GetBoxFromOccupyingPiece(this));
+}
+
+bool EnemyPiece::FlankInRange()
+{
+	//can't store manager instance as a class field because it will create a cyclical reference, so needs to get it in every scope where I need it
+	GameManager* gameManagerInstance = GameManager::GetInstance();
+	Grid* grid = gameManagerInstance->GetGrid();
+	for (PlayerPiece* playerPiece : gameManagerInstance->GetPlayerPieces()) {
+		for (unsigned int x = 0; x < grid->GetWidth(); x++) {
+			for (unsigned int y = 0; y < grid->GetHeight(); y++) {
+				if (MyUtils::GetInstance()->ManhattanDistance(index.x, index.y, x, y) <= moveRange) {
+					if (!grid->GetCoverAtPosition(grid->gridBoxes[x][y]).empty()) {
+						if (playerPiece->isPositionFlanked(sf::Vector2f(x, y)) && !this->isPositionFlanked(grid->gridBoxes[x][y])) {
+							flankPosition = new sf::Vector2f(x, y);
+							return true;
+						}
+					}
+				}
+			}
+		}
+	}
+	return false;
 }
 
 bool EnemyPiece::AnyTargetInRange()
@@ -108,6 +134,17 @@ void EnemyPiece::AttackPlayerPiece()
 		Attack(SelectTarget());
 	}
 	
+}
+
+void EnemyPiece::MoveToFlank()
+{
+	if (flankPosition != nullptr) {
+		Grid* grid = GameManager::GetInstance()->GetGrid();
+		grid->MovePiece(grid->GetBoxFromOccupyingPiece(this), grid->gridBoxes[flankPosition->x][flankPosition->y]);
+	}
+	else {
+		std::cout << "ERROR WITH FLANK POSITION DECLARATION";
+	}
 }
 
 GamePiece* EnemyPiece::SelectTarget()
@@ -215,7 +252,7 @@ bool EnemyPiece::TargetInRange(GamePiece* playerPiece)
 	Grid* grid = GameManager::GetInstance()->GetGrid();
 	return (MyUtils::GetInstance()->ManhattanDistance(grid->GetBoxFromOccupyingPiece(this), grid->GetBoxFromOccupyingPiece(playerPiece)) <= attackRange);
 }
-
+//possibly delete in the future since GamePiece defines this, not sure how this will work with function pointer so I am keeping for now
 bool EnemyPiece::isPositionFlanked(GridBox* position)
 {
 

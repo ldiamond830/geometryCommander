@@ -44,6 +44,7 @@ public:
 	static GameManager* CreateInstance(sf::RenderWindow*, int screenWidth, int screenHeight, int rowSize, int columnSize, int playerPieceCount, int enemyPieceCount);
 	static void DeleteInstance();
 	std::vector<PlayerPiece*> GetPlayerPieces();
+	std::vector<EnemyPiece*> GetEnemyPieces();
 	Grid* GetGrid();
 	//sf::Font UIFont;
 };

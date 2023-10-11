@@ -12,15 +12,17 @@ public:
 	~EnemyPiece();
 	void Draw(sf::RenderWindow* window) override;
 	void TakeTurn();
-	
+	//reset to protected after testing
+	bool FlankInRange();
 protected:
 	sf::CircleShape* visual;
+	sf::Vector2f flankPosition;
 	BehaviorTreeNode* BehaviorTreeRoot;
 	virtual void ConstructBehaviorTree();
 	//B Tree condition methods
 	bool IsInCover();
 	bool IsFlanked();
-	bool FlankInRange();
+	
 	bool AnyTargetInRange();
 	//B Tree Behavior methods
 	void MoveToCover();

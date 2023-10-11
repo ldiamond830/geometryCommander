@@ -5,7 +5,7 @@ GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenH
 {
 	/*
 	if (!UIFont.loadFromFile("vgafix.ttf")) {
-		std::cout << "Error";
+		std::cout << "Error loading font";
 	}
 	*/
 	window = _window;
@@ -24,7 +24,7 @@ GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenH
 	grid->UpdateOccupyingPiece(grid->gridBoxes[6][1], enemyPiece);
 	enemyPieceList.push_back(enemyPiece);
 	SelectPiece(0);
-	currentState = gameState::enemyTurn;
+	currentState = gameState::playerTurn;
 	input = InputManager();
 }
 
@@ -139,6 +139,11 @@ void GameManager::DeleteInstance()
 std::vector<PlayerPiece*> GameManager::GetPlayerPieces()
 {
 	return playerPieceList;
+}
+
+std::vector<EnemyPiece*> GameManager::GetEnemyPieces()
+{
+	return enemyPieceList;
 }
 
 void GameManager::PlayerInput()

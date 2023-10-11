@@ -48,6 +48,7 @@ Grid::Grid(int screenWidth, int screenHeight, int rowSize, int columnSize)
 	gridBoxes[7][5]->SetType(fullCover);
 
 	gridBoxes[1][5]->SetType(fullCover);
+	gridBoxes[0][7]->SetType(halfCover);
 }
 
 
