@@ -3,6 +3,7 @@
 //#include "Utils.h"
 #include <iostream>
 #include "GameManager.h"
+#include <cmath>
 int GamePiece::CalcDamage()
 {
 	float damage = rand() % maxDamage;
@@ -149,11 +150,41 @@ void GamePiece::TakeDamage(int damage)
 	}
 }
 
-bool GamePiece::MoveToNext(sf::Vector2f desination)
+void GamePiece::StartMove(std::stack<sf::Vector2f*>* _path)
 {
-	xPos = desination.x;
-	yPos = desination.y;
-	return true;
+	path = _path;
+	moving = true;
+}
+
+bool GamePiece::MoveToNext(sf::Vector2f* desination)
+{
+	static float iterator = 0.0;
+	if (xPos != desination->x || yPos != desination->y) {
+		if (abs(xPos - desination->x) <= 0.1) {
+			xPos = desination->x;
+		}
+		else {
+			xPos = std::lerp(xPos, desination->x, iterator);
+		}
+
+		if (abs(yPos - desination->y) <= 0.1) {
+			yPos = desination->y;
+		}
+		else {
+			yPos = std::lerp(yPos, desination->y, iterator);
+		}
+
+
+		iterator += 0.0005;
+	}
+	else {
+		//std::cout << "x " << xPos << ", y " << yPos;
+		iterator = 0;
+		return true;
+	}
+	//xPos = desination.x;
+	//yPos = desination.y;
+	return false;
 }
 
 sf::Vector2i GamePiece::GetPosition()
@@ -185,6 +216,21 @@ sf::Vector2f GamePiece::GetIndex()
 int GamePiece::GetHealth()
 {
 	return health;
+}
+
+void GamePiece::SimulateAction()
+{
+	turnFinished = false;
+	if (moving){
+		if (MoveToNext(path->top())) {
+			path->pop();
+		}
+
+		if (path->empty()) {
+			moving = false;
+			turnFinished = true;
+		}
+	}
 }
 
 

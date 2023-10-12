@@ -16,7 +16,7 @@ public:
 	bool FlankInRange();
 protected:
 	sf::CircleShape* visual;
-	sf::Vector2f flankPosition;
+	sf::Vector2f* flankPosition;
 	BehaviorTreeNode* BehaviorTreeRoot;
 	virtual void ConstructBehaviorTree();
 	//B Tree condition methods

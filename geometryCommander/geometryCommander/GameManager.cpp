@@ -20,10 +20,8 @@ GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenH
 		grid->UpdateOccupyingPiece(grid->gridBoxes[i][columnSize - 1], enemyPiece);
 		enemyPieceList.push_back(enemyPiece);
 	}
-	EnemyPiece* enemyPiece = new EnemyPiece(grid->gridBoxes[6][1]->GetCenter().x, grid->gridBoxes[6][1]->GetCenter().y);
-	grid->UpdateOccupyingPiece(grid->gridBoxes[6][1], enemyPiece);
-	enemyPieceList.push_back(enemyPiece);
-	SelectPiece(0);
+	SelectPlayerPiece(0);
+	selectedEnemyPiece = enemyPieceList[selectedEnemyPieceIndex];
 	currentState = gameState::playerTurn;
 	input = InputManager();
 }
@@ -48,31 +46,59 @@ void GameManager::Update()
 {
 	switch (currentState) {
 	
+		//wait for player to input move
 		case gameState::playerTurn:
-		PlayerInput();
 		if (!CheckEndTurn(true)) {
 			currentState = gameState::enemyTurn;
 			//hides the blue color for the duration of the enemy turn 
-			selectedPiece->Deselect();
+			selectedPlayerPiece->Deselect();
 			for (PlayerPiece* piece : playerPieceList) {
 				piece->turnTaken = false;
 			}
 		}
+
+		PlayerInput();
 		break;
 
-		case gameState::enemyTurn:
-			for (int i = 0; i < enemyPieceList.size(); i++) {
-				enemyPieceList[i]->TakeTurn();
-			}
-		if (!CheckEndTurn(false)) {
-			currentState = gameState::playerTurn;
-			//reveal the blue color on the selected piece
-			selectedPiece->Select();
-			for (EnemyPiece* piece : enemyPieceList) {
-				piece->turnTaken = false;
+		//visualize player move
+		case gameState::playerTurnSimulation: {
+			selectedPlayerPiece->SimulateAction();
+			//done simulating
+			if (selectedPlayerPiece->turnFinished) {
+				NextPiece(1);
+				currentState = gameState::playerTurn;
 			}
 		}
 		break;
+
+		//run AI behavior tree
+		case gameState::enemyTurn:
+		selectedEnemyPiece->TakeTurn();
+		currentState = enemyTurnSimulation;
+		break;
+
+		//visualize enemy turn to player
+		case gameState::enemyTurnSimulation:
+			selectedEnemyPiece->SimulateAction();
+
+			if (selectedEnemyPiece->turnFinished) {
+				selectedEnemyPieceIndex = (selectedEnemyPieceIndex + 1) % (enemyPieceList.size());
+				selectedEnemyPiece = enemyPieceList[selectedEnemyPieceIndex];
+				//if the last enemy turn has finished simulating
+				if (!CheckEndTurn(false)) {
+					currentState = gameState::playerTurn;
+					//reveal the blue color on the selected piece
+					selectedPlayerPiece->Select();
+					for (EnemyPiece* piece : enemyPieceList) {
+						piece->turnTaken = false;
+					}
+				}
+				else {
+					currentState = gameState::enemyTurn;
+				}
+				
+			}
+			break;
 	}
 
 	//check for dead pieces at the end of each turn
@@ -153,15 +179,17 @@ void GameManager::PlayerInput()
 		auto clickedBox = grid->GetBoxFromPosition(sf::Mouse::getPosition(*window));
 		if (clickedBox != nullptr) {
 			if (clickedBox->GetType() == gridBoxType::empty) {
-				grid->MovePiece(grid->GetBoxFromOccupyingPiece(selectedPiece), clickedBox);
-				selectedPiece->turnTaken = true;
-				NextPiece(1);
+				grid->MovePiece(grid->GetBoxFromOccupyingPiece(selectedPlayerPiece), clickedBox);
+				selectedPlayerPiece->turnTaken = true;
+				//NextPiece(1);
+				currentState = gameState::playerTurnSimulation;
 			}
 			else if (clickedBox->GetType() == gridBoxType::occupied && dynamic_cast<EnemyPiece*>(clickedBox->occupyingPiece) != nullptr)
 			{
-				selectedPiece->Attack(clickedBox->occupyingPiece);
-				selectedPiece->turnTaken = true;
+				selectedPlayerPiece->Attack(clickedBox->occupyingPiece);
+				selectedPlayerPiece->turnTaken = true;
 				NextPiece(1);
+				//currentState = gameState::playerTurnSimulation;
 			}
 		}
 	}
@@ -174,18 +202,18 @@ void GameManager::PlayerInput()
 	}
 }
 
-void GameManager::SelectPiece(int index)
+void GameManager::SelectPlayerPiece(int index)
 {
 	if (index < 0) {
 		index = 0;
 	}
-	selectedIndex = index;
-	if (selectedPiece != nullptr) {
-		selectedPiece->Deselect();
+	selectedPlayerPieceIndex = index;
+	if (selectedPlayerPiece != nullptr) {
+		selectedPlayerPiece->Deselect();
 	}
 	
-	selectedPiece = playerPieceList[selectedIndex];
-	selectedPiece->Select();
+	selectedPlayerPiece = playerPieceList[selectedPlayerPieceIndex];
+	selectedPlayerPiece->Select();
 }
 
 bool GameManager::CheckEndTurn(bool isPlayer)
@@ -211,6 +239,6 @@ bool GameManager::CheckEndTurn(bool isPlayer)
 void GameManager::NextPiece(int iterator)
 {
 	do {
-		SelectPiece((selectedIndex + iterator) % playerPieceList.size());
-	} while (selectedPiece->turnTaken && CheckEndTurn(true));
+		SelectPlayerPiece((selectedPlayerPieceIndex + iterator) % playerPieceList.size());
+	} while (selectedPlayerPiece->turnTaken && CheckEndTurn(true));
 }

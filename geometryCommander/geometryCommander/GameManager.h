@@ -13,20 +13,25 @@ enum gameState {
 	playerTurn,
 	enemyTurn,
 	playerWon,
-	enemyWon
+	enemyWon,
+	playerTurnSimulation,
+	enemyTurnSimulation
 };
 class GameManager
 {
 private:
 	sf::RenderWindow* window;
 	Grid* grid;
-	PlayerPiece* selectedPiece;
-	int selectedIndex = 0;
+	PlayerPiece* selectedPlayerPiece;
+	int selectedPlayerPieceIndex = 0;
+	EnemyPiece* selectedEnemyPiece;
+	int selectedEnemyPieceIndex = 0;
 	std::vector<EnemyPiece*> enemyPieceList;
 	std::vector<PlayerPiece*> playerPieceList;
 	gameState currentState;
 	void PlayerInput();
-	void SelectPiece(int index);
+	//uses helper method to update UI as well as selection itself
+	void SelectPlayerPiece(int index);
 	InputManager input;
 	bool endTurn;
 	bool CheckEndTurn(bool isPlayer);
