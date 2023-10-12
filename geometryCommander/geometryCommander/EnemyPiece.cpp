@@ -6,21 +6,15 @@
 #include "BehaviorTreeConditionalNode.h"
 #include "GameManager.h"
 #include <iostream>
-EnemyPiece::EnemyPiece(int _xPos, int _yPos)
+EnemyPiece::EnemyPiece(int _xPos, int _yPos) : GamePiece(_xPos, _yPos)
 {
-	xPos = _xPos;
-	yPos = _yPos;
-	health = 10;
-	maxDamage = 3;
-	minDamage = 1;
-	moveRange = 5;
-	attackRange = 7;
 	radius = 20;
 	visual = new sf::CircleShape(radius);
 	visual->setOrigin(radius , radius);
 	visual->setPosition(sf::Vector2f(xPos, yPos));
 	visual->setFillColor(sf::Color(255, 0, 0));
 	ConstructBehaviorTree();
+	//isDead = false;
 	//visual->setOutlineThickness(5.0f);
 }
 
@@ -37,6 +31,8 @@ void EnemyPiece::Draw(sf::RenderWindow* window)
 {
 	visual->setPosition(xPos, yPos);
 	window->draw(*visual);
+	//draws projecile, will update in the future to clean
+	GamePiece::Draw(window);
 }
 
 void EnemyPiece::TakeTurn()

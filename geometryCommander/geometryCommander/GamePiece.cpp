@@ -124,7 +124,7 @@ bool GamePiece::ChanceToHit(GamePiece* target)
 
 	return chanceToHit > rng;
 }
-
+//probably should be deleted
 GamePiece::GamePiece()
 {
 	 xPos = 0;
@@ -133,11 +133,36 @@ GamePiece::GamePiece()
 	 moveRange = 5;
 	 maxDamage = 1;
 	 minDamage = 0;
+	 projectile = new sf::RectangleShape(sf::Vector2f(20, 20));
+	 projectile->setFillColor(sf::Color::White);
+	 projectile->setPosition(sf::Vector2f(xPos, yPos));
+}
+
+GamePiece::GamePiece(int _xPos, int _yPos)
+{
+	xPos = _xPos;
+	yPos = _yPos;
+	isDead = false;
+	health = 10;
+	moveRange = 5;
+	attackRange = 7;
+	maxDamage = 3;
+	minDamage = 1;
+	projectile = new sf::RectangleShape(sf::Vector2f(20, 20));
+	projectile->setFillColor(sf::Color::White);
+	projectile->setPosition(sf::Vector2f(xPos, yPos));
+}
+
+GamePiece::~GamePiece()
+{
+
 }
 
 void GamePiece::Draw(sf::RenderWindow* window)
 {
-	//error
+	if (attacking) {
+		window->draw(*projectile);
+	}
 }
 
 void GamePiece::TakeDamage(int damage)
@@ -182,23 +207,38 @@ bool GamePiece::MoveToNext(sf::Vector2f* desination)
 		iterator = 0;
 		return true;
 	}
-	//xPos = desination.x;
-	//yPos = desination.y;
 	return false;
 }
 
-sf::Vector2i GamePiece::GetPosition()
+void GamePiece::UpdateProjectile(sf::Vector2f start, sf::Vector2f end)
 {
-	return sf::Vector2i(xPos, yPos);
+	if (abs(start.x - end.x) <= 0.1 && abs(start.y - end.y) <= 0.1) {
+		projectileIterator = 0;
+	}
+	else {
+		projectile->setPosition(sf::Vector2f(std::lerp(start.x, end.x, projectileIterator), std::lerp(start.y, end.y, projectileIterator)));
+		projectileIterator += 0.0005;
+		attacking = false;
+		turnFinished = true;
+	}
 }
 
-void GamePiece::Attack(GamePiece* target)
+sf::Vector2f GamePiece::GetPosition()
 {
-	if (ChanceToHit(target)) {
-		target->TakeDamage(CalcDamage());
+	return sf::Vector2f((float)xPos, (float)yPos);
+}
+
+void GamePiece::Attack(GamePiece* _target)
+{
+	targetPosition = _target->GetPosition();
+	if (ChanceToHit(_target)) {
+		_target->TakeDamage(CalcDamage());
+		attacking = true;
 	}
 	else {
 		//miss
+		targetPosition.x += 20;
+		attacking = true;
 	}
 
 }
@@ -230,6 +270,9 @@ void GamePiece::SimulateAction()
 			moving = false;
 			turnFinished = true;
 		}
+	}
+	else if (attacking) {
+		UpdateProjectile(GetPosition(), targetPosition);
 	}
 }
 

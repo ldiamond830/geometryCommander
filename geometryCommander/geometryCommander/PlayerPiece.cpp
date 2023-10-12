@@ -1,15 +1,8 @@
 #include "PlayerPiece.h"
 #include "GameManager.h"
 
-PlayerPiece::PlayerPiece(int xPos, int yPos)
+PlayerPiece::PlayerPiece(int xPos, int yPos) : GamePiece(xPos, yPos)
 {
-	this->xPos = xPos;
-	this->yPos = yPos;
-	health = 10;
-	maxDamage = 3;
-	minDamage = 1;
-	moveRange = 5;
-	attackRange = 7;
 	radius = 20;
 	visual = new sf::CircleShape(radius);
 	visual->setOrigin(radius, radius);
@@ -26,6 +19,8 @@ void PlayerPiece::Draw(sf::RenderWindow* window)
 {
 	visual->setPosition(xPos, yPos);
 	window->draw(*visual);
+	//draws projecile, will update in the future to clean
+	GamePiece::Draw(window);
 }
 
 void PlayerPiece::Select()

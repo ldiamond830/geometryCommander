@@ -13,7 +13,7 @@ private:
 	int gridHeight;
 	bool pathMatchesInput;
 	//std::stack<GridBox*> path;
-	std::stack<sf::Vector2f*>* testPath;
+	std::stack<sf::Vector2f*>* path;
 public:
 		std::vector<std::vector<GridBox*>> gridBoxes;
 		Grid();

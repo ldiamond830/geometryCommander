@@ -24,21 +24,29 @@ protected:
 	float radius;
 	bool atDestination = false;
 	int CalcDamage();
-	bool ChanceToHit(GamePiece* target);
+	bool ChanceToHit(GamePiece*);
+	sf::Vector2f targetPosition;
 	sf::Vector2f index;
 	int accuracy = 75;
 	std::stack<sf::Vector2f*>* path;
 	bool moving = false;
-	//each child class will need to define visual since SMFL doesn't seem to allow the generic shape class to be used
+	bool attacking = false;
+	sf::RectangleShape* projectile;
+	bool MoveToNext(sf::Vector2f*);
+	void UpdateProjectile(sf::Vector2f, sf::Vector2f);
+	float projectileIterator;
+	
+	//may be able to use sfml drawable to fix each child class having to declare visual
 
 public:
 	GamePiece();
+	GamePiece(int, int);
+	~GamePiece();
 	virtual void Draw(sf::RenderWindow* window);
 	virtual void TakeDamage(int damage);
 	//void Move(std::stack<GridBox*> path);
 	void StartMove(std::stack<sf::Vector2f*>* path);
-	bool MoveToNext(sf::Vector2f* desination);
-	sf::Vector2i GetPosition();
+	sf::Vector2f GetPosition();
 	void Attack(GamePiece* target);
 	std::map<coverDirection, int> coverMap;
 	void SetIndex(sf::Vector2f _index);

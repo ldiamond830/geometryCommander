@@ -188,8 +188,7 @@ void GameManager::PlayerInput()
 			{
 				selectedPlayerPiece->Attack(clickedBox->occupyingPiece);
 				selectedPlayerPiece->turnTaken = true;
-				NextPiece(1);
-				//currentState = gameState::playerTurnSimulation;
+				currentState = gameState::playerTurnSimulation;
 			}
 		}
 	}
