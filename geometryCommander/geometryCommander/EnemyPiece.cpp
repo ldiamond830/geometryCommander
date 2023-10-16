@@ -24,7 +24,7 @@ EnemyPiece::~EnemyPiece()
 	if (flankPosition != nullptr) {
 		delete flankPosition;
 	}
-	//delete BehaviorTreeRoot;
+	delete BehaviorTreeRoot;
 }
 
 void EnemyPiece::Draw(sf::RenderWindow* window)

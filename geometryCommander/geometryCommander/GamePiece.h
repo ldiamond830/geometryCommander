@@ -36,7 +36,7 @@ protected:
 	void UpdateProjectile(sf::Vector2f, sf::Vector2f);
 	float projectileIterator;
 	float movementIterator;
-	//may be able to use sfml drawable to fix each child class having to declare visual
+	//sfml doesn't allow creation of variables using the abstract classes Drawable or Shape so each child needs to define it's own visual in order to allow for different shapes being used
 
 public:
 	GamePiece();
