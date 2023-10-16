@@ -136,6 +136,7 @@ GamePiece::GamePiece()
 	 projectile = new sf::RectangleShape(sf::Vector2f(20, 20));
 	 projectile->setFillColor(sf::Color::White);
 	 projectile->setPosition(sf::Vector2f(xPos, yPos));
+	 projectile->setOrigin(10, 10);
 }
 
 GamePiece::GamePiece(int _xPos, int _yPos)
@@ -151,11 +152,12 @@ GamePiece::GamePiece(int _xPos, int _yPos)
 	projectile = new sf::RectangleShape(sf::Vector2f(20, 20));
 	projectile->setFillColor(sf::Color::White);
 	projectile->setPosition(sf::Vector2f(xPos, yPos));
+	projectile->setOrigin(10, 10);
 }
 
 GamePiece::~GamePiece()
 {
-
+	delete projectile;
 }
 
 void GamePiece::Draw(sf::RenderWindow* window)
@@ -183,28 +185,28 @@ void GamePiece::StartMove(std::stack<sf::Vector2f*>* _path)
 
 bool GamePiece::MoveToNext(sf::Vector2f* desination)
 {
-	static float iterator = 0.0;
+	
 	if (xPos != desination->x || yPos != desination->y) {
 		if (abs(xPos - desination->x) <= 0.1) {
 			xPos = desination->x;
 		}
 		else {
-			xPos = std::lerp(xPos, desination->x, iterator);
+			xPos = std::lerp(xPos, desination->x, movementIterator);
 		}
 
 		if (abs(yPos - desination->y) <= 0.1) {
 			yPos = desination->y;
 		}
 		else {
-			yPos = std::lerp(yPos, desination->y, iterator);
+			yPos = std::lerp(yPos, desination->y, movementIterator);
 		}
 
 
-		iterator += 0.0005;
+		movementIterator += 0.0005;
 	}
 	else {
 		//std::cout << "x " << xPos << ", y " << yPos;
-		iterator = 0;
+		movementIterator = 0;
 		return true;
 	}
 	return false;
@@ -212,14 +214,14 @@ bool GamePiece::MoveToNext(sf::Vector2f* desination)
 
 void GamePiece::UpdateProjectile(sf::Vector2f start, sf::Vector2f end)
 {
-	if (abs(start.x - end.x) <= 0.1 && abs(start.y - end.y) <= 0.1) {
+	if (abs(projectile->getPosition().x - end.x) <= 0.1 && abs(projectile->getPosition().y - end.y) <= 0.1) {
 		projectileIterator = 0;
+		attacking = false;
+		turnFinished = true;
 	}
 	else {
 		projectile->setPosition(sf::Vector2f(std::lerp(start.x, end.x, projectileIterator), std::lerp(start.y, end.y, projectileIterator)));
 		projectileIterator += 0.0005;
-		attacking = false;
-		turnFinished = true;
 	}
 }
 

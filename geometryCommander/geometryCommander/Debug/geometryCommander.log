@@ -1,11 +1,11 @@
 ﻿  GamePiece.cpp
-D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(9,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(12,12): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(14,9): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(19,20): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(123,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
-D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(143,9): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(144,9): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(203,21): warning C4305: '+=': truncation from 'double' to 'float'
-D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(220,31): warning C4305: '+=': truncation from 'double' to 'float'
-  geometryCommander.vcxproj -> D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\Debug\geometryCommander.exe
+C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(9,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(12,12): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(14,9): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(19,20): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(123,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(144,9): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(145,9): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(205,21): warning C4305: '+=': truncation from 'double' to 'float'
+C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(224,31): warning C4305: '+=': truncation from 'double' to 'float'
+  geometryCommander.vcxproj -> C:\repoTemp\geometryCommander\geometryCommander\Debug\geometryCommander.exe
