@@ -27,7 +27,7 @@ protected:
 	bool ChanceToHit(GamePiece*);
 	sf::Vector2f targetPosition;
 	sf::Vector2f index;
-	int accuracy = 75;
+	int accuracy;
 	std::stack<sf::Vector2f*>* path;
 	bool moving = false;
 	bool attacking = false;
@@ -35,7 +35,7 @@ protected:
 	bool MoveToNext(sf::Vector2f*);
 	void UpdateProjectile(sf::Vector2f, sf::Vector2f);
 	float projectileIterator;
-	
+	float movementIterator;
 	//may be able to use sfml drawable to fix each child class having to declare visual
 
 public:

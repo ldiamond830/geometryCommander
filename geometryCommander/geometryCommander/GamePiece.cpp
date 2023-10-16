@@ -137,6 +137,7 @@ GamePiece::GamePiece()
 	 projectile->setFillColor(sf::Color::White);
 	 projectile->setPosition(sf::Vector2f(xPos, yPos));
 	 projectile->setOrigin(10, 10);
+	 accuracy = 50;
 }
 
 GamePiece::GamePiece(int _xPos, int _yPos)
@@ -153,6 +154,7 @@ GamePiece::GamePiece(int _xPos, int _yPos)
 	projectile->setFillColor(sf::Color::White);
 	projectile->setPosition(sf::Vector2f(xPos, yPos));
 	projectile->setOrigin(10, 10);
+	accuracy = 50;
 }
 
 GamePiece::~GamePiece()
@@ -201,11 +203,9 @@ bool GamePiece::MoveToNext(sf::Vector2f* desination)
 			yPos = std::lerp(yPos, desination->y, movementIterator);
 		}
 
-
 		movementIterator += 0.0005;
 	}
 	else {
-		//std::cout << "x " << xPos << ", y " << yPos;
 		movementIterator = 0;
 		return true;
 	}
@@ -238,7 +238,7 @@ void GamePiece::Attack(GamePiece* _target)
 		attacking = true;
 	}
 	else {
-		//miss
+		//miss shows the attack going wide
 		targetPosition.x += 20;
 		attacking = true;
 	}
