@@ -22,8 +22,9 @@ protected:
 	//B Tree condition methods
 	bool IsInCover();
 	bool IsFlanked();
-	
+	bool AnyTargetOutOfCover();
 	bool AnyTargetInRange();
+	bool AnyTargetPointBlank();
 	//B Tree Behavior methods
 	void MoveToCover();
 	void AttackPlayerPiece();
@@ -33,5 +34,7 @@ protected:
 	GamePiece* SelectTarget();
 	bool TargetInRange(GamePiece*);
 	bool isPositionFlanked(GridBox*);
+	GamePiece* TargetOutOfCover();
+	GamePiece* TargetPointBlank();
 };
 

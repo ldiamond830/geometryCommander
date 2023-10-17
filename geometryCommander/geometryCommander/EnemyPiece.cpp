@@ -43,10 +43,17 @@ void EnemyPiece::TakeTurn()
 
 void EnemyPiece::ConstructBehaviorTree()
 {
-	BehaviorTreeActionNode<EnemyPiece>* test1 = new BehaviorTreeActionNode<EnemyPiece>(this, &EnemyPiece::MoveToCover);
-	BehaviorTreeActionNode<EnemyPiece>* test2 = new BehaviorTreeActionNode<EnemyPiece>(this, &EnemyPiece::AttackPlayerPiece);;
-	BehaviorTreeConditionalNode<EnemyPiece>* n1 = new BehaviorTreeConditionalNode<EnemyPiece>(this, test2, test1, &EnemyPiece::IsInCover);
-	BehaviorTreeRoot = new BehaviorTreeNode(n1, nullptr);
+	BehaviorTreeActionNode<EnemyPiece>* advance = new BehaviorTreeActionNode<EnemyPiece>(this, EnemyPiece::Advance);
+	BehaviorTreeActionNode<EnemyPiece>* attack = new BehaviorTreeActionNode<EnemyPiece>(this, EnemyPiece::AttackPlayerPiece);
+	BehaviorTreeConditionalNode<EnemyPiece>* CheckTargetInRange = new BehaviorTreeConditionalNode<EnemyPiece>(this, attack, advance, EnemyPiece::AnyTargetInRange);
+	BehaviorTreeActionNode<EnemyPiece>* MoveToFlank = new BehaviorTreeActionNode<EnemyPiece>(this, EnemyPiece::MoveToFlank);
+	BehaviorTreeConditionalNode<EnemyPiece>* CheckFlankInRange = new BehaviorTreeConditionalNode<EnemyPiece>(this, MoveToFlank, CheckTargetInRange, EnemyPiece::FlankInRange);
+	BehaviorTreeConditionalNode<EnemyPiece>* CheckTargetOutOfCover = new BehaviorTreeConditionalNode<EnemyPiece>(this, attack, CheckFlankInRange, &EnemyPiece::AnyTargetOutOfCover);
+	BehaviorTreeConditionalNode<EnemyPiece>* CheckTargetPointBlank = new BehaviorTreeConditionalNode<EnemyPiece>(this, attack, CheckTargetOutOfCover, EnemyPiece::AnyTargetPointBlank);
+	BehaviorTreeActionNode<EnemyPiece>* MoveToCover = new BehaviorTreeActionNode<EnemyPiece>(this, &EnemyPiece::MoveToCover);
+	BehaviorTreeConditionalNode<EnemyPiece>* CheckThisFlanked = new BehaviorTreeConditionalNode<EnemyPiece>(this, MoveToCover, CheckTargetPointBlank, &EnemyPiece::IsFlanked);
+	BehaviorTreeConditionalNode<EnemyPiece>* CheckThisInCover = new BehaviorTreeConditionalNode<EnemyPiece>(this, CheckThisFlanked, MoveToCover, &EnemyPiece::IsInCover);
+	BehaviorTreeRoot = new BehaviorTreeNode(CheckThisInCover, nullptr);
 }
 
 bool EnemyPiece::IsInCover()
@@ -57,6 +64,11 @@ bool EnemyPiece::IsInCover()
 bool EnemyPiece::IsFlanked()
 {
 	return isPositionFlanked(GameManager::GetInstance()->GetGrid()->GetBoxFromOccupyingPiece(this));
+}
+
+bool EnemyPiece::AnyTargetOutOfCover()
+{
+	return TargetOutOfCover() != nullptr;
 }
 
 bool EnemyPiece::FlankInRange()
@@ -92,6 +104,11 @@ bool EnemyPiece::AnyTargetInRange()
 	}
 	//if all targets are out of range returns false
 	return false;
+}
+
+bool EnemyPiece::AnyTargetPointBlank()
+{
+	return TargetPointBlank() != nullptr;
 }
 
 void EnemyPiece::MoveToCover()
@@ -338,4 +355,25 @@ bool EnemyPiece::isPositionFlanked(GridBox* position)
 		}
 		return flanked;
 	}
+}
+
+GamePiece* EnemyPiece::TargetOutOfCover()
+{
+	for (PlayerPiece* playerPiece : GameManager::GetInstance()->GetPlayerPieces()) {
+		if (playerPiece->coverMap.empty()) {
+			return playerPiece;
+		}
+	}
+
+	return nullptr;
+}
+
+GamePiece* EnemyPiece::TargetPointBlank()
+{
+	for (PlayerPiece* potentialTarget : GameManager::GetInstance()->GetPlayerPieces()) {
+		if (MyUtils::GetInstance()->ManhattanDistance(potentialTarget->GetIndex().x, potentialTarget->GetIndex().y, index.x, index.y) <= 2) {
+			return potentialTarget;
+		}
+	}
+	return nullptr;
 }
