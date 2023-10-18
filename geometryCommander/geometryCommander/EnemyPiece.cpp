@@ -24,7 +24,8 @@ EnemyPiece::~EnemyPiece()
 	if (flankPosition != nullptr) {
 		delete flankPosition;
 	}
-	delete BehaviorTreeRoot;
+	//bugged on acc of multiple nodes having the same child, need to figure out if there is a way to keep them all being deleted at once or just use a copy constuctor to create several identical nodes
+	//delete BehaviorTreeRoot;
 }
 
 void EnemyPiece::Draw(sf::RenderWindow* window)
@@ -43,13 +44,13 @@ void EnemyPiece::TakeTurn()
 
 void EnemyPiece::ConstructBehaviorTree()
 {
-	BehaviorTreeActionNode<EnemyPiece>* advance = new BehaviorTreeActionNode<EnemyPiece>(this, EnemyPiece::Advance);
-	BehaviorTreeActionNode<EnemyPiece>* attack = new BehaviorTreeActionNode<EnemyPiece>(this, EnemyPiece::AttackPlayerPiece);
-	BehaviorTreeConditionalNode<EnemyPiece>* CheckTargetInRange = new BehaviorTreeConditionalNode<EnemyPiece>(this, attack, advance, EnemyPiece::AnyTargetInRange);
-	BehaviorTreeActionNode<EnemyPiece>* MoveToFlank = new BehaviorTreeActionNode<EnemyPiece>(this, EnemyPiece::MoveToFlank);
-	BehaviorTreeConditionalNode<EnemyPiece>* CheckFlankInRange = new BehaviorTreeConditionalNode<EnemyPiece>(this, MoveToFlank, CheckTargetInRange, EnemyPiece::FlankInRange);
+	BehaviorTreeActionNode<EnemyPiece>* advance = new BehaviorTreeActionNode<EnemyPiece>(this, &EnemyPiece::Advance);
+	BehaviorTreeActionNode<EnemyPiece>* attack = new BehaviorTreeActionNode<EnemyPiece>(this, &EnemyPiece::AttackPlayerPiece);
+	BehaviorTreeConditionalNode<EnemyPiece>* CheckTargetInRange = new BehaviorTreeConditionalNode<EnemyPiece>(this, attack, advance, &EnemyPiece::AnyTargetInRange);
+	BehaviorTreeActionNode<EnemyPiece>* MoveToFlank = new BehaviorTreeActionNode<EnemyPiece>(this, &EnemyPiece::MoveToFlank);
+	BehaviorTreeConditionalNode<EnemyPiece>* CheckFlankInRange = new BehaviorTreeConditionalNode<EnemyPiece>(this, MoveToFlank, CheckTargetInRange, &EnemyPiece::FlankInRange);
 	BehaviorTreeConditionalNode<EnemyPiece>* CheckTargetOutOfCover = new BehaviorTreeConditionalNode<EnemyPiece>(this, attack, CheckFlankInRange, &EnemyPiece::AnyTargetOutOfCover);
-	BehaviorTreeConditionalNode<EnemyPiece>* CheckTargetPointBlank = new BehaviorTreeConditionalNode<EnemyPiece>(this, attack, CheckTargetOutOfCover, EnemyPiece::AnyTargetPointBlank);
+	BehaviorTreeConditionalNode<EnemyPiece>* CheckTargetPointBlank = new BehaviorTreeConditionalNode<EnemyPiece>(this, attack, CheckTargetOutOfCover, &EnemyPiece::AnyTargetPointBlank);
 	BehaviorTreeActionNode<EnemyPiece>* MoveToCover = new BehaviorTreeActionNode<EnemyPiece>(this, &EnemyPiece::MoveToCover);
 	BehaviorTreeConditionalNode<EnemyPiece>* CheckThisFlanked = new BehaviorTreeConditionalNode<EnemyPiece>(this, MoveToCover, CheckTargetPointBlank, &EnemyPiece::IsFlanked);
 	BehaviorTreeConditionalNode<EnemyPiece>* CheckThisInCover = new BehaviorTreeConditionalNode<EnemyPiece>(this, CheckThisFlanked, MoveToCover, &EnemyPiece::IsInCover);
@@ -158,6 +159,11 @@ void EnemyPiece::MoveToFlank()
 	else {
 		std::cout << "ERROR WITH FLANK POSITION DECLARATION";
 	}
+}
+
+void EnemyPiece::Advance()
+{
+	//TODO
 }
 
 GamePiece* EnemyPiece::SelectTarget()

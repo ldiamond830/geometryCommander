@@ -15,8 +15,15 @@ BehaviorTreeNode::BehaviorTreeNode()
 
 BehaviorTreeNode::~BehaviorTreeNode()
 {
-	delete leftChild;
-	delete rightChild;
+	if (leftChild != nullptr) {
+		delete leftChild;
+		leftChild = nullptr;
+	}
+	if (rightChild != nullptr) {
+		delete rightChild;
+		rightChild = nullptr;
+	}
+	
 }
 
 void BehaviorTreeNode::Traverse()
