@@ -44,13 +44,13 @@ void EnemyPiece::TakeTurn()
 
 void EnemyPiece::ConstructBehaviorTree()
 {
-	BehaviorTreeActionNode<EnemyPiece>* advance = new BehaviorTreeActionNode<EnemyPiece>(this, &EnemyPiece::Advance);
-	BehaviorTreeActionNode<EnemyPiece>* attack = new BehaviorTreeActionNode<EnemyPiece>(this, &EnemyPiece::AttackPlayerPiece);
-	BehaviorTreeConditionalNode<EnemyPiece>* CheckTargetInRange = new BehaviorTreeConditionalNode<EnemyPiece>(this, attack, advance, &EnemyPiece::AnyTargetInRange);
+	BehaviorTreeActionNode<EnemyPiece>* Advance = new BehaviorTreeActionNode<EnemyPiece>(this, &EnemyPiece::Advance);
+	BehaviorTreeActionNode<EnemyPiece>* Attack = new BehaviorTreeActionNode<EnemyPiece>(this, &EnemyPiece::AttackPlayerPiece);
+	BehaviorTreeConditionalNode<EnemyPiece>* CheckTargetInRange = new BehaviorTreeConditionalNode<EnemyPiece>(this, Attack, Advance, &EnemyPiece::AnyTargetInRange);
 	BehaviorTreeActionNode<EnemyPiece>* MoveToFlank = new BehaviorTreeActionNode<EnemyPiece>(this, &EnemyPiece::MoveToFlank);
 	BehaviorTreeConditionalNode<EnemyPiece>* CheckFlankInRange = new BehaviorTreeConditionalNode<EnemyPiece>(this, MoveToFlank, CheckTargetInRange, &EnemyPiece::FlankInRange);
-	BehaviorTreeConditionalNode<EnemyPiece>* CheckTargetOutOfCover = new BehaviorTreeConditionalNode<EnemyPiece>(this, attack, CheckFlankInRange, &EnemyPiece::AnyTargetOutOfCover);
-	BehaviorTreeConditionalNode<EnemyPiece>* CheckTargetPointBlank = new BehaviorTreeConditionalNode<EnemyPiece>(this, attack, CheckTargetOutOfCover, &EnemyPiece::AnyTargetPointBlank);
+	BehaviorTreeConditionalNode<EnemyPiece>* CheckTargetOutOfCover = new BehaviorTreeConditionalNode<EnemyPiece>(this, Attack, CheckFlankInRange, &EnemyPiece::AnyTargetOutOfCover);
+	BehaviorTreeConditionalNode<EnemyPiece>* CheckTargetPointBlank = new BehaviorTreeConditionalNode<EnemyPiece>(this, Attack, CheckTargetOutOfCover, &EnemyPiece::AnyTargetPointBlank);
 	BehaviorTreeActionNode<EnemyPiece>* MoveToCover = new BehaviorTreeActionNode<EnemyPiece>(this, &EnemyPiece::MoveToCover);
 	BehaviorTreeConditionalNode<EnemyPiece>* CheckThisFlanked = new BehaviorTreeConditionalNode<EnemyPiece>(this, MoveToCover, CheckTargetPointBlank, &EnemyPiece::IsFlanked);
 	BehaviorTreeConditionalNode<EnemyPiece>* CheckThisInCover = new BehaviorTreeConditionalNode<EnemyPiece>(this, CheckThisFlanked, MoveToCover, &EnemyPiece::IsInCover);
