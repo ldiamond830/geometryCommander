@@ -14,6 +14,9 @@ EnemyPiece::EnemyPiece(int _xPos, int _yPos) : GamePiece(_xPos, _yPos)
 	visual->setPosition(sf::Vector2f(xPos, yPos));
 	visual->setFillColor(sf::Color(255, 0, 0));
 	ConstructBehaviorTree();
+	
+	UIText.setOrigin(15.0f, 15.0f);
+	UIText.setPosition(sf::Vector2f(xPos, yPos));
 	//isDead = false;
 	//visual->setOutlineThickness(5.0f);
 }
@@ -34,6 +37,7 @@ void EnemyPiece::Draw(sf::RenderWindow* window)
 	window->draw(*visual);
 	//draws projecile, will update in the future to clean
 	GamePiece::Draw(window);
+	
 }
 
 void EnemyPiece::TakeTurn()

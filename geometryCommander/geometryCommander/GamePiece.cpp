@@ -133,11 +133,15 @@ GamePiece::GamePiece()
 	 moveRange = 5;
 	 maxDamage = 1;
 	 minDamage = 0;
+	 accuracy = 50;
+
 	 projectile = new sf::RectangleShape(sf::Vector2f(20, 20));
 	 projectile->setFillColor(sf::Color::White);
 	 projectile->setPosition(sf::Vector2f(xPos, yPos));
 	 projectile->setOrigin(10, 10);
-	 accuracy = 50;
+
+	 UIText.setPosition(sf::Vector2f(xPos, yPos));
+	 UIText.setString(std::to_string(health));
 }
 
 GamePiece::GamePiece(int _xPos, int _yPos)
@@ -150,11 +154,19 @@ GamePiece::GamePiece(int _xPos, int _yPos)
 	attackRange = 7;
 	maxDamage = 3;
 	minDamage = 1;
+	accuracy = 50;
+
 	projectile = new sf::RectangleShape(sf::Vector2f(20, 20));
 	projectile->setFillColor(sf::Color::White);
 	projectile->setPosition(sf::Vector2f(xPos, yPos));
 	projectile->setOrigin(10, 10);
-	accuracy = 50;
+
+	//UIText.setOrigin(radius, radius);
+	UIText.setPosition(sf::Vector2f(xPos, yPos));
+	UIText.setString(std::to_string(health));
+	UIText.setStyle(sf::Text::Bold);
+	UIText.setCharacterSize(25);
+	UIText.setFillColor(sf::Color::White);
 }
 
 GamePiece::~GamePiece()
@@ -167,6 +179,7 @@ void GamePiece::Draw(sf::RenderWindow* window)
 	if (attacking) {
 		window->draw(*projectile);
 	}
+	window->draw(UIText);
 }
 
 void GamePiece::TakeDamage(int damage)
@@ -272,10 +285,16 @@ void GamePiece::SimulateAction()
 			moving = false;
 			turnFinished = true;
 		}
+		UIText.setPosition(sf::Vector2f(xPos, yPos));
 	}
 	else if (attacking) {
 		UpdateProjectile(GetPosition(), targetPosition);
 	}
+}
+
+void GamePiece::SetFont(sf::Font* _UIFont)
+{
+	UIText.setFont(*_UIFont);
 }
 
 

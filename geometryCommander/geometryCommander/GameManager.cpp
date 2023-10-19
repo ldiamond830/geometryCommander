@@ -3,21 +3,23 @@
 GameManager* GameManager::instance = nullptr;
 GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenHeight, int rowSize, int columnSize, int playerPieceCount, int enemyPieceCount)
 {
-	/*
-	if (!UIFont.loadFromFile("vgafix.ttf")) {
+	
+	if (!UIFont.loadFromFile("arial.ttf")) {
 		std::cout << "Error loading font";
 	}
-	*/
+	
 	window = _window;
 	grid = new Grid(screenWidth, screenHeight, rowSize, columnSize);
 	for (unsigned int i = 0; i < playerPieceCount; i++) {
 		PlayerPiece* playerPiece = new PlayerPiece(grid->gridBoxes[i][0]->GetCenter().x, grid->gridBoxes[i][0]->GetCenter().y);
 		grid->UpdateOccupyingPiece(grid->gridBoxes[i][0], playerPiece);
+		playerPiece->SetFont(&UIFont);
 		playerPieceList.push_back(playerPiece);
 	}
 	for (unsigned int i = 0; i < enemyPieceCount; i++) {
 		EnemyPiece* enemyPiece = new EnemyPiece(grid->gridBoxes[i][columnSize - 1]->GetCenter().x, grid->gridBoxes[i][columnSize - 1]->GetCenter().y);
 		grid->UpdateOccupyingPiece(grid->gridBoxes[i][columnSize - 1], enemyPiece);
+		enemyPiece->SetFont(&UIFont);
 		enemyPieceList.push_back(enemyPiece);
 	}
 	SelectPlayerPiece(0);
@@ -135,6 +137,7 @@ void GameManager::Draw()
 	for (PlayerPiece* playerPiece : playerPieceList) {
 		playerPiece->Draw(window);
 	}
+	
 }
 
 GameManager* GameManager::GetInstance()

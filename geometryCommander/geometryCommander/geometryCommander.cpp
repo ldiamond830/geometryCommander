@@ -37,8 +37,7 @@ void wrapper(){
     int screenHeight = 600;
     sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "Game");
     GameManager* gameManger = GameManager::CreateInstance(&window, screenWidth, screenHeight, 10, 10, 4, 4);
-
-
+   
     // run the program as long as the window is open
     while (window.isOpen())
     {
@@ -56,10 +55,9 @@ void wrapper(){
         // clear the window with black color
         window.clear(sf::Color::Black);
 
-        // draw everything here...
-        // window.draw(...);
         gameManger->Draw();
         // end the current frame
+
         window.display();
     }
     GameManager::DeleteInstance();

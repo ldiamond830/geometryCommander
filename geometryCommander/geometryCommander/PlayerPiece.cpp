@@ -8,6 +8,9 @@ PlayerPiece::PlayerPiece(int xPos, int yPos) : GamePiece(xPos, yPos)
 	visual->setOrigin(radius, radius);
 	visual->setPosition(sf::Vector2f(xPos, yPos));
 	visual->setFillColor(sf::Color(0, 255, 0));
+
+	UIText.setOrigin(15, 15);
+	UIText.setPosition(sf::Vector2f(xPos, yPos));
 }
 
 PlayerPiece::~PlayerPiece()

@@ -51,6 +51,6 @@ public:
 	std::vector<PlayerPiece*> GetPlayerPieces();
 	std::vector<EnemyPiece*> GetEnemyPieces();
 	Grid* GetGrid();
-	//sf::Font UIFont;
+	sf::Font UIFont;
 };
 
