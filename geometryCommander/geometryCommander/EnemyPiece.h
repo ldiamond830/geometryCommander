@@ -14,6 +14,7 @@ public:
 	void TakeTurn();
 	//reset to protected after testing
 	bool FlankInRange();
+	void Advance();
 protected:
 	sf::CircleShape* visual;
 	sf::Vector2f* flankPosition;
@@ -29,7 +30,7 @@ protected:
 	void MoveToCover();
 	void AttackPlayerPiece();
 	void MoveToFlank();
-	void Advance();
+	
 	//helper methods
 	GamePiece* SelectTarget();
 	bool TargetInRange(GamePiece*);

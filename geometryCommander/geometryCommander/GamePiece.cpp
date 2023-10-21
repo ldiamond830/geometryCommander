@@ -161,9 +161,9 @@ GamePiece::GamePiece(int _xPos, int _yPos)
 	projectile->setPosition(sf::Vector2f(xPos, yPos));
 	projectile->setOrigin(10, 10);
 
-	//UIText.setOrigin(radius, radius);
+	UIText.setOrigin(15, 15);
 	UIText.setPosition(sf::Vector2f(xPos, yPos));
-	UIText.setString(std::to_string(health));
+	UpdateHealthDisplay();
 	UIText.setStyle(sf::Text::Bold);
 	UIText.setCharacterSize(25);
 	UIText.setFillColor(sf::Color::White);
@@ -186,10 +186,7 @@ void GamePiece::TakeDamage(int damage)
 {
 	health -= damage;
 
-	if (health <= 0) 
-	{
-		isDead = true;
-	}
+	
 }
 
 void GamePiece::StartMove(std::stack<sf::Vector2f*>* _path)
@@ -228,6 +225,12 @@ bool GamePiece::MoveToNext(sf::Vector2f* desination)
 void GamePiece::UpdateProjectile(sf::Vector2f start, sf::Vector2f end)
 {
 	if (abs(projectile->getPosition().x - end.x) <= 0.1 && abs(projectile->getPosition().y - end.y) <= 0.1) {
+		if (!missed) {
+			//updates the target's health in the UI when the projectile hits rather than right after the damage caluclation
+			target->UpdateHealthDisplay();
+		}
+		
+
 		projectileIterator = 0;
 		attacking = false;
 		turnFinished = true;
@@ -238,6 +241,20 @@ void GamePiece::UpdateProjectile(sf::Vector2f start, sf::Vector2f end)
 	}
 }
 
+void GamePiece::UpdateHealthDisplay()
+{
+	UIText.setString(std::to_string(health));
+
+	if (health < 10) {
+		UIText.setOrigin(9, 15);
+	}
+
+	if (health <= 0)
+	{
+		isDead = true;
+	}
+}
+
 sf::Vector2f GamePiece::GetPosition()
 {
 	return sf::Vector2f((float)xPos, (float)yPos);
@@ -245,15 +262,18 @@ sf::Vector2f GamePiece::GetPosition()
 
 void GamePiece::Attack(GamePiece* _target)
 {
+	missed = false;
 	targetPosition = _target->GetPosition();
+	target = _target;
 	if (ChanceToHit(_target)) {
 		_target->TakeDamage(CalcDamage());
 		attacking = true;
 	}
 	else {
 		//miss shows the attack going wide
-		targetPosition.x += 20;
+		targetPosition.x += rand() % 50 + 20;
 		attacking = true;
+		missed = true;
 	}
 
 }

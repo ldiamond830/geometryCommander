@@ -14,11 +14,6 @@ EnemyPiece::EnemyPiece(int _xPos, int _yPos) : GamePiece(_xPos, _yPos)
 	visual->setPosition(sf::Vector2f(xPos, yPos));
 	visual->setFillColor(sf::Color(255, 0, 0));
 	ConstructBehaviorTree();
-	
-	UIText.setOrigin(15.0f, 15.0f);
-	UIText.setPosition(sf::Vector2f(xPos, yPos));
-	//isDead = false;
-	//visual->setOutlineThickness(5.0f);
 }
 
 EnemyPiece::~EnemyPiece()
@@ -167,7 +162,39 @@ void EnemyPiece::MoveToFlank()
 
 void EnemyPiece::Advance()
 {
-	//TODO
+	int shortestDistanceToTarget = INT16_MAX;
+	PlayerPiece* target = nullptr;
+	GameManager* gameManagerInstance = GameManager::GetInstance();
+	Grid* grid = gameManagerInstance->GetGrid();
+	for (PlayerPiece* playerPiece : gameManagerInstance->GetPlayerPieces()) {
+		int distance = MyUtils::GetInstance()->ManhattanDistance(grid->gridBoxes[index.x][index.y], grid->gridBoxes[playerPiece->GetIndex().x][playerPiece->GetIndex().y]);
+		if (distance < shortestDistanceToTarget) {
+			shortestDistanceToTarget = distance;
+			target = playerPiece;
+		}
+	}
+	sf::Vector2f indexCache;
+	for (unsigned int x = 0; x < grid->gridBoxes.size(); x++) {
+		for (unsigned int y = 0; y < grid->gridBoxes[x].size(); y++) {
+			int distanceToTarget = MyUtils::GetInstance()->ManhattanDistance(grid->gridBoxes[x][y], grid->gridBoxes[target->GetIndex().x][target->GetIndex().y]);
+			if (distanceToTarget < shortestDistanceToTarget) {
+				int distanceFromPosition = MyUtils::GetInstance()->ManhattanDistance(grid->gridBoxes[x][y], grid->gridBoxes[index.x][index.y]);
+				if (distanceFromPosition < moveRange) {
+					if (!isPositionFlanked(grid->gridBoxes[index.x][index.y])) {
+						grid->MovePiece(grid->gridBoxes[index.x][index.y], grid->gridBoxes[x][y]);
+						return;
+					}
+					else {
+						//stores a position that is both closer and in range but may not be in cover or flanked for if there are no positions where !isPositionFlanked is true
+						indexCache = sf::Vector2f(x, y);
+					}
+				}
+			}
+			
+		}
+	}
+
+	grid->MovePiece(grid->gridBoxes[index.x][index.y], grid->gridBoxes[indexCache.x][indexCache.y]);
 }
 
 GamePiece* EnemyPiece::SelectTarget()

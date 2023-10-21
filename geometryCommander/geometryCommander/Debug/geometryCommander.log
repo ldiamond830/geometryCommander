@@ -1,33 +1,24 @@
-﻿  PlayerPiece.cpp
-C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\PlayerPiece.cpp(9,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+﻿  GameManager.cpp
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(13,29): warning C4018: '<': signed/unsigned mismatch
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(14,118): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\PlayerPiece.cpp(9,35): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(14,80): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\PlayerPiece.cpp(13,40): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(19,29): warning C4018: '<': signed/unsigned mismatch
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(20,141): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\PlayerPiece.cpp(13,34): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(20,90): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\PlayerPiece.cpp(45,41): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\PlayerPiece.cpp(45,48): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\PlayerPiece.cpp(129): warning C4715: 'PlayerPiece::isPositionFlanked': not all control paths return a value
-  geometryCommander.vcxproj -> C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\Debug\geometryCommander.exe
+  geometryCommander.vcxproj -> D:\Github\geometryCommander\geometryCommander\Debug\geometryCommander.exe
