@@ -15,6 +15,7 @@ BehaviorTreeNode::BehaviorTreeNode()
 
 BehaviorTreeNode::~BehaviorTreeNode()
 {
+	/*
 	if (leftChild != nullptr) {
 		delete leftChild;
 		leftChild = nullptr;
@@ -23,6 +24,7 @@ BehaviorTreeNode::~BehaviorTreeNode()
 		delete rightChild;
 		rightChild = nullptr;
 	}
+	*/
 	
 }
 

@@ -24,6 +24,10 @@ EnemyPiece::~EnemyPiece()
 	}
 	//bugged on acc of multiple nodes having the same child, need to figure out if there is a way to keep them all being deleted at once or just use a copy constuctor to create several identical nodes
 	//delete BehaviorTreeRoot;
+
+	for (BehaviorTreeNode* node : BehaviorTreeDeleteList) {
+		delete node;
+	}
 }
 
 void EnemyPiece::Draw(sf::RenderWindow* window)
@@ -54,6 +58,19 @@ void EnemyPiece::ConstructBehaviorTree()
 	BehaviorTreeConditionalNode<EnemyPiece>* CheckThisFlanked = new BehaviorTreeConditionalNode<EnemyPiece>(this, MoveToCover, CheckTargetPointBlank, &EnemyPiece::IsFlanked);
 	BehaviorTreeConditionalNode<EnemyPiece>* CheckThisInCover = new BehaviorTreeConditionalNode<EnemyPiece>(this, CheckThisFlanked, MoveToCover, &EnemyPiece::IsInCover);
 	BehaviorTreeRoot = new BehaviorTreeNode(CheckThisInCover, nullptr);
+
+	//uses a list to delete all behavior nodes so that multiple conditions can lead to the same behavior node without needing to copy or creating an error where nodes are deleted twice
+	BehaviorTreeDeleteList.push_back(Advance);
+	BehaviorTreeDeleteList.push_back(Attack);
+	BehaviorTreeDeleteList.push_back(CheckTargetInRange);
+	BehaviorTreeDeleteList.push_back(MoveToFlank);
+	BehaviorTreeDeleteList.push_back(CheckFlankInRange);
+	BehaviorTreeDeleteList.push_back(CheckTargetOutOfCover);
+	BehaviorTreeDeleteList.push_back(CheckTargetPointBlank);
+	BehaviorTreeDeleteList.push_back(MoveToCover);
+	BehaviorTreeDeleteList.push_back(CheckThisFlanked);
+	BehaviorTreeDeleteList.push_back(CheckThisInCover);
+	BehaviorTreeDeleteList.push_back(BehaviorTreeRoot);
 }
 
 bool EnemyPiece::IsInCover()

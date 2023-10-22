@@ -19,6 +19,7 @@ protected:
 	sf::CircleShape* visual;
 	sf::Vector2f* flankPosition;
 	BehaviorTreeNode* BehaviorTreeRoot;
+	std::vector<BehaviorTreeNode*> BehaviorTreeDeleteList;
 	virtual void ConstructBehaviorTree();
 	//B Tree condition methods
 	bool IsInCover();
