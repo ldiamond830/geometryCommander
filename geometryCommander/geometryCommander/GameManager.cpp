@@ -1,9 +1,11 @@
 #include "GameManager.h"
 #include <iostream>
+#include <fstream>
+#include <string>
 GameManager* GameManager::instance = nullptr;
 GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenHeight, int rowSize, int columnSize, int playerPieceCount, int enemyPieceCount)
 {
-	
+	LoadMapFromFile("maps/testMap.txt", screenWidth, screenHeight);
 	if (!UIFont.loadFromFile("arial.ttf")) {
 		std::cout << "Error loading font";
 	}
@@ -26,6 +28,24 @@ GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenH
 	selectedEnemyPiece = enemyPieceList[selectedEnemyPieceIndex];
 	currentState = gameState::playerTurn;
 	input = InputManager();
+}
+
+void GameManager::LoadMapFromFile(std::string path, int screenWidth, int screenHeight)
+{
+	std::ifstream fileReader(path);
+	if (fileReader.good()) {
+		std::string line;
+		//first two lines of the map file are size values
+		std::getline(fileReader, line);
+		int rowSize = std::stoi(line);
+		std::getline(fileReader, line);
+		int columnSize = std::stoi(line);
+		grid = new Grid(screenWidth, screenHeight, rowSize, columnSize);
+	}
+	else {
+		std::cout << "error";
+	}
+	
 }
 
 Grid* GameManager::GetGrid()

@@ -38,7 +38,7 @@ private:
 	void NextPiece(int index);
 	static GameManager* instance;
 	GameManager(sf::RenderWindow*, int screenWidth, int screenHeight, int rowSize, int columnSize, int playerPieceCount, int enemyPieceCount);
-	
+	void LoadMapFromFile(std::string, int, int);
 
 public:
 	~GameManager();
