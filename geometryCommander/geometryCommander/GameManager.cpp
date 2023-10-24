@@ -5,7 +5,7 @@
 GameManager* GameManager::instance = nullptr;
 GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenHeight, int rowSize, int columnSize, int playerPieceCount, int enemyPieceCount)
 {
-	LoadMapFromFile("maps/testMap.txt", screenWidth, screenHeight);
+	
 	if (!UIFont.loadFromFile("arial.ttf")) {
 		std::cout << "Error loading font";
 	}
@@ -24,6 +24,15 @@ GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenH
 		enemyPiece->SetFont(&UIFont);
 		enemyPieceList.push_back(enemyPiece);
 	}
+	SelectPlayerPiece(0);
+	selectedEnemyPiece = enemyPieceList[selectedEnemyPieceIndex];
+	currentState = gameState::playerTurn;
+	input = InputManager();
+}
+
+GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenHeight, std::string path) {
+	LoadMapFromFile(path, screenWidth, screenHeight);
+	window = _window;
 	SelectPlayerPiece(0);
 	selectedEnemyPiece = enemyPieceList[selectedEnemyPieceIndex];
 	currentState = gameState::playerTurn;
@@ -173,6 +182,14 @@ GameManager* GameManager::CreateInstance(sf::RenderWindow* window, int screenWid
 {
 	if (instance == nullptr) {
 		instance = new GameManager(window, screenWidth, screenHeight, rowSize, columnSize, playerPieceCount, enemyPieceCount);
+	}
+	return instance;
+}
+
+GameManager* GameManager::CreateInstance(sf::RenderWindow* window, int screenWidth, int screenHeight, std::string path)
+{
+	if (instance == nullptr) {
+		instance = new GameManager(window, screenWidth, screenHeight, path);
 	}
 	return instance;
 }
