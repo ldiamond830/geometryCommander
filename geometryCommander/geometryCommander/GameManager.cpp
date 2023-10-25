@@ -8,7 +8,9 @@ GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenH
 	if (!UIFont.loadFromFile("arial.ttf")) {
 		std::cout << "Error loading font";
 	}
-	
+	clock.restart();
+	timestep = sf::milliseconds(50);
+
 	window = _window;
 	grid = new Grid();
 	for (unsigned int i = 0; i < playerPieceCount; i++) {
@@ -109,6 +111,10 @@ GameManager::~GameManager()
 
 void GameManager::Update()
 {
+	sf::Time dt = clock.restart();
+	totalTime += dt;
+	float floatDt = dt.asSeconds();
+
 	switch (currentState) {
 	
 		//wait for player to input move

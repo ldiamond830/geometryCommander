@@ -29,19 +29,19 @@ protected:
 	GamePiece* target;
 	int accuracy;
 	bool missed;
-
 	sf::Vector2f index;
-	
 	std::stack<sf::Vector2f*>* path;
 	bool moving = false;
 	bool attacking = false;
 	sf::RectangleShape* projectile;
-	bool MoveToNext(sf::Vector2f*);
-	void UpdateProjectile(sf::Vector2f, sf::Vector2f);
+	bool MoveToNext(sf::Vector2f*, float deltaTime);
+	void UpdateProjectile(sf::Vector2f, sf::Vector2f, float deltaTime);
 	float projectileIterator;
 	float movementIterator;
 	sf::Text UIText;
 	void UpdateHealthDisplay();
+	float moveSpeed;
+	float projectileSpeed;
 	//sfml doesn't allow creation of variables using the abstract classes Drawable or Shape so each child needs to define it's own visual in order to allow for different shapes being used
 
 public:
@@ -61,7 +61,7 @@ public:
 	sf::Vector2f GetIndex();
 	int GetHealth();
 	bool turnFinished;
-	virtual void SimulateAction();
+	virtual void SimulateAction(float deltaTime);
 	void SetFont(sf::Font* _UIFont);
 };
 

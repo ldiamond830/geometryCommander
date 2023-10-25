@@ -195,7 +195,7 @@ void GamePiece::StartMove(std::stack<sf::Vector2f*>* _path)
 	moving = true;
 }
 
-bool GamePiece::MoveToNext(sf::Vector2f* desination)
+bool GamePiece::MoveToNext(sf::Vector2f* desination, float deltaTime)
 {
 	
 	if (xPos != desination->x || yPos != desination->y) {
@@ -213,7 +213,7 @@ bool GamePiece::MoveToNext(sf::Vector2f* desination)
 			yPos = std::lerp(yPos, desination->y, movementIterator);
 		}
 
-		movementIterator += 0.0005;
+		movementIterator += moveSpeed * deltaTime;
 	}
 	else {
 		movementIterator = 0;
@@ -222,7 +222,7 @@ bool GamePiece::MoveToNext(sf::Vector2f* desination)
 	return false;
 }
 
-void GamePiece::UpdateProjectile(sf::Vector2f start, sf::Vector2f end)
+void GamePiece::UpdateProjectile(sf::Vector2f start, sf::Vector2f end, float deltaTime)
 {
 	if (abs(projectile->getPosition().x - end.x) <= 0.1 && abs(projectile->getPosition().y - end.y) <= 0.1) {
 		if (!missed) {
@@ -237,7 +237,7 @@ void GamePiece::UpdateProjectile(sf::Vector2f start, sf::Vector2f end)
 	}
 	else {
 		projectile->setPosition(sf::Vector2f(std::lerp(start.x, end.x, projectileIterator), std::lerp(start.y, end.y, projectileIterator)));
-		projectileIterator += 0.0005;
+		projectileIterator += projectileSpeed * deltaTime;
 	}
 }
 
@@ -293,11 +293,11 @@ int GamePiece::GetHealth()
 	return health;
 }
 
-void GamePiece::SimulateAction()
+void GamePiece::SimulateAction(float deltaTime)
 {
 	turnFinished = false;
 	if (moving){
-		if (MoveToNext(path->top())) {
+		if (MoveToNext(path->top(), deltaTime)) {
 			path->pop();
 		}
 
@@ -308,7 +308,7 @@ void GamePiece::SimulateAction()
 		UIText.setPosition(sf::Vector2f(xPos, yPos));
 	}
 	else if (attacking) {
-		UpdateProjectile(GetPosition(), targetPosition);
+		UpdateProjectile(GetPosition(), targetPosition, deltaTime);
 	}
 }
 

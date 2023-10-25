@@ -40,7 +40,9 @@ private:
 	GameManager(sf::RenderWindow*, int screenWidth, int screenHeight, int rowSize, int columnSize, int playerPieceCount, int enemyPieceCount);
 	GameManager(sf::RenderWindow*, int screenWidth, int screenHeight, std::string path);
 	void LoadMapFromFile(std::string, int, int);
-
+	sf::Clock clock;
+	sf::Time timestep;
+	sf::Time totalTime;
 public:
 	~GameManager();
 	void Update();

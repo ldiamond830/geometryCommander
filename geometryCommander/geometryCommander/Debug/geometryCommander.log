@@ -1,46 +1,363 @@
-﻿  GameManager.cpp
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(14,29): warning C4018: '<': signed/unsigned mismatch
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(15,118): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+﻿  BehaviorTreeNode.cpp
+  EnemyPiece.cpp
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(97,30): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(98,31): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(99,65): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(15,80): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(99,56): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(20,29): warning C4018: '<': signed/unsigned mismatch
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(21,141): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(101,58): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(21,90): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(101,55): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(56,30): warning C4018: '<': signed/unsigned mismatch
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(58,31): warning C4018: '<': signed/unsigned mismatch
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(69,122): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(102,44): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(69,84): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(102,41): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(77,119): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(142,138): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-D:\Github\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(77,81): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(142,106): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-  geometryCommander.vcxproj -> D:\Github\geometryCommander\geometryCommander\Debug\geometryCommander.exe
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(142,74): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(142,60): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(173,86): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(173,104): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(187,81): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(187,90): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(187,134): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(187,161): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(196,126): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(196,148): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(198,118): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(198,127): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(200,50): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(200,59): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(201,44): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(201,53): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(206,36): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(206,33): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(214,39): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(214,48): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(214,79): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(214,93): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(428,125): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(428,116): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(428,107): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(428,76): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+  GameManager.cpp
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(16,29): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(17,118): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(17,80): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(22,29): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(23,141): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(23,90): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(58,30): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(60,31): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(71,122): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(71,84): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(79,119): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(79,81): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+  GamePiece.cpp
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(9,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(12,12): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(14,9): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(19,20): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(123,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(149,9): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(150,9): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(216,29): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GamePiece.cpp(240,31): warning C4305: '+=': truncation from 'double' to 'float'
+  geometryCommander.cpp
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\geometryCommander.cpp(35,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Grid.cpp
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(47,29): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(49,30): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(51,111): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(51,109): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(51,91): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(51,76): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(121,42): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(121,28): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(130,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(137,14): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(138,15): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(191,24): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(208,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(309,14): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(310,15): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+  GridBox.cpp
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(14,54): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(14,47): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(32,54): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(32,47): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(61,13): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(86,12): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(87,12): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(89,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(91,11): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  InputManager.cpp
+  MyUtils.cpp
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\MyUtils.cpp(24,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\MyUtils.cpp(25,13): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\MyUtils.cpp(26,14): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\MyUtils.cpp(31,86): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\MyUtils.cpp(31,72): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\MyUtils.cpp(31,58): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\MyUtils.cpp(31,42): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+  PlayerPiece.cpp
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\PlayerPiece.cpp(9,41): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\PlayerPiece.cpp(9,35): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\PlayerPiece.cpp(42,41): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\PlayerPiece.cpp(42,48): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Generating Code...
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\PlayerPiece.cpp(126): warning C4715: 'PlayerPiece::isPositionFlanked': not all control paths return a value
+C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(412): warning C4715: 'EnemyPiece::isPositionFlanked': not all control paths return a value
+  geometryCommander.vcxproj -> C:\Users\Lucas\Documents\GitHub\geometryCommander\geometryCommander\Debug\geometryCommander.exe
