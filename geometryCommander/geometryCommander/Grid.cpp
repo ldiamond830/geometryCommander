@@ -24,6 +24,7 @@ Grid::Grid(int screenWidth, int screenHeight, int rowSize, int columnSize)
 		}
 	}
 	//testing cover
+	/*
 	gridBoxes[0][1]->SetType(halfCover);
 	gridBoxes[2][1]->SetType(halfCover);
 	gridBoxes[4][1]->SetType(halfCover);
@@ -49,7 +50,7 @@ Grid::Grid(int screenWidth, int screenHeight, int rowSize, int columnSize)
 
 	gridBoxes[1][5]->SetType(fullCover);
 	gridBoxes[0][7]->SetType(halfCover);
-
+	*/
 	path = new std::stack <sf::Vector2f*>();
 }
 

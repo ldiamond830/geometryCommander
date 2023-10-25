@@ -38,6 +38,7 @@ private:
 	void NextPiece(int index);
 	static GameManager* instance;
 	GameManager(sf::RenderWindow*, int screenWidth, int screenHeight, int rowSize, int columnSize, int playerPieceCount, int enemyPieceCount);
+	GameManager(sf::RenderWindow*, int screenWidth, int screenHeight, std::string path);
 	void LoadMapFromFile(std::string, int, int);
 
 public:
@@ -47,6 +48,7 @@ public:
 	bool gameRunning = true;
 	static GameManager* GetInstance();
 	static GameManager* CreateInstance(sf::RenderWindow*, int screenWidth, int screenHeight, int rowSize, int columnSize, int playerPieceCount, int enemyPieceCount);
+	static GameManager* CreateInstance(sf::RenderWindow*, int screenWidth, int screenHeight, std::string path);
 	static void DeleteInstance();
 	std::vector<PlayerPiece*> GetPlayerPieces();
 	std::vector<EnemyPiece*> GetEnemyPieces();

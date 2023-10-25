@@ -36,8 +36,8 @@ void wrapper(){
     int screenWidth = 800;
     int screenHeight = 600;
     sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "Game");
-    GameManager* gameManger = GameManager::CreateInstance(&window, screenWidth, screenHeight, 10, 10, 4, 4);
-   
+    //GameManager* gameManger = GameManager::CreateInstance(&window, screenWidth, screenHeight, 10, 10, 4, 4);
+    GameManager* gameManger = GameManager::CreateInstance(&window, screenWidth, screenHeight, "maps/testMap.txt");
     // run the program as long as the window is open
     while (window.isOpen())
     {

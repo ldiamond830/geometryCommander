@@ -5,7 +5,6 @@
 GameManager* GameManager::instance = nullptr;
 GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenHeight, int rowSize, int columnSize, int playerPieceCount, int enemyPieceCount)
 {
-	
 	if (!UIFont.loadFromFile("arial.ttf")) {
 		std::cout << "Error loading font";
 	}
@@ -31,6 +30,9 @@ GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenH
 }
 
 GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenHeight, std::string path) {
+	if (!UIFont.loadFromFile("arial.ttf")) {
+		std::cout << "Error loading font";
+	}
 	LoadMapFromFile(path, screenWidth, screenHeight);
 	window = _window;
 	SelectPlayerPiece(0);
@@ -50,6 +52,38 @@ void GameManager::LoadMapFromFile(std::string path, int screenWidth, int screenH
 		std::getline(fileReader, line);
 		int columnSize = std::stoi(line);
 		grid = new Grid(screenWidth, screenHeight, rowSize, columnSize);
+
+		for (unsigned int y = 0; y < columnSize; y++) {
+			std::getline(fileReader, line);
+			for (unsigned int x = 0; x < rowSize; x++) {
+				switch (line[x])
+				{
+				case 'h':
+					grid->gridBoxes[x][y]->SetType(halfCover);
+						break;
+				case 'f':
+					grid->gridBoxes[x][y]->SetType(fullCover);
+					break;
+				case 'p':
+					{
+						PlayerPiece* playerPiece = new PlayerPiece(grid->gridBoxes[x][y]->GetCenter().x, grid->gridBoxes[x][y]->GetCenter().y);
+						grid->UpdateOccupyingPiece(grid->gridBoxes[x][y], playerPiece);
+						playerPiece->SetFont(&UIFont);
+						playerPieceList.push_back(playerPiece);
+					}
+					break;
+				case 'e':
+					{
+						EnemyPiece* enemyPiece = new EnemyPiece(grid->gridBoxes[x][y]->GetCenter().x, grid->gridBoxes[x][y]->GetCenter().y);
+						grid->UpdateOccupyingPiece(grid->gridBoxes[x][y], enemyPiece);
+						enemyPiece->SetFont(&UIFont);
+						enemyPieceList.push_back(enemyPiece);
+					}
+					break;
+				}
+			}
+		}
+
 	}
 	else {
 		std::cout << "error";
