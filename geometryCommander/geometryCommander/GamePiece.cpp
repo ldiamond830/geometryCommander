@@ -317,5 +317,10 @@ void GamePiece::SetFont(sf::Font* _UIFont)
 	UIText.setFont(*_UIFont);
 }
 
+int GamePiece::GetMovementRange()
+{
+	return moveRange;
+}
+
 
 

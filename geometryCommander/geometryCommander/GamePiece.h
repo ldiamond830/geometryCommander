@@ -63,5 +63,6 @@ public:
 	bool turnFinished;
 	virtual void SimulateAction();
 	void SetFont(sf::Font* _UIFont);
+	int GetMovementRange();
 };
 

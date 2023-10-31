@@ -24,6 +24,7 @@ GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenH
 		enemyPieceList.push_back(enemyPiece);
 	}
 	SelectPlayerPiece(0);
+	
 	selectedEnemyPiece = enemyPieceList[selectedEnemyPieceIndex];
 	currentState = gameState::playerTurn;
 	input = InputManager();
@@ -115,6 +116,7 @@ void GameManager::Update()
 		case gameState::playerTurn:
 		if (!CheckEndTurn(true)) {
 			currentState = gameState::enemyTurn;
+			grid->ClearBoxesInRange();
 			//hides the blue color for the duration of the enemy turn 
 			selectedPlayerPiece->Deselect();
 			for (PlayerPiece* piece : playerPieceList) {
@@ -154,6 +156,7 @@ void GameManager::Update()
 					currentState = gameState::playerTurn;
 					//reveal the blue color on the selected piece
 					selectedPlayerPiece->Select();
+					grid->ShowBoxesInRange(selectedPlayerPiece, selectedPlayerPiece->GetMovementRange());
 					for (EnemyPiece* piece : enemyPieceList) {
 						piece->turnTaken = false;
 					}
@@ -252,10 +255,10 @@ void GameManager::PlayerInput()
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 		auto clickedBox = grid->GetBoxFromPosition(sf::Mouse::getPosition(*window));
 		if (clickedBox != nullptr) {
-			if (clickedBox->GetType() == gridBoxType::empty) {
+			if (clickedBox->GetType() == gridBoxType::empty && 
+				MyUtils::GetInstance()->ManhattanDistance(grid->gridBoxes[selectedPlayerPiece->GetIndex().x][selectedPlayerPiece->GetIndex().y], clickedBox) <= selectedPlayerPiece->GetMovementRange()) {
 				grid->MovePiece(grid->GetBoxFromOccupyingPiece(selectedPlayerPiece), clickedBox);
 				selectedPlayerPiece->turnTaken = true;
-				//NextPiece(1);
 				currentState = gameState::playerTurnSimulation;
 			}
 			else if (clickedBox->GetType() == gridBoxType::occupied && dynamic_cast<EnemyPiece*>(clickedBox->occupyingPiece) != nullptr)
@@ -287,6 +290,10 @@ void GameManager::SelectPlayerPiece(int index)
 	
 	selectedPlayerPiece = playerPieceList[selectedPlayerPieceIndex];
 	selectedPlayerPiece->Select();
+
+	//highlights gridboxes in range of the selected piece's index
+	grid->ClearBoxesInRange();
+	grid->ShowBoxesInRange(selectedPlayerPiece, selectedPlayerPiece->GetMovementRange());
 }
 
 bool GameManager::CheckEndTurn(bool isPlayer)

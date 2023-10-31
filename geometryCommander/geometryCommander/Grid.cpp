@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "Grid.h"
 #include <stack>
-
+#include "MyUtils.h"
 Grid::Grid() : Grid(800, 600, 10, 10)
 {
 	//defualt map 
@@ -51,34 +51,7 @@ Grid::Grid(int screenWidth, int screenHeight, int rowSize, int columnSize)
 			gridBoxes[i].push_back(new GridBox(boxWidth, boxHeight, empty, boxWidth * i, boxHeight * j, sf::Vector2f(i,j)));
 		}
 	}
-	//testing cover
-	/*
-	gridBoxes[0][1]->SetType(halfCover);
-	gridBoxes[2][1]->SetType(halfCover);
-	gridBoxes[4][1]->SetType(halfCover);
-	gridBoxes[6][1]->SetType(halfCover);
-	gridBoxes[8][1]->SetType(halfCover);
-
-	gridBoxes[1][7]->SetType(halfCover);
-	gridBoxes[3][7]->SetType(halfCover);
-	gridBoxes[5][7]->SetType(halfCover);
-	gridBoxes[7][7]->SetType(halfCover);
-
-	gridBoxes[3][3]->SetType(fullCover);
-	gridBoxes[2][4]->SetType(fullCover);
-	gridBoxes[3][4]->SetType(fullCover);
-	gridBoxes[4][4]->SetType(fullCover);
-	gridBoxes[3][5]->SetType(fullCover);
-
-	gridBoxes[7][3]->SetType(fullCover);
-	gridBoxes[6][4]->SetType(fullCover);
-	gridBoxes[7][4]->SetType(fullCover);
-	gridBoxes[8][4]->SetType(fullCover);
-	gridBoxes[7][5]->SetType(fullCover);
-
-	gridBoxes[1][5]->SetType(fullCover);
-	gridBoxes[0][7]->SetType(halfCover);
-	*/
+	
 	path = new std::stack <sf::Vector2f*>();
 }
 
@@ -101,6 +74,10 @@ void Grid::Draw(sf::RenderWindow* window)
 		for (GridBox* box : column) {
 			box->Draw(window);
 		}
+	}
+
+	for (sf::RectangleShape box : boxesInRange) {
+		window->draw(box);
 	}
 }
 
@@ -359,4 +336,24 @@ std::map<coverDirection, int> Grid::GetCoverAtPosition(GridBox* box)
 		 }
 	 }
 	 return mapToReturn;
+}
+
+void Grid::ShowBoxesInRange(GamePiece* piece, float range)
+{
+	for (std::vector<GridBox*> column : gridBoxes)
+	{
+		for (GridBox* box : column) {
+			if (MyUtils::GetInstance()->ManhattanDistance(piece->GetIndex().x, piece->GetIndex().y, box->index.x, box->index.y) <= range && box->GetType() == empty) {
+				sf::RectangleShape newRect = sf::RectangleShape(sf::Vector2f(box->GetWidth(), box->GetHeight()));
+				newRect.setPosition(sf::Vector2f(box->xPos, box->yPos));
+				newRect.setFillColor(sf::Color(0, 0, 255, 100));
+				boxesInRange.push_back(newRect);
+			}
+		}
+	}
+}
+
+void Grid::ClearBoxesInRange()
+{
+	boxesInRange.clear();
 }
