@@ -343,11 +343,16 @@ void Grid::ShowBoxesInRange(GamePiece* piece, float range)
 	for (std::vector<GridBox*> column : gridBoxes)
 	{
 		for (GridBox* box : column) {
+			
+			box->inPlayerMoveRange = false;
 			if (MyUtils::GetInstance()->ManhattanDistance(piece->GetIndex().x, piece->GetIndex().y, box->index.x, box->index.y) <= range && box->GetType() == empty) {
+				box->inPlayerMoveRange = true;
+				/*
 				sf::RectangleShape newRect = sf::RectangleShape(sf::Vector2f(box->GetWidth(), box->GetHeight()));
 				newRect.setPosition(sf::Vector2f(box->xPos, box->yPos));
 				newRect.setFillColor(sf::Color(0, 0, 255, 100));
 				boxesInRange.push_back(newRect);
+				*/
 			}
 		}
 	}
@@ -355,5 +360,12 @@ void Grid::ShowBoxesInRange(GamePiece* piece, float range)
 
 void Grid::ClearBoxesInRange()
 {
+	for (std::vector<GridBox*> column : gridBoxes)
+	{
+		for (GridBox* box : column) {
+				box->inPlayerMoveRange = false;
+		}
+	}
+
 	boxesInRange.clear();
 }

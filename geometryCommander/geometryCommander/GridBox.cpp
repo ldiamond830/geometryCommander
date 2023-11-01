@@ -51,6 +51,13 @@ void GridBox::SetType(gridBoxType newType)
 
 void GridBox::Draw(sf::RenderWindow* window)
 {
+	if (inPlayerMoveRange) {
+		visual->setFillColor(sf::Color(0, 0, 255, 100));
+	}
+	//resets color of occupied squares so that the square the previous piece moved to doesn't remain highlighted 
+	else if (type == empty || type == occupied) {
+		visual->setFillColor(sf::Color::Black);
+	}
 	window->draw(*visual);
 }
 

@@ -36,6 +36,7 @@ class GridBox
 	void ResetParent();
 	void SetGCost(int);
 	void SetOccupyingPiece(GamePiece* piece);
+	bool inPlayerMoveRange;
 
 private:
 	sf::RectangleShape* visual;
