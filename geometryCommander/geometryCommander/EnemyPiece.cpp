@@ -145,7 +145,7 @@ void EnemyPiece::MoveToCover()
 					std::map<coverDirection, int> tempMap = grid->GetCoverAtPosition(grid->gridBoxes[x][y]);
 					if (!tempMap.empty()) {
 						if (!isPositionFlanked(grid->gridBoxes[x][y])) {
-							grid->MovePiece(grid->GetBoxFromOccupyingPiece(this), grid->gridBoxes[x][y]);
+							grid->MoveEnemyPiece(grid->gridBoxes[index.x][index.y], grid->gridBoxes[x][y]);
 							return;
 						}
 					}
@@ -170,7 +170,7 @@ void EnemyPiece::MoveToFlank()
 {
 	if (flankPosition != nullptr) {
 		Grid* grid = GameManager::GetInstance()->GetGrid();
-		grid->MovePiece(grid->GetBoxFromOccupyingPiece(this), grid->gridBoxes[flankPosition->x][flankPosition->y]);
+		grid->MoveEnemyPiece(grid->gridBoxes[index.x][index.y], grid->gridBoxes[flankPosition->x][flankPosition->y]);
 	}
 	else {
 		std::cout << "ERROR WITH FLANK POSITION DECLARATION";

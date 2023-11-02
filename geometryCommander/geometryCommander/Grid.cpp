@@ -202,21 +202,20 @@ void Grid::FindPath(GridBox* start, GridBox* end)
 
 void Grid::MovePiece(GridBox* start, GridBox* end)
 {
-	//FindPath(start, end);
-	/*
-	std::queue<sf::Vector2f> temp;
-	while (!path.empty()) 
-	{
-		temp.push(path.top()->GetCenter());
-		//this may be causing a memory leak check back later
-		path.pop();
-	}
-	*/
 	start->occupyingPiece->StartMove(end->path);
 	UpdateOccupyingPiece(end, start->occupyingPiece);
 	start->occupyingPiece = nullptr;
 	start->SetType(gridBoxType::empty);
 }
+
+//paths for player pieces are calculated ahead of time to figure out which boxes are in the piece's movement range, so a separate method is needed
+void Grid::MoveEnemyPiece(GridBox* start, GridBox* end)
+{
+	FindPath(start, end);
+	MovePiece(start, end);
+}
+
+
 
 void Grid::UpdateOccupyingPiece(GridBox* box, GamePiece* piece)
 {
