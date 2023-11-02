@@ -32,11 +32,11 @@ protected:
 
 	sf::Vector2f index;
 	
-	std::stack<sf::Vector2f*>* path;
+	std::stack<sf::Vector2f>* path;
 	bool moving = false;
 	bool attacking = false;
 	sf::RectangleShape* projectile;
-	bool MoveToNext(sf::Vector2f*);
+	bool MoveToNext(sf::Vector2f);
 	void UpdateProjectile(sf::Vector2f, sf::Vector2f);
 	float projectileIterator;
 	float movementIterator;
@@ -51,7 +51,7 @@ public:
 	virtual void Draw(sf::RenderWindow* window);
 	virtual void TakeDamage(int damage);
 	//void Move(std::stack<GridBox*> path);
-	void StartMove(std::stack<sf::Vector2f*>* path);
+	void StartMove(std::stack<sf::Vector2f>* path);
 	sf::Vector2f GetPosition();
 	void Attack(GamePiece* target);
 	std::map<coverDirection, int> coverMap;

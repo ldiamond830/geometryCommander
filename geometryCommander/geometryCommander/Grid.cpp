@@ -34,7 +34,7 @@ Grid::Grid() : Grid(800, 600, 10, 10)
 	gridBoxes[1][5]->SetType(fullCover);
 	gridBoxes[0][7]->SetType(halfCover);
 	
-	path = new std::stack <sf::Vector2f*>();
+	path = new std::stack <sf::Vector2f>();
 }
 
 Grid::Grid(int screenWidth, int screenHeight, int rowSize, int columnSize)
@@ -52,7 +52,7 @@ Grid::Grid(int screenWidth, int screenHeight, int rowSize, int columnSize)
 		}
 	}
 	
-	path = new std::stack <sf::Vector2f*>();
+	path = new std::stack <sf::Vector2f>();
 }
 
 
@@ -150,14 +150,16 @@ void Grid::FindPath(GridBox* start, GridBox* end)
 
 					GridBox* pathCell = end;
 					//path.push(new GridBox(*end));
-					path->push(new sf::Vector2f(end->GetCenter()));
+					path->push(sf::Vector2f(end->GetCenter()));
 					//Vertex* currentParent = pathCell->GetParent();
 					while (pathCell->index.x != start->index.x || pathCell->index.y != start->index.y) {
 						//path.push(new GridBox(*pathCell->GetParent()));
-						path->push(new sf::Vector2f(pathCell->GetParent()->GetCenter()));
+						path->push(sf::Vector2f(pathCell->GetParent()->GetCenter()));
 						pathCell = pathCell->GetParent();
 					}
 					path->pop();
+					//stores path in gridbox for use when moving a piece
+					end->path = path;
 					pathMatchesInput = true;
 				}
 
@@ -219,7 +221,7 @@ void Grid::MovePiece(GridBox* start, GridBox* end)
 		path.pop();
 	}
 	*/
-	start->occupyingPiece->StartMove(path);
+	start->occupyingPiece->StartMove(end->path);
 	UpdateOccupyingPiece(end, start->occupyingPiece);
 	start->occupyingPiece = nullptr;
 	start->SetType(gridBoxType::empty);

@@ -189,28 +189,28 @@ void GamePiece::TakeDamage(int damage)
 	
 }
 
-void GamePiece::StartMove(std::stack<sf::Vector2f*>* _path)
+void GamePiece::StartMove(std::stack<sf::Vector2f>* _path)
 {
 	path = _path;
 	moving = true;
 }
 
-bool GamePiece::MoveToNext(sf::Vector2f* desination)
+bool GamePiece::MoveToNext(sf::Vector2f desination)
 {
 	
-	if (xPos != desination->x || yPos != desination->y) {
-		if (abs(xPos - desination->x) <= 0.1) {
-			xPos = desination->x;
+	if (xPos != desination.x || yPos != desination.y) {
+		if (abs(xPos - desination.x) <= 0.1) {
+			xPos = desination.x;
 		}
 		else {
-			xPos = std::lerp(xPos, desination->x, movementIterator);
+			xPos = std::lerp(xPos, desination.x, movementIterator);
 		}
 
-		if (abs(yPos - desination->y) <= 0.1) {
-			yPos = desination->y;
+		if (abs(yPos - desination.y) <= 0.1) {
+			yPos = desination.y;
 		}
 		else {
-			yPos = std::lerp(yPos, desination->y, movementIterator);
+			yPos = std::lerp(yPos, desination.y, movementIterator);
 		}
 
 		movementIterator += 0.0005;
