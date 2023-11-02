@@ -40,6 +40,7 @@ GridBox::GridBox(const GridBox& other)
 GridBox::~GridBox()
 {
 	delete visual;
+	delete path;
 	//delete occupyingPiece;
 }
 

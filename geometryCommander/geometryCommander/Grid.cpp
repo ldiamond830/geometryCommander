@@ -33,10 +33,9 @@ Grid::Grid() : Grid(800, 600, 10, 10)
 
 	gridBoxes[1][5]->SetType(fullCover);
 	gridBoxes[0][7]->SetType(halfCover);
-	
-	path = new std::stack <sf::Vector2f>();
 }
 
+//used with loading a grid from path so creates all boxes as empty and then each box's type is set in GameManager.cpp
 Grid::Grid(int screenWidth, int screenHeight, int rowSize, int columnSize)
 {
 	this->gridWidth = rowSize;
@@ -51,8 +50,6 @@ Grid::Grid(int screenWidth, int screenHeight, int rowSize, int columnSize)
 			gridBoxes[i].push_back(new GridBox(boxWidth, boxHeight, empty, boxWidth * i, boxHeight * j, sf::Vector2f(i,j)));
 		}
 	}
-	
-	path = new std::stack <sf::Vector2f>();
 }
 
 
@@ -64,7 +61,6 @@ Grid::~Grid()
 			delete box;
 		}
 	}
-	delete path;
 }
 
 void Grid::Draw(sf::RenderWindow* window)
@@ -103,13 +99,8 @@ void Grid::FindPath(GridBox* start, GridBox* end)
 	closeList.push_back(start);
 	GridBox* currentCell = start;
 	pathMatchesInput = false;
-	if (!path->empty()) {
-		for (int i = 0; i < path->size(); i++) {
-			path->pop();
-		}
-	}
 	
-
+	std::stack<sf::Vector2f>* scopedPath = new std::stack <sf::Vector2f>();
 	while (!pathMatchesInput) {
 		for (int x = currentCell->index.x - 1; x <= currentCell->index.x + 1; x++) {
 			for (int y = currentCell->index.y - 1; y <= currentCell->index.y + 1; y++) {
@@ -150,16 +141,16 @@ void Grid::FindPath(GridBox* start, GridBox* end)
 
 					GridBox* pathCell = end;
 					//path.push(new GridBox(*end));
-					path->push(sf::Vector2f(end->GetCenter()));
+					scopedPath->push(sf::Vector2f(end->GetCenter()));
 					//Vertex* currentParent = pathCell->GetParent();
 					while (pathCell->index.x != start->index.x || pathCell->index.y != start->index.y) {
 						//path.push(new GridBox(*pathCell->GetParent()));
-						path->push(sf::Vector2f(pathCell->GetParent()->GetCenter()));
+						scopedPath->push(sf::Vector2f(pathCell->GetParent()->GetCenter()));
 						pathCell = pathCell->GetParent();
 					}
-					path->pop();
+					scopedPath->pop();
 					//stores path in gridbox for use when moving a piece
-					end->path = path;
+					end->path = scopedPath;
 					pathMatchesInput = true;
 				}
 
