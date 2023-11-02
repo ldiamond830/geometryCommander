@@ -37,7 +37,9 @@ private:
 	bool CheckEndTurn(bool isPlayer);
 	void NextPiece(int index);
 	static GameManager* instance;
+	//creates default map
 	GameManager(sf::RenderWindow*, int screenWidth, int screenHeight, int rowSize, int columnSize, int playerPieceCount, int enemyPieceCount);
+	//creates map from file
 	GameManager(sf::RenderWindow*, int screenWidth, int screenHeight, std::string path);
 	void LoadMapFromFile(std::string, int, int);
 

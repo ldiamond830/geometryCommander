@@ -202,7 +202,7 @@ void Grid::FindPath(GridBox* start, GridBox* end)
 
 void Grid::MovePiece(GridBox* start, GridBox* end)
 {
-	FindPath(start, end);
+	//FindPath(start, end);
 	/*
 	std::queue<sf::Vector2f> temp;
 	while (!path.empty()) 
@@ -338,14 +338,15 @@ void Grid::ShowBoxesInRange(GamePiece* piece, float range)
 		for (GridBox* box : column) {
 			
 			box->inPlayerMoveRange = false;
+			//checks manhattan distance before path distance to running A* on boxes that would be out of range reguardless of any obstacles along the path
 			if (MyUtils::GetInstance()->ManhattanDistance(piece->GetIndex().x, piece->GetIndex().y, box->index.x, box->index.y) <= range && box->GetType() == empty) {
-				box->inPlayerMoveRange = true;
-				/*
-				sf::RectangleShape newRect = sf::RectangleShape(sf::Vector2f(box->GetWidth(), box->GetHeight()));
-				newRect.setPosition(sf::Vector2f(box->xPos, box->yPos));
-				newRect.setFillColor(sf::Color(0, 0, 255, 100));
-				boxesInRange.push_back(newRect);
-				*/
+
+				//checks if the current box can be pathed to in less fewer moves than the piece's movement range 
+				FindPath(gridBoxes[piece->GetIndex().x][piece->GetIndex().y], box);\
+
+				if (box->path->size() <= range) {
+					box->inPlayerMoveRange = true;
+				}
 			}
 		}
 	}

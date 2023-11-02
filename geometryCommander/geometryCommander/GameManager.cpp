@@ -164,7 +164,6 @@ void GameManager::Update()
 				else {
 					currentState = gameState::enemyTurn;
 				}
-				
 			}
 			break;
 	}
@@ -255,12 +254,12 @@ void GameManager::PlayerInput()
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 		auto clickedBox = grid->GetBoxFromPosition(sf::Mouse::getPosition(*window));
 		if (clickedBox != nullptr) {
-			if (clickedBox->GetType() == gridBoxType::empty && 
-				MyUtils::GetInstance()->ManhattanDistance(grid->gridBoxes[selectedPlayerPiece->GetIndex().x][selectedPlayerPiece->GetIndex().y], clickedBox) <= selectedPlayerPiece->GetMovementRange()) {
+			if (clickedBox->inPlayerMoveRange) {
 				grid->MovePiece(grid->GetBoxFromOccupyingPiece(selectedPlayerPiece), clickedBox);
 				selectedPlayerPiece->turnTaken = true;
 				currentState = gameState::playerTurnSimulation;
 			}
+			//if the clicked box has a enemy piece, calls an attack
 			else if (clickedBox->GetType() == gridBoxType::occupied && dynamic_cast<EnemyPiece*>(clickedBox->occupyingPiece) != nullptr)
 			{
 				selectedPlayerPiece->Attack(clickedBox->occupyingPiece);
@@ -269,8 +268,8 @@ void GameManager::PlayerInput()
 			}
 		}
 	}
-
-	if (input.isKeyReleased(sf::Keyboard::Q)) {
+	//mouse click takes priority over switching piece
+	else if (input.isKeyReleased(sf::Keyboard::Q)) {
 		NextPiece(-1);
 	}
 	else if (input.isKeyReleased(sf::Keyboard::E)) {
