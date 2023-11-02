@@ -38,6 +38,8 @@ class GridBox
 	void SetOccupyingPiece(GamePiece* piece);
 	bool inPlayerMoveRange;
 	std::stack<sf::Vector2f>* path;
+	void SetInRange();
+	void ResetInRange();
 
 private:
 	sf::RectangleShape* visual;

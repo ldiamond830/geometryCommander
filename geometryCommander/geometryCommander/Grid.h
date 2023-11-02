@@ -12,7 +12,6 @@ private:
 	int gridWidth;
 	int gridHeight;
 	bool pathMatchesInput;
-	std::vector<sf::RectangleShape> boxesInRange;
 public:
 		std::vector<std::vector<GridBox*>> gridBoxes;
 		Grid();

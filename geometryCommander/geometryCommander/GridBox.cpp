@@ -52,13 +52,12 @@ void GridBox::SetType(gridBoxType newType)
 
 void GridBox::Draw(sf::RenderWindow* window)
 {
+	sf::Color test = visual->getFillColor();
+	/*
 	if (inPlayerMoveRange) {
-		visual->setFillColor(sf::Color(0, 0, 255, 100));
+		visual->setFillColor(sf::Color(0, 0, 255));
 	}
-	//resets color of occupied squares so that the square the previous piece moved to doesn't remain highlighted 
-	else if (type == empty || type == occupied) {
-		visual->setFillColor(sf::Color::Black);
-	}
+	*/
 	window->draw(*visual);
 }
 
@@ -142,13 +141,31 @@ void GridBox::SetOccupyingPiece(GamePiece* piece)
 	type = gridBoxType::occupied;
 }
 
+void GridBox::SetInRange()
+{
+	inPlayerMoveRange = true;
+	//blue hightlight color for boxes in range is updated in SetTypeValues()
+}
+
+void GridBox::ResetInRange()
+{
+	inPlayerMoveRange = false;
+	visual->setFillColor(sf::Color::Black);
+}
+
 void GridBox::SetTypeValues()
 {
 	auto test = this;
 	switch (type) {
 	case empty:
 		gCost = 1;
-		visual->setFillColor(sf::Color(0, 0, 0));
+		if (inPlayerMoveRange) {
+			visual->setFillColor(sf::Color(0, 0, 255, 100));
+		}
+		else {
+			visual->setFillColor(sf::Color(0, 0, 0));
+		}
+		
 		break;
 	case occupied:
 		gCost = INT_MAX;

@@ -96,8 +96,11 @@ bool EnemyPiece::FlankInRange()
 	for (PlayerPiece* playerPiece : gameManagerInstance->GetPlayerPieces()) {
 		for (unsigned int x = 0; x < grid->GetWidth(); x++) {
 			for (unsigned int y = 0; y < grid->GetHeight(); y++) {
+				//checks if the position is in movement range
 				if (MyUtils::GetInstance()->ManhattanDistance(index.x, index.y, x, y) <= moveRange) {
+					//checks if the position has cover
 					if (!grid->GetCoverAtPosition(grid->gridBoxes[x][y]).empty()) {
+						//checks if the position is flanking the current player piece
 						if (playerPiece->isPositionFlanked(sf::Vector2f(x, y)) && !this->isPositionFlanked(grid->gridBoxes[x][y])) {
 							flankPosition = new sf::Vector2f(x, y);
 							return true;
@@ -168,6 +171,7 @@ void EnemyPiece::AttackPlayerPiece()
 
 void EnemyPiece::MoveToFlank()
 {
+	//flank position is already calculated by FlankInRange() which should always be called before this method by the behavior tree so if the position doesn't exist there's been an error
 	if (flankPosition != nullptr) {
 		Grid* grid = GameManager::GetInstance()->GetGrid();
 		grid->MoveEnemyPiece(grid->gridBoxes[index.x][index.y], grid->gridBoxes[flankPosition->x][flankPosition->y]);
@@ -198,7 +202,7 @@ void EnemyPiece::Advance()
 				int distanceFromPosition = MyUtils::GetInstance()->ManhattanDistance(grid->gridBoxes[x][y], grid->gridBoxes[index.x][index.y]);
 				if (distanceFromPosition < moveRange) {
 					if (!isPositionFlanked(grid->gridBoxes[index.x][index.y])) {
-						grid->MovePiece(grid->gridBoxes[index.x][index.y], grid->gridBoxes[x][y]);
+						grid->MoveEnemyPiece(grid->gridBoxes[index.x][index.y], grid->gridBoxes[x][y]);
 						return;
 					}
 					else {
@@ -211,7 +215,7 @@ void EnemyPiece::Advance()
 		}
 	}
 
-	grid->MovePiece(grid->gridBoxes[index.x][index.y], grid->gridBoxes[indexCache.x][indexCache.y]);
+	grid->MoveEnemyPiece(grid->gridBoxes[index.x][index.y], grid->gridBoxes[indexCache.x][indexCache.y]);
 }
 
 GamePiece* EnemyPiece::SelectTarget()

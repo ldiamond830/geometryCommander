@@ -71,10 +71,6 @@ void Grid::Draw(sf::RenderWindow* window)
 			box->Draw(window);
 		}
 	}
-
-	for (sf::RectangleShape box : boxesInRange) {
-		window->draw(box);
-	}
 }
 
 void Grid::CalculateHCosts(int endX, int endY)
@@ -341,10 +337,11 @@ void Grid::ShowBoxesInRange(GamePiece* piece, float range)
 			if (MyUtils::GetInstance()->ManhattanDistance(piece->GetIndex().x, piece->GetIndex().y, box->index.x, box->index.y) <= range && box->GetType() == empty) {
 
 				//checks if the current box can be pathed to in less fewer moves than the piece's movement range 
-				FindPath(gridBoxes[piece->GetIndex().x][piece->GetIndex().y], box);\
+				FindPath(gridBoxes[piece->GetIndex().x][piece->GetIndex().y], box);
 
+				//if the length of the path is less than the movement range sets a boo
 				if (box->path->size() <= range) {
-					box->inPlayerMoveRange = true;
+					box->SetInRange();
 				}
 			}
 		}
@@ -356,9 +353,7 @@ void Grid::ClearBoxesInRange()
 	for (std::vector<GridBox*> column : gridBoxes)
 	{
 		for (GridBox* box : column) {
-				box->inPlayerMoveRange = false;
+			box->ResetInRange();
 		}
 	}
-
-	boxesInRange.clear();
 }

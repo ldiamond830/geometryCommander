@@ -116,8 +116,8 @@ void GameManager::Update()
 		case gameState::playerTurn:
 		if (!CheckEndTurn(true)) {
 			currentState = gameState::enemyTurn;
+			//hides the blue highlight color for the duration of the enemy turn 
 			grid->ClearBoxesInRange();
-			//hides the blue color for the duration of the enemy turn 
 			selectedPlayerPiece->Deselect();
 			for (PlayerPiece* piece : playerPieceList) {
 				piece->turnTaken = false;
@@ -255,7 +255,7 @@ void GameManager::PlayerInput()
 		auto clickedBox = grid->GetBoxFromPosition(sf::Mouse::getPosition(*window));
 		if (clickedBox != nullptr) {
 			if (clickedBox->inPlayerMoveRange) {
-				grid->MovePiece(grid->GetBoxFromOccupyingPiece(selectedPlayerPiece), clickedBox);
+				grid->MovePiece(grid->gridBoxes[selectedPlayerPiece->GetIndex().x][selectedPlayerPiece->GetIndex().y], clickedBox);
 				selectedPlayerPiece->turnTaken = true;
 				currentState = gameState::playerTurnSimulation;
 			}
