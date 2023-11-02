@@ -336,7 +336,7 @@ void Grid::ShowBoxesInRange(GamePiece* piece, float range)
 			//checks manhattan distance before path distance to running A* on boxes that would be out of range reguardless of any obstacles along the path
 			if (MyUtils::GetInstance()->ManhattanDistance(piece->GetIndex().x, piece->GetIndex().y, box->index.x, box->index.y) <= range && box->GetType() == empty) {
 
-				//checks if the current box can be pathed to in less fewer moves than the piece's movement range 
+				//calculates the shortest possible path to the current box
 				FindPath(gridBoxes[piece->GetIndex().x][piece->GetIndex().y], box);
 
 				//if the length of the path is less than the movement range sets a boo

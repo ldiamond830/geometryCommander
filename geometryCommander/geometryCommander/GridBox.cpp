@@ -144,7 +144,8 @@ void GridBox::SetOccupyingPiece(GamePiece* piece)
 void GridBox::SetInRange()
 {
 	inPlayerMoveRange = true;
-	//blue hightlight color for boxes in range is updated in SetTypeValues()
+	
+	//blue hightlight color for boxes in range is updated in SetTypeValues() to avoid bug with when reseting boxes after A* runs
 }
 
 void GridBox::ResetInRange()
@@ -155,26 +156,28 @@ void GridBox::ResetInRange()
 
 void GridBox::SetTypeValues()
 {
-	auto test = this;
 	switch (type) {
 	case empty:
 		gCost = 1;
 		if (inPlayerMoveRange) {
-			visual->setFillColor(sf::Color(0, 0, 255, 100));
+			visual->setFillColor(sf::Color::Blue);
 		}
 		else {
 			visual->setFillColor(sf::Color(0, 0, 0));
 		}
 		
 		break;
+
 	case occupied:
 		gCost = INT_MAX;
 		visual->setFillColor(sf::Color(0, 0, 0));
 		break;
+
 	case halfCover:
 		gCost = 3;
 		visual->setFillColor(sf::Color(128, 128, 128));
 		break;
+
 	case fullCover:
 		gCost = INT_MAX;
 		visual->setFillColor(sf::Color(255, 255, 255));
