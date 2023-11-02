@@ -22,6 +22,7 @@ public:
 		void CalculateHCosts(int, int);
 		void FindPath(GridBox* start, GridBox* end);
 		void MovePiece(GridBox*, GridBox*);
+		void MoveEnemyPiece(GridBox*, GridBox*);
 		//separate from move so it can be called when pieces are spawned, not just moved
 		void UpdateOccupyingPiece(GridBox* box, GamePiece* piece);
 		GridBox* GetBoxFromPosition(sf::Vector2i);
