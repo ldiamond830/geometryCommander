@@ -12,7 +12,7 @@ GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenH
 	window = _window;
 	grid = new Grid();
 	for (unsigned int i = 0; i < playerPieceCount; i++) {
-		PlayerPiece* playerPiece = new PlayerPiece(grid->gridBoxes[i][0]->GetCenter().x, grid->gridBoxes[i][0]->GetCenter().y);
+		AssaultPlayerPiece* playerPiece = new AssaultPlayerPiece(grid->gridBoxes[i][0]->GetCenter().x, grid->gridBoxes[i][0]->GetCenter().y);
 		grid->UpdateOccupyingPiece(grid->gridBoxes[i][0], playerPiece);
 		playerPiece->SetFont(&UIFont);
 		playerPieceList.push_back(playerPiece);

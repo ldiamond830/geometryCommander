@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AssaultPlayerPiece.cpp" />
     <ClCompile Include="BehaviorTreeNode.cpp" />
     <ClCompile Include="EnemyPiece.cpp" />
     <ClCompile Include="GameManager.cpp" />
@@ -140,11 +141,14 @@
     <ClCompile Include="geometryCommander.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="GridBox.cpp" />
+    <ClCompile Include="HeavyPlayerPiece.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="MyUtils.cpp" />
     <ClCompile Include="PlayerPiece.cpp" />
+    <ClCompile Include="SniperPlayerPiece.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AssaultPlayerPiece.h" />
     <ClInclude Include="BehaviorTreeActionNode.h" />
     <ClInclude Include="BehaviorTreeConditionalNode.h" />
     <ClInclude Include="BehaviorTreeNode.h" />
@@ -153,9 +157,11 @@
     <ClInclude Include="GamePiece.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="GridBox.h" />
+    <ClInclude Include="HeavyPlayerPiece.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="PlayerPiece.h" />
     <ClInclude Include="MyUtils.h" />
+    <ClInclude Include="SniperPlayerPiece.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -10,7 +10,7 @@ public:
 	void Deselect();
 	bool isPositionFlanked(sf::Vector2f);
 
-private:
+protected:
 	sf::CircleShape* visual;
 };
 

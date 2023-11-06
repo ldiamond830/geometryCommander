@@ -9,6 +9,9 @@
 #include <vector>
 #include <memory>
 #include "InputManager.h"
+#include "HeavyPlayerPiece.h"
+#include "SniperPlayerPiece.h"
+#include "AssaultPlayerPiece.h"
 enum gameState {
 	playerTurn,
 	enemyTurn,
