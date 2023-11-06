@@ -168,6 +168,7 @@ void Grid::FindPath(GridBox* start, GridBox* end)
 			}
 		}
 
+
 		if (openList.size() != 0) {
 			int shortestDist = openList[0]->GetFCost();
 			int shortestIndex = 0;
@@ -187,6 +188,7 @@ void Grid::FindPath(GridBox* start, GridBox* end)
 			pathMatchesInput = true;
 		}
 	}
+
 	for (int x = 0; x < gridHeight; x++)
 	{
 		for (int y = 0; y < gridWidth; y++)
@@ -212,7 +214,7 @@ void Grid::MoveEnemyPiece(GridBox* start, GridBox* end)
 }
 
 
-
+//updates all relevant values when a piece is spawned or moves
 void Grid::UpdateOccupyingPiece(GridBox* box, GamePiece* piece)
 {
 	box->SetOccupyingPiece(piece);
@@ -244,6 +246,7 @@ GridBox* Grid::GetBoxFromPosition(sf::Vector2i position)
 	return nullptr;
 }
 
+//this method may be unessesary 
 GridBox* Grid::GetBoxFromOccupyingPiece(GamePiece* piece)
 {
 	for (std::vector<GridBox*> boxList : gridBoxes)
@@ -292,6 +295,7 @@ std::map<coverDirection, int> Grid::GetCoverAtPosition(GridBox* box)
 				 continue;
 			 }
 
+			 //checks if values need to be added to the piece's cover map
 			 if (gridBoxes[x][y]->GetType() == halfCover) {
 				 if (x > box->index.x) {
 					 mapToReturn.emplace(RIGHT, 25);

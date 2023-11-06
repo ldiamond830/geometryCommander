@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 GameManager* GameManager::instance = nullptr;
+//default map constructor
 GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenHeight, int rowSize, int columnSize, int playerPieceCount, int enemyPieceCount)
 {
 	if (!UIFont.loadFromFile("arial.ttf")) {
@@ -11,18 +12,21 @@ GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenH
 	
 	window = _window;
 	grid = new Grid();
+
 	for (unsigned int i = 0; i < playerPieceCount; i++) {
 		AssaultPlayerPiece* playerPiece = new AssaultPlayerPiece(grid->gridBoxes[i][0]->GetCenter().x, grid->gridBoxes[i][0]->GetCenter().y);
 		grid->UpdateOccupyingPiece(grid->gridBoxes[i][0], playerPiece);
 		playerPiece->SetFont(&UIFont);
 		playerPieceList.push_back(playerPiece);
 	}
+
 	for (unsigned int i = 0; i < enemyPieceCount; i++) {
 		EnemyPiece* enemyPiece = new EnemyPiece(grid->gridBoxes[i][columnSize - 1]->GetCenter().x, grid->gridBoxes[i][columnSize - 1]->GetCenter().y);
 		grid->UpdateOccupyingPiece(grid->gridBoxes[i][columnSize - 1], enemyPiece);
 		enemyPiece->SetFont(&UIFont);
 		enemyPieceList.push_back(enemyPiece);
 	}
+
 	SelectPlayerPiece(0);
 	
 	selectedEnemyPiece = enemyPieceList[selectedEnemyPieceIndex];
@@ -30,6 +34,7 @@ GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenH
 	input = InputManager();
 }
 
+//map from file constructor
 GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenHeight, std::string path) {
 	if (!UIFont.loadFromFile("arial.ttf")) {
 		std::cout << "Error loading font";
@@ -54,6 +59,7 @@ void GameManager::LoadMapFromFile(std::string path, int screenWidth, int screenH
 		int columnSize = std::stoi(line);
 		grid = new Grid(screenWidth, screenHeight, rowSize, columnSize);
 
+		//loop through the remaining lines of the file assigning the values of each box based on the character in the line
 		for (unsigned int y = 0; y < columnSize; y++) {
 			std::getline(fileReader, line);
 			for (unsigned int x = 0; x < rowSize; x++) {
@@ -86,6 +92,7 @@ void GameManager::LoadMapFromFile(std::string path, int screenWidth, int screenH
 		}
 
 	}
+	//file inputed empty
 	else {
 		std::cout << "error";
 	}
@@ -114,7 +121,7 @@ void GameManager::Update()
 	
 		//wait for player to input move
 		case gameState::playerTurn:
-		if (!CheckEndTurn(true)) {
+		if (CheckEndTurn(true)) {
 			currentState = gameState::enemyTurn;
 			//hides the blue highlight color for the duration of the enemy turn 
 			grid->ClearBoxesInRange();
@@ -124,6 +131,7 @@ void GameManager::Update()
 			}
 		}
 
+		//read player input
 		PlayerInput();
 		break;
 
@@ -132,6 +140,7 @@ void GameManager::Update()
 			selectedPlayerPiece->SimulateAction();
 			//done simulating
 			if (selectedPlayerPiece->turnFinished) {
+				//wait for player input for the next player piece
 				NextPiece(1);
 				currentState = gameState::playerTurn;
 			}
@@ -149,10 +158,11 @@ void GameManager::Update()
 			selectedEnemyPiece->SimulateAction();
 
 			if (selectedEnemyPiece->turnFinished) {
+
 				selectedEnemyPieceIndex = (selectedEnemyPieceIndex + 1) % (enemyPieceList.size());
 				selectedEnemyPiece = enemyPieceList[selectedEnemyPieceIndex];
 				//if the last enemy turn has finished simulating
-				if (!CheckEndTurn(false)) {
+				if (CheckEndTurn(false)) {
 					currentState = gameState::playerTurn;
 					//reveal the blue color on the selected piece
 					selectedPlayerPiece->Select();
@@ -161,6 +171,7 @@ void GameManager::Update()
 						piece->turnTaken = false;
 					}
 				}
+				//otherwise run the next enemy's behavior tree
 				else {
 					currentState = gameState::enemyTurn;
 				}
@@ -180,6 +191,7 @@ void GameManager::Update()
 			}
 		}
 	}
+
 	for (unsigned int i = 0; i < enemyPieceList.size(); i++)
 	{
 		if (enemyPieceList[i]->isDead) {
@@ -196,15 +208,18 @@ void GameManager::Update()
 void GameManager::Draw()
 {
 	grid->Draw(window);
+
 	for (EnemyPiece* enemy : enemyPieceList) {
 		enemy->Draw(window);
 	}
+
 	for (PlayerPiece* playerPiece : playerPieceList) {
 		playerPiece->Draw(window);
 	}
 	
 }
 
+//return singleton instance
 GameManager* GameManager::GetInstance()
 {
 	if (instance == nullptr) {
@@ -214,6 +229,7 @@ GameManager* GameManager::GetInstance()
 	return instance;
 }
 
+//creates default map
 GameManager* GameManager::CreateInstance(sf::RenderWindow* window, int screenWidth, int screenHeight, int rowSize, int columnSize, int playerPieceCount, int enemyPieceCount)
 {
 	if (instance == nullptr) {
@@ -222,6 +238,7 @@ GameManager* GameManager::CreateInstance(sf::RenderWindow* window, int screenWid
 	return instance;
 }
 
+//creates custom map from file
 GameManager* GameManager::CreateInstance(sf::RenderWindow* window, int screenWidth, int screenHeight, std::string path)
 {
 	if (instance == nullptr) {
@@ -251,8 +268,10 @@ std::vector<EnemyPiece*> GameManager::GetEnemyPieces()
 void GameManager::PlayerInput()
 {
 	input.PlayerInput();
+
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 		auto clickedBox = grid->GetBoxFromPosition(sf::Mouse::getPosition(*window));
+		//left clicking on a box in move range will move the current piece to that box
 		if (clickedBox != nullptr) {
 			if (clickedBox->inPlayerMoveRange) {
 				grid->MovePiece(grid->gridBoxes[selectedPlayerPiece->GetIndex().x][selectedPlayerPiece->GetIndex().y], clickedBox);
@@ -269,6 +288,7 @@ void GameManager::PlayerInput()
 		}
 	}
 	//mouse click takes priority over switching piece
+	//Q and E cycle the currently selected piece
 	else if (input.isKeyReleased(sf::Keyboard::Q)) {
 		NextPiece(-1);
 	}
@@ -282,7 +302,10 @@ void GameManager::SelectPlayerPiece(int index)
 	if (index < 0) {
 		index = 0;
 	}
+
 	selectedPlayerPieceIndex = index;
+
+	//stops previosu selected piece from being highlighted
 	if (selectedPlayerPiece != nullptr) {
 		selectedPlayerPiece->Deselect();
 	}
@@ -295,20 +318,23 @@ void GameManager::SelectPlayerPiece(int index)
 	grid->ShowBoxesInRange(selectedPlayerPiece, selectedPlayerPiece->GetMovementRange());
 }
 
+
 bool GameManager::CheckEndTurn(bool isPlayer)
 {
-	endTurn = false;
+	endTurn = true;
+
 	if (isPlayer) {
 		for (unsigned int i = 0; i < playerPieceList.size(); i++) {
 			if (!playerPieceList[i]->turnTaken) {
-				endTurn = true;
+				endTurn = false;
 			}
 		}
 	}
+
 	else {
 		for (unsigned int i = 0; i < enemyPieceList.size(); i++) {
 			if (!enemyPieceList[i]->turnTaken) {
-				endTurn = true;
+				endTurn = false;
 			}
 		}
 	}
@@ -319,5 +345,5 @@ void GameManager::NextPiece(int iterator)
 {
 	do {
 		SelectPlayerPiece((selectedPlayerPieceIndex + iterator) % playerPieceList.size());
-	} while (selectedPlayerPiece->turnTaken && CheckEndTurn(true));
+	} while (selectedPlayerPiece->turnTaken && !CheckEndTurn(true));
 }

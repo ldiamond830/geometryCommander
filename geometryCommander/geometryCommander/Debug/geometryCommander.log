@@ -1,35 +1,136 @@
-﻿  GridBox.cpp
-D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(14,54): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+﻿  GameManager.cpp
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(16,29): warning C4018: '<': signed/unsigned mismatch
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(17,132): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(14,47): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(17,94): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(32,54): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(23,29): warning C4018: '<': signed/unsigned mismatch
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(24,141): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(32,47): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(24,90): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(71,13): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(96,12): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(63,30): warning C4018: '<': signed/unsigned mismatch
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(65,31): warning C4018: '<': signed/unsigned mismatch
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(76,122): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(97,12): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(76,84): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(99,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(101,11): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(84,119): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(84,81): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(169,87): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(277,68): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(277,103): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(318,83): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Grid.cpp
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(46,29): warning C4018: '<': signed/unsigned mismatch
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(48,30): warning C4018: '<': signed/unsigned mismatch
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(50,111): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(50,109): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(50,91): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(50,76): warning C4244: 'argument': conversion from 'unsigned int' to 'float', possible loss of data
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(90,42): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(90,28): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(101,14): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(102,15): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(157,24): warning C4018: '<': signed/unsigned mismatch
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(175,22): warning C4018: '<': signed/unsigned mismatch
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(277,14): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(278,15): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(341,116): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(341,102): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(341,88): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(341,67): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(344,41): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(344,62): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Generating Code...
   geometryCommander.vcxproj -> D:\Profiles\lgd1649\Source\Repos\geometryCommander\geometryCommander\Debug\geometryCommander.exe
