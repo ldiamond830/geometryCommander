@@ -40,7 +40,10 @@ GridBox::GridBox(const GridBox& other)
 GridBox::~GridBox()
 {
 	delete visual;
-	delete path;
+	if (path != nullptr) {
+		delete path;
+	}
+	
 	//delete occupyingPiece;
 }
 
@@ -151,6 +154,11 @@ void GridBox::SetInRange()
 void GridBox::ResetInRange()
 {
 	inPlayerMoveRange = false;
+	if (path != nullptr) {
+		delete path;
+		path = nullptr;
+	}
+	
 	visual->setFillColor(sf::Color::Black);
 }
 

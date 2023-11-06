@@ -1,2 +1,35 @@
-﻿  AssaultPlayerPiece.cpp
-  geometryCommander.vcxproj -> D:\Github\geometryCommander\geometryCommander\Debug\geometryCommander.exe
+﻿  GridBox.cpp
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(14,54): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(14,47): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(32,54): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(32,47): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(71,13): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(96,12): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(97,12): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(99,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(101,11): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  geometryCommander.vcxproj -> D:\Profiles\lgd1649\Source\Repos\geometryCommander\geometryCommander\Debug\geometryCommander.exe

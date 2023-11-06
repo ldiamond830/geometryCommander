@@ -37,7 +37,7 @@ class GridBox
 	void SetGCost(int);
 	void SetOccupyingPiece(GamePiece* piece);
 	bool inPlayerMoveRange;
-	std::stack<sf::Vector2f>* path;
+	std::stack<sf::Vector2f>* path = nullptr;
 	void SetInRange();
 	void ResetInRange();
 

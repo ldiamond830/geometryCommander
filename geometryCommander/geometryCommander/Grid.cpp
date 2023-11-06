@@ -353,7 +353,10 @@ void Grid::ClearBoxesInRange()
 	for (std::vector<GridBox*> column : gridBoxes)
 	{
 		for (GridBox* box : column) {
-			box->ResetInRange();
+			if (box->inPlayerMoveRange) {
+				box->ResetInRange();
+			}
+			
 		}
 	}
 }
