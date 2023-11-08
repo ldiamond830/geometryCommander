@@ -343,8 +343,8 @@ void Grid::ShowBoxesInRange(GamePiece* piece, float range)
 				//calculates the shortest possible path to the current box
 				FindPath(gridBoxes[piece->GetIndex().x][piece->GetIndex().y], box);
 
-				//if the length of the path is less than the movement range sets a boo
-				if (box->path->size() <= range) {
+				//if the length of the path is less than the movement range displays it as in range
+				if (box->path != nullptr && box->path->size() <= range) {
 					box->SetInRange();
 				}
 			}
