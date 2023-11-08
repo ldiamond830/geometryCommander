@@ -80,7 +80,7 @@ bool EnemyPiece::IsInCover()
 
 bool EnemyPiece::IsFlanked()
 {
-	return isPositionFlanked(GameManager::GetInstance()->GetGrid()->GetBoxFromOccupyingPiece(this));
+	return isPositionFlanked(GameManager::GetInstance()->GetGrid()->gridBoxes[index.x][index.y]);
 }
 
 bool EnemyPiece::AnyTargetOutOfCover()
@@ -126,6 +126,7 @@ bool EnemyPiece::AnyTargetInRange()
 	return false;
 }
 
+//reuses the target selection method for finding a target out of cover, if not targets are out of cover result will be nullptr and condition returns false
 bool EnemyPiece::AnyTargetPointBlank()
 {
 	return TargetPointBlank() != nullptr;

@@ -31,14 +31,14 @@ bool GamePiece::ChanceToHit(GamePiece* target)
 			if (index.x < target->index.x) {
 
 				if (target->coverMap.count(coverDirection::LEFT) != 0) {
-					chanceToHit -= coverMap[coverDirection::LEFT];
+					chanceToHit -= target->coverMap[coverDirection::LEFT];
 				}
 				else
 				{
 					//attacker is above target
 					if (index.y < target->index.y) {
 						if (target->coverMap.count(coverDirection::UP) != 0) {
-							chanceToHit -= coverMap[coverDirection::UP];
+							chanceToHit -= target->coverMap[coverDirection::UP];
 						}
 						else {
 							flank = true;
@@ -47,7 +47,7 @@ bool GamePiece::ChanceToHit(GamePiece* target)
 					//attack is below target
 					else if (index.y > target->index.y) {
 						if (target->coverMap.count(coverDirection::DOWN) != 0) {
-							chanceToHit -= coverMap[coverDirection::DOWN];
+							chanceToHit -= target->coverMap[coverDirection::DOWN];
 						}
 						else {
 							flank = true;
@@ -61,14 +61,14 @@ bool GamePiece::ChanceToHit(GamePiece* target)
 			}
 			//attacker is to the right of the target
 			else if (index.x > target->index.x) {
-				if (target->coverMap.count(coverDirection::RIGHT) != 0) {
-					chanceToHit -= coverMap[coverDirection::RIGHT];
+				if (target->coverMap.contains(coverDirection::RIGHT)) {
+					chanceToHit -= target->coverMap[coverDirection::RIGHT];
 				}
 				else
 				{
 					if (index.y < target->index.y) {
-						if (target->coverMap.count(coverDirection::UP) != 0) {
-							chanceToHit -= coverMap[coverDirection::UP];
+						if (target->coverMap.contains(coverDirection::UP)) {
+							chanceToHit -= target->coverMap[coverDirection::UP];
 						}
 						else {
 							flank = true;
@@ -76,8 +76,8 @@ bool GamePiece::ChanceToHit(GamePiece* target)
 					}
 					//attack is below target
 					else if (index.y > target->index.y) {
-						if (target->coverMap.count(coverDirection::DOWN) != 0) {
-							chanceToHit -= coverMap[coverDirection::DOWN];
+						if (target->coverMap.contains(coverDirection::DOWN)) {
+							chanceToHit -= target->coverMap[coverDirection::DOWN];
 						}
 						else {
 							flank = true;
@@ -92,8 +92,8 @@ bool GamePiece::ChanceToHit(GamePiece* target)
 			//attacker and target are in the same column
 			else {
 				if (index.y < target->index.y) {
-					if (target->coverMap.count(coverDirection::UP) != 0) {
-						chanceToHit -= coverMap[coverDirection::UP];
+					if (target->coverMap.contains(coverDirection::UP)) {
+						chanceToHit -= target->coverMap[coverDirection::UP];
 					}
 					else {
 						flank = true;
@@ -101,8 +101,8 @@ bool GamePiece::ChanceToHit(GamePiece* target)
 				}
 				//attack is below target
 				else if (index.y > target->index.y) {
-					if (target->coverMap.count(coverDirection::DOWN) != 0) {
-						chanceToHit -= coverMap[coverDirection::DOWN];
+					if (target->coverMap.contains(coverDirection::DOWN)) {
+						chanceToHit -= target->coverMap[coverDirection::DOWN];
 					}
 					else {
 						flank = true;

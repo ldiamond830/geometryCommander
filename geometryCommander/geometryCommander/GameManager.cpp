@@ -158,9 +158,8 @@ void GameManager::Update()
 			selectedEnemyPiece->SimulateAction();
 
 			if (selectedEnemyPiece->turnFinished) {
-
-				selectedEnemyPieceIndex = (selectedEnemyPieceIndex + 1) % (enemyPieceList.size());
-				selectedEnemyPiece = enemyPieceList[selectedEnemyPieceIndex];
+				//start turn for next enemy piece
+				NextEnemyPiece();
 				//if the last enemy turn has finished simulating
 				if (CheckEndTurn(false)) {
 					currentState = gameState::playerTurn;
@@ -186,8 +185,13 @@ void GameManager::Update()
 			grid->GetBoxFromOccupyingPiece(playerPieceList[i])->occupyingPiece = nullptr;
 			delete playerPieceList[i];
 			playerPieceList.erase(playerPieceList.begin() + i);
+
 			if (playerPieceList.size() == 0) {
 				currentState = enemyWon;
+			}
+			//if there are remaining player pieces and the selected piece has just died select the next one
+			else if (selectedPlayerPiece == playerPieceList[i]) {
+				NextPiece(1);
 			}
 		}
 	}
@@ -200,6 +204,10 @@ void GameManager::Update()
 			enemyPieceList.erase(enemyPieceList.begin() + i);
 			if (enemyPieceList.size() == 0) {
 				currentState = playerWon;
+			}
+			//if there are remaining enemy pieces and the selected piece has just died select the next one
+			else if (selectedEnemyPiece == enemyPieceList[i]) {
+				NextEnemyPiece();
 			}
 		}
 	}
@@ -274,7 +282,7 @@ void GameManager::PlayerInput()
 		//left clicking on a box in move range will move the current piece to that box
 		if (clickedBox != nullptr) {
 			if (clickedBox->inPlayerMoveRange) {
-				std::cout << "Start: (X=" << selectedPlayerPiece->GetIndex().x << ", Y=" << selectedPlayerPiece->GetIndex().y << ") End: (X=" << clickedBox->index.x << ", Y=" << clickedBox->index.y << ")" << std::endl;
+				//std::cout << "Start: (X=" << selectedPlayerPiece->GetIndex().x << ", Y=" << selectedPlayerPiece->GetIndex().y << ") End: (X=" << clickedBox->index.x << ", Y=" << clickedBox->index.y << ")" << std::endl;
 				grid->MovePiece(grid->gridBoxes[selectedPlayerPiece->GetIndex().x][selectedPlayerPiece->GetIndex().y], clickedBox);
 				selectedPlayerPiece->turnTaken = true;
 				currentState = gameState::playerTurnSimulation;
@@ -347,4 +355,10 @@ void GameManager::NextPiece(int iterator)
 	do {
 		SelectPlayerPiece((selectedPlayerPieceIndex + iterator) % playerPieceList.size());
 	} while (selectedPlayerPiece->turnTaken && !CheckEndTurn(true));
+}
+
+void GameManager::NextEnemyPiece()
+{
+	selectedEnemyPieceIndex = (selectedEnemyPieceIndex + 1) % (enemyPieceList.size());
+	selectedEnemyPiece = enemyPieceList[selectedEnemyPieceIndex];
 }

@@ -11,7 +11,6 @@ class Grid
 private:
 	int gridWidth;
 	int gridHeight;
-	bool pathMatchesInput;
 public:
 		std::vector<std::vector<GridBox*>> gridBoxes;
 		Grid();

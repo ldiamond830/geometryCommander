@@ -40,7 +40,6 @@ Grid::Grid(int screenWidth, int screenHeight, int rowSize, int columnSize)
 {
 	this->gridWidth = rowSize;
 	this->gridHeight = columnSize;
-	pathMatchesInput = false;
 	int boxWidth = screenWidth / rowSize;
 	int boxHeight = screenHeight / columnSize;
 	for (unsigned int i = 0; i < rowSize; i++) {
@@ -94,10 +93,10 @@ void Grid::FindPath(GridBox* start, GridBox* end)
 
 	closeList.push_back(start);
 	GridBox* currentCell = start;
-	pathMatchesInput = false;
+	bool complete = false;
 	
 	std::stack<sf::Vector2f>* scopedPath = new std::stack <sf::Vector2f>();
-	while (!pathMatchesInput) {
+	while (!complete) {
 		for (int x = currentCell->index.x - 1; x <= currentCell->index.x + 1; x++) {
 			for (int y = currentCell->index.y - 1; y <= currentCell->index.y + 1; y++) {
 
@@ -147,7 +146,7 @@ void Grid::FindPath(GridBox* start, GridBox* end)
 					scopedPath->pop();
 					//stores path in gridbox for use when moving a piece
 					end->path = scopedPath;
-					pathMatchesInput = true;
+					complete = true;
 				}
 
 				GridBox* nextCell = gridBoxes[x][y];
@@ -185,7 +184,7 @@ void Grid::FindPath(GridBox* start, GridBox* end)
 		}
 		else {
 			//no path found
-			pathMatchesInput = true;
+			complete = true;
 		}
 	}
 
@@ -343,7 +342,7 @@ void Grid::ShowBoxesInRange(GamePiece* piece, float range)
 				//calculates the shortest possible path to the current box
 				FindPath(gridBoxes[piece->GetIndex().x][piece->GetIndex().y], box);
 
-				//if the length of the path is less than the movement range displays it as in range
+				//if the length of the path is less than the movement range displays it as in range, if no path is found to a box it's path will be nullptr
 				if (box->path != nullptr && box->path->size() <= range) {
 					box->SetInRange();
 				}

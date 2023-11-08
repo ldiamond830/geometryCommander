@@ -39,6 +39,7 @@ private:
 	bool endTurn;
 	bool CheckEndTurn(bool isPlayer);
 	void NextPiece(int index);
+	void NextEnemyPiece();
 	static GameManager* instance;
 	//creates default map
 	GameManager(sf::RenderWindow*, int screenWidth, int screenHeight, int rowSize, int columnSize, int playerPieceCount, int enemyPieceCount);
