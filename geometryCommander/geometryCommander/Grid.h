@@ -30,5 +30,6 @@ public:
 		std::map<coverDirection, int> GetCoverAtPosition(GridBox* box);
 		void ShowBoxesInRange(GamePiece* piece, float range);
 		void ClearBoxesInRange();
+		void CalculatePaths(GamePiece* piece, int range);
 };
 

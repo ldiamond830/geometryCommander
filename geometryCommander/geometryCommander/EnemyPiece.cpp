@@ -97,7 +97,7 @@ bool EnemyPiece::FlankInRange()
 		for (unsigned int x = 0; x < grid->GetWidth(); x++) {
 			for (unsigned int y = 0; y < grid->GetHeight(); y++) {
 				//checks if the position is in movement range
-				if (MyUtils::GetInstance()->ManhattanDistance(index.x, index.y, x, y) <= moveRange) {
+				if (BoxInRange(grid->gridBoxes[x][y])) {
 					//checks if the position has cover
 					if (!grid->GetCoverAtPosition(grid->gridBoxes[x][y]).empty()) {
 						//checks if the position is flanking the current player piece
@@ -142,18 +142,14 @@ void EnemyPiece::MoveToCover()
 	for (unsigned int x = 0; x < grid->gridBoxes.size(); x++) {
 		for (unsigned int y = 0; y < grid->gridBoxes[x].size(); y++) {
 			bool notFlanked = true;
-			//box is in move range
-			if (MyUtils::GetInstance()->ManhattanDistance(GetIndex().x, GetIndex().y, grid->gridBoxes[x][y]->index.x, grid->gridBoxes[x][y]->index.y) <= moveRange) {
-				//box can be moved to 
-				if (grid->gridBoxes[x][y]->GetType() == empty) {
-					std::map<coverDirection, int> tempMap = grid->GetCoverAtPosition(grid->gridBoxes[x][y]);
-					if (!tempMap.empty()) {
-						if (!isPositionFlanked(grid->gridBoxes[x][y])) {
-							grid->MoveEnemyPiece(grid->gridBoxes[index.x][index.y], grid->gridBoxes[x][y]);
-							return;
-						}
+			//box can be moved to
+			if (BoxInRange(grid->gridBoxes[x][y])) {
+				std::map<coverDirection, int> tempMap = grid->GetCoverAtPosition(grid->gridBoxes[x][y]);
+				if (!tempMap.empty()) {
+					if (!isPositionFlanked(grid->gridBoxes[x][y])) {
+						grid->MoveEnemyPiece(grid->gridBoxes[index.x][index.y], grid->gridBoxes[x][y]);
+						return;
 					}
-					
 				}
 			}
 		}
@@ -188,6 +184,7 @@ void EnemyPiece::Advance()
 	PlayerPiece* target = nullptr;
 	GameManager* gameManagerInstance = GameManager::GetInstance();
 	Grid* grid = gameManagerInstance->GetGrid();
+
 	for (PlayerPiece* playerPiece : gameManagerInstance->GetPlayerPieces()) {
 		int distance = MyUtils::GetInstance()->ManhattanDistance(grid->gridBoxes[index.x][index.y], grid->gridBoxes[playerPiece->GetIndex().x][playerPiece->GetIndex().y]);
 		if (distance < shortestDistanceToTarget) {
@@ -195,13 +192,13 @@ void EnemyPiece::Advance()
 			target = playerPiece;
 		}
 	}
+
 	sf::Vector2f indexCache;
 	for (unsigned int x = 0; x < grid->gridBoxes.size(); x++) {
 		for (unsigned int y = 0; y < grid->gridBoxes[x].size(); y++) {
 			int distanceToTarget = MyUtils::GetInstance()->ManhattanDistance(grid->gridBoxes[x][y], grid->gridBoxes[target->GetIndex().x][target->GetIndex().y]);
 			if (distanceToTarget < shortestDistanceToTarget) {
-				int distanceFromPosition = MyUtils::GetInstance()->ManhattanDistance(grid->gridBoxes[x][y], grid->gridBoxes[index.x][index.y]);
-				if (distanceFromPosition < moveRange) {
+				if (BoxInRange(grid->gridBoxes[x][y])) {
 					if (!isPositionFlanked(grid->gridBoxes[index.x][index.y])) {
 						grid->MoveEnemyPiece(grid->gridBoxes[index.x][index.y], grid->gridBoxes[x][y]);
 						return;
@@ -435,4 +432,9 @@ GamePiece* EnemyPiece::TargetPointBlank()
 		}
 	}
 	return nullptr;
+}
+
+bool EnemyPiece::BoxInRange(GridBox* box)
+{
+	return box->path != nullptr && box->path->size() <= moveRange;
 }

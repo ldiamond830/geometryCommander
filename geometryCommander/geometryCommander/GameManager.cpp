@@ -149,6 +149,10 @@ void GameManager::Update()
 
 		//run AI behavior tree
 		case gameState::enemyTurn:
+		//calculate paths to each box for the current piece
+		grid->ClearBoxesInRange();
+		grid->CalculatePaths(selectedEnemyPiece, selectedEnemyPiece->GetMovementRange());
+
 		selectedEnemyPiece->TakeTurn();
 		currentState = enemyTurnSimulation;
 		break;
@@ -165,6 +169,9 @@ void GameManager::Update()
 					currentState = gameState::playerTurn;
 					//reveal the blue color on the selected piece
 					selectedPlayerPiece->Select();
+					//clear boxes in range of the most recent enemy piece
+					grid->ClearBoxesInRange();
+
 					grid->ShowBoxesInRange(selectedPlayerPiece, selectedPlayerPiece->GetMovementRange());
 					for (EnemyPiece* piece : enemyPieceList) {
 						piece->turnTaken = false;

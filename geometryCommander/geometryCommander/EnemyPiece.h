@@ -38,5 +38,6 @@ protected:
 	bool isPositionFlanked(GridBox*);
 	GamePiece* TargetOutOfCover();
 	GamePiece* TargetPointBlank();
+	bool BoxInRange(GridBox*);
 };
 

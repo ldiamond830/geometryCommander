@@ -147,8 +147,7 @@ void GridBox::SetOccupyingPiece(GamePiece* piece)
 void GridBox::SetInRange()
 {
 	inPlayerMoveRange = true;
-	
-	//blue hightlight color for boxes in range is updated in SetTypeValues() to avoid bug with when reseting boxes after A* runs
+	visual->setFillColor(sf::Color::Blue);
 }
 
 void GridBox::ResetInRange()

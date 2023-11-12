@@ -331,21 +331,13 @@ std::map<coverDirection, int> Grid::GetCoverAtPosition(GridBox* box)
 
 void Grid::ShowBoxesInRange(GamePiece* piece, float range)
 {
+	CalculatePaths(piece, range);
 	for (std::vector<GridBox*> column : gridBoxes)
 	{
 		for (GridBox* box : column) {
-			
-			box->inPlayerMoveRange = false;
-			//checks manhattan distance before path distance to running A* on boxes that would be out of range reguardless of any obstacles along the path
-			if (MyUtils::GetInstance()->ManhattanDistance(piece->GetIndex().x, piece->GetIndex().y, box->index.x, box->index.y) <= range && box->GetType() == empty) {
-
-				//calculates the shortest possible path to the current box
-				FindPath(gridBoxes[piece->GetIndex().x][piece->GetIndex().y], box);
-
-				//if the length of the path is less than the movement range displays it as in range, if no path is found to a box it's path will be nullptr
-				if (box->path != nullptr && box->path->size() <= range) {
-					box->SetInRange();
-				}
+			//if the length of the path is less than the movement range displays it as in range, if no path is found to a box it's path will be nullptr
+			if (box->path != nullptr && box->path->size() <= range) {
+				box->SetInRange();
 			}
 		}
 	}
@@ -356,10 +348,24 @@ void Grid::ClearBoxesInRange()
 	for (std::vector<GridBox*> column : gridBoxes)
 	{
 		for (GridBox* box : column) {
-			if (box->inPlayerMoveRange) {
+			if (box->path != nullptr) {
 				box->ResetInRange();
 			}
 			
+		}
+	}
+}
+
+void Grid::CalculatePaths(GamePiece* piece, int range)
+{
+	for (std::vector<GridBox*> column : gridBoxes)
+	{
+		for (GridBox* box : column) {
+			//checks manhattan distance before path distance to running A* on boxes that would be out of range reguardless of any obstacles along the path
+			if (MyUtils::GetInstance()->ManhattanDistance(piece->GetIndex().x, piece->GetIndex().y, box->index.x, box->index.y) <= range && box->GetType() == empty) {
+				//calculates the shortest possible path to the current box
+				FindPath(gridBoxes[piece->GetIndex().x][piece->GetIndex().y], box);
+			}
 		}
 	}
 }
