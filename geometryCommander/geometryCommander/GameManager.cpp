@@ -14,17 +14,11 @@ GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenH
 	grid = new Grid();
 
 	for (unsigned int i = 0; i < playerPieceCount; i++) {
-		AssaultPlayerPiece* playerPiece = new AssaultPlayerPiece(grid->gridBoxes[i][0]->GetCenter().x, grid->gridBoxes[i][0]->GetCenter().y);
-		grid->UpdateOccupyingPiece(grid->gridBoxes[i][0], playerPiece);
-		playerPiece->SetFont(&UIFont);
-		playerPieceList.push_back(playerPiece);
+		SpawnPlayerPiece(i, 0);
 	}
 
 	for (unsigned int i = 0; i < enemyPieceCount; i++) {
-		EnemyPiece* enemyPiece = new EnemyPiece(grid->gridBoxes[i][columnSize - 1]->GetCenter().x, grid->gridBoxes[i][columnSize - 1]->GetCenter().y);
-		grid->UpdateOccupyingPiece(grid->gridBoxes[i][columnSize - 1], enemyPiece);
-		enemyPiece->SetFont(&UIFont);
-		enemyPieceList.push_back(enemyPiece);
+		SpawnEnemyPiece(i, columnSize - 1);
 	}
 
 	SelectPlayerPiece(0);
@@ -72,20 +66,10 @@ void GameManager::LoadMapFromFile(std::string path, int screenWidth, int screenH
 					grid->gridBoxes[x][y]->SetType(fullCover);
 					break;
 				case 'p':
-					{
-						PlayerPiece* playerPiece = new PlayerPiece(grid->gridBoxes[x][y]->GetCenter().x, grid->gridBoxes[x][y]->GetCenter().y);
-						grid->UpdateOccupyingPiece(grid->gridBoxes[x][y], playerPiece);
-						playerPiece->SetFont(&UIFont);
-						playerPieceList.push_back(playerPiece);
-					}
+					SpawnPlayerPiece(x, y);
 					break;
 				case 'e':
-					{
-						EnemyPiece* enemyPiece = new EnemyPiece(grid->gridBoxes[x][y]->GetCenter().x, grid->gridBoxes[x][y]->GetCenter().y);
-						grid->UpdateOccupyingPiece(grid->gridBoxes[x][y], enemyPiece);
-						enemyPiece->SetFont(&UIFont);
-						enemyPieceList.push_back(enemyPiece);
-					}
+					SpawnEnemyPiece(x, y);
 					break;
 				}
 			}
@@ -97,6 +81,33 @@ void GameManager::LoadMapFromFile(std::string path, int screenWidth, int screenH
 		std::cout << "error";
 	}
 	
+}
+
+void GameManager::SpawnPlayerPiece(int x, int y)
+{
+	PlayerPiece* playerPiece;
+	float rng = rand();
+	if (rng < 0.35) {
+		playerPiece = new AssaultPlayerPiece(grid->gridBoxes[x][y]->GetCenter().x, grid->gridBoxes[x][y]->GetCenter().y);
+	}
+	else if(rng < 0.67) {
+		playerPiece = new SniperPlayerPiece(grid->gridBoxes[x][y]->GetCenter().x, grid->gridBoxes[x][y]->GetCenter().y);
+	}
+	else {
+		playerPiece = new HeavyPlayerPiece(grid->gridBoxes[x][y]->GetCenter().x, grid->gridBoxes[x][y]->GetCenter().y);
+	}
+
+	grid->UpdateOccupyingPiece(grid->gridBoxes[x][y], playerPiece);
+	playerPiece->SetFont(&UIFont);
+	playerPieceList.push_back(playerPiece);
+}
+
+void GameManager::SpawnEnemyPiece(int x, int y)
+{
+	EnemyPiece* enemyPiece = new EnemyPiece(grid->gridBoxes[x][y]->GetCenter().x, grid->gridBoxes[x][y]->GetCenter().y);
+	grid->UpdateOccupyingPiece(grid->gridBoxes[x][y], enemyPiece);
+	enemyPiece->SetFont(&UIFont);
+	enemyPieceList.push_back(enemyPiece);
 }
 
 Grid* GameManager::GetGrid()
