@@ -20,6 +20,7 @@ GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenH
 	for (unsigned int i = 0; i < enemyPieceCount; i++) {
 		SpawnEnemyPiece(i, columnSize - 1);
 	}
+	sf::SoundBuffer testing;
 
 	SelectPlayerPiece(0);
 	

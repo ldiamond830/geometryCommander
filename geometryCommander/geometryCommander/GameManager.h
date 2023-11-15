@@ -2,6 +2,7 @@
 #define SFML_STATIC
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "Grid.h"
 #include "EnemyPiece.h"
 #include "GridBox.h"
@@ -46,6 +47,8 @@ private:
 	//creates map from file
 	GameManager(sf::RenderWindow*, int screenWidth, int screenHeight, std::string path);
 	void LoadMapFromFile(std::string, int, int);
+	void SpawnPlayerPiece(int, int);
+	void SpawnEnemyPiece(int, int);
 
 public:
 	~GameManager();
