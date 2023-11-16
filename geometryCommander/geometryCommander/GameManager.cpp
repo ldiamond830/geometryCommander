@@ -1,4 +1,5 @@
 #include "GameManager.h"
+#include "AudioManager.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -20,7 +21,6 @@ GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenH
 	for (unsigned int i = 0; i < enemyPieceCount; i++) {
 		SpawnEnemyPiece(i, columnSize - 1);
 	}
-	sf::SoundBuffer testing;
 
 	SelectPlayerPiece(0);
 	
@@ -305,6 +305,7 @@ void GameManager::PlayerInput()
 				grid->MovePiece(grid->gridBoxes[selectedPlayerPiece->GetIndex().x][selectedPlayerPiece->GetIndex().y], clickedBox);
 				selectedPlayerPiece->turnTaken = true;
 				currentState = gameState::playerTurnSimulation;
+				AudioManager::GetInstance()->PlayMoveSound();
 			}
 			//if the clicked box has a enemy piece, calls an attack
 			else if (clickedBox->GetType() == gridBoxType::occupied && dynamic_cast<EnemyPiece*>(clickedBox->occupyingPiece) != nullptr)
