@@ -2,7 +2,6 @@
 #define SFML_STATIC
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
 #include "Grid.h"
 #include "EnemyPiece.h"
 #include "GridBox.h"
@@ -13,6 +12,7 @@
 #include "HeavyPlayerPiece.h"
 #include "SniperPlayerPiece.h"
 #include "AssaultPlayerPiece.h"
+#include "AudioManager.h"
 enum gameState {
 	playerTurn,
 	enemyTurn,

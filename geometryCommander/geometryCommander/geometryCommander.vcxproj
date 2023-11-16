@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AssaultPlayerPiece.cpp" />
+    <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="BehaviorTreeNode.cpp" />
     <ClCompile Include="EnemyPiece.cpp" />
     <ClCompile Include="GameManager.cpp" />
@@ -149,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssaultPlayerPiece.h" />
+    <ClInclude Include="AudioManager.h" />
     <ClInclude Include="BehaviorTreeActionNode.h" />
     <ClInclude Include="BehaviorTreeConditionalNode.h" />
     <ClInclude Include="BehaviorTreeNode.h" />
