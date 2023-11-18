@@ -299,6 +299,7 @@ void GamePiece::SimulateAction()
 	if (moving){
 		if (MoveToNext(path->top())) {
 			path->pop();
+			AudioManager::GetInstance()->PlayMoveSound();
 		}
 
 		if (path->empty()) {
@@ -320,6 +321,11 @@ void GamePiece::SetFont(sf::Font* _UIFont)
 int GamePiece::GetMovementRange()
 {
 	return moveRange;
+}
+
+void GamePiece::SetHealth(int newHealth)
+{
+	health = newHealth;
 }
 
 

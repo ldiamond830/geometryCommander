@@ -200,33 +200,42 @@ void GameManager::Update()
 	for (unsigned int i = 0; i < playerPieceList.size(); i++)
 	{
 		if (playerPieceList[i]->isDead) {
-			grid->GetBoxFromOccupyingPiece(playerPieceList[i])->occupyingPiece = nullptr;
-			delete playerPieceList[i];
-			playerPieceList.erase(playerPieceList.begin() + i);
-
 			if (playerPieceList.size() == 0) {
 				currentState = enemyWon;
 			}
 			//if there are remaining player pieces and the selected piece has just died select the next one
 			else if (selectedPlayerPiece == playerPieceList[i]) {
 				NextPiece(1);
+
+				//doesn't play sound if game is over
+				AudioManager::GetInstance()->PlayDieSound();
 			}
+
+			//delete the dead piece
+			delete playerPieceList[i];
+			playerPieceList.erase(playerPieceList.begin() + i);
+			grid->GetBoxFromOccupyingPiece(playerPieceList[i])->occupyingPiece = nullptr;
 		}
 	}
 
 	for (unsigned int i = 0; i < enemyPieceList.size(); i++)
 	{
 		if (enemyPieceList[i]->isDead) {
-			grid->GetBoxFromOccupyingPiece(enemyPieceList[i])->occupyingPiece = nullptr;
-			delete enemyPieceList[i];
-			enemyPieceList.erase(enemyPieceList.begin() + i);
 			if (enemyPieceList.size() == 0) {
 				currentState = playerWon;
 			}
 			//if there are remaining enemy pieces and the selected piece has just died select the next one
 			else if (selectedEnemyPiece == enemyPieceList[i]) {
 				NextEnemyPiece();
+
+				//doesn't play sound if game is over
+				AudioManager::GetInstance()->PlayDieSound();
 			}
+
+			//delete the dead piece
+			grid->GetBoxFromOccupyingPiece(enemyPieceList[i])->occupyingPiece = nullptr;
+			delete enemyPieceList[i];
+			enemyPieceList.erase(enemyPieceList.begin() + i);
 		}
 	}
 }
@@ -304,7 +313,6 @@ void GameManager::PlayerInput()
 				grid->MovePiece(grid->gridBoxes[selectedPlayerPiece->GetIndex().x][selectedPlayerPiece->GetIndex().y], clickedBox);
 				selectedPlayerPiece->turnTaken = true;
 				currentState = gameState::playerTurnSimulation;
-				AudioManager::GetInstance()->PlayMoveSound();
 			}
 			//if the clicked box has a enemy piece, calls an attack
 			else if (clickedBox->GetType() == gridBoxType::occupied && dynamic_cast<EnemyPiece*>(clickedBox->occupyingPiece) != nullptr)
@@ -312,6 +320,9 @@ void GameManager::PlayerInput()
 				selectedPlayerPiece->Attack(clickedBox->occupyingPiece);
 				selectedPlayerPiece->turnTaken = true;
 				currentState = gameState::playerTurnSimulation;
+			}
+			else {
+				AudioManager::GetInstance()->PlayInvalidInputSound();
 			}
 		}
 	}

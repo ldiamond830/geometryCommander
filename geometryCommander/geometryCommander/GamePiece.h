@@ -64,5 +64,6 @@ public:
 	virtual void SimulateAction();
 	void SetFont(sf::Font* _UIFont);
 	int GetMovementRange();
+	void SetHealth(int);
 };
 
