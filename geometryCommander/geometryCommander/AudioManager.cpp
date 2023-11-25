@@ -12,6 +12,12 @@ AudioManager::AudioManager() {
 	if (!dieSound.loadFromFile("sounds/die.wav")) {
 		std::cout << "error loading die sound";
 	}
+	if (!attackSound.loadFromFile("sounds/attack.wav")) {
+		std::cout << "error loading atk sound";
+	}
+	if (!hitSound.loadFromFile("sounds/hit.wav")) {
+		std::cout << "error loading hit sound";
+	}
 }
 
 AudioManager* AudioManager::GetInstance()
@@ -47,6 +53,22 @@ void AudioManager::PlayDieSound()
 {
 	if (playback.getStatus() != sf::SoundSource::Status::Playing) {
 		playback.setBuffer(dieSound);
+		playback.play();
+	}
+}
+
+void AudioManager::PlayHitSound()
+{
+	if (playback.getStatus() != sf::SoundSource::Status::Playing) {
+		playback.setBuffer(hitSound);
+		playback.play();
+	}
+}
+
+void AudioManager::PlayAttackSound()
+{
+	if (playback.getStatus() != sf::SoundSource::Status::Playing) {
+		playback.setBuffer(attackSound);
 		playback.play();
 	}
 }

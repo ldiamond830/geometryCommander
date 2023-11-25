@@ -185,8 +185,6 @@ void GamePiece::Draw(sf::RenderWindow* window)
 void GamePiece::TakeDamage(int damage)
 {
 	health -= damage;
-
-	
 }
 
 void GamePiece::StartMove(std::stack<sf::Vector2f>* _path)
@@ -227,7 +225,7 @@ void GamePiece::UpdateProjectile(sf::Vector2f start, sf::Vector2f end)
 	if (abs(projectile->getPosition().x - end.x) <= 0.1 && abs(projectile->getPosition().y - end.y) <= 0.1) {
 		if (!missed) {
 			//updates the target's health in the UI when the projectile hits rather than right after the damage caluclation
-			target->UpdateHealthDisplay();
+			target->DisplayDamageTaken();
 		}
 		
 
@@ -244,14 +242,23 @@ void GamePiece::UpdateProjectile(sf::Vector2f start, sf::Vector2f end)
 void GamePiece::UpdateHealthDisplay()
 {
 	UIText.setString(std::to_string(health));
-
 	if (health < 10) {
 		UIText.setOrigin(9, 15);
 	}
+}
+
+void GamePiece::DisplayDamageTaken()
+{
+	UpdateHealthDisplay();
 
 	if (health <= 0)
 	{
 		isDead = true;
+		AudioManager::GetInstance()->PlayDieSound();
+	}
+	//non lethal damage
+	else {
+		AudioManager::GetInstance()->PlayHitSound();
 	}
 }
 
@@ -275,7 +282,7 @@ void GamePiece::Attack(GamePiece* _target)
 		attacking = true;
 		missed = true;
 	}
-
+	AudioManager::GetInstance()->PlayAttackSound();
 }
 
 void GamePiece::SetIndex(sf::Vector2f _index)

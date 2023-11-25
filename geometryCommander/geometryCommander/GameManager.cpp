@@ -206,9 +206,6 @@ void GameManager::Update()
 			//if there are remaining player pieces and the selected piece has just died select the next one
 			else if (selectedPlayerPiece == playerPieceList[i]) {
 				NextPiece(1);
-
-				//doesn't play sound if game is over
-				AudioManager::GetInstance()->PlayDieSound();
 			}
 
 			//delete the dead piece
@@ -227,9 +224,6 @@ void GameManager::Update()
 			//if there are remaining enemy pieces and the selected piece has just died select the next one
 			else if (selectedEnemyPiece == enemyPieceList[i]) {
 				NextEnemyPiece();
-
-				//doesn't play sound if game is over
-				AudioManager::GetInstance()->PlayDieSound();
 			}
 
 			//delete the dead piece

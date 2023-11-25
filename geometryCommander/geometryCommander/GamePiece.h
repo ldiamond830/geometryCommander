@@ -42,6 +42,7 @@ protected:
 	float movementIterator;
 	sf::Text UIText;
 	void UpdateHealthDisplay();
+	void DisplayDamageTaken();
 	//sfml doesn't allow creation of variables using the abstract classes Drawable or Shape so each child needs to define it's own visual in order to allow for different shapes being used
 
 public:
