@@ -144,6 +144,7 @@
     <ClCompile Include="AssaultPlayerPiece.cpp" />
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="BehaviorTreeNode.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="EnemyPiece.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GamePiece.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="BehaviorTreeActionNode.h" />
     <ClInclude Include="BehaviorTreeConditionalNode.h" />
     <ClInclude Include="BehaviorTreeNode.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="EnemyPiece.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GamePiece.h" />

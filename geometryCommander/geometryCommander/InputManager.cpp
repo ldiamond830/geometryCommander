@@ -9,6 +9,9 @@ void InputManager::PlayerInput()
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::E)) {
 		mostRecentKey = sf::Keyboard::E;
 	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+		mostRecentKey = sf::Keyboard::Enter;
+	}
 }
 
 bool InputManager::isKeyReleased(sf::Keyboard::Key keyToCheck)

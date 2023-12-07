@@ -30,3 +30,8 @@ int MyUtils::ManhattanDistance(GridBox* start, GridBox* end)
 {
     return ManhattanDistance(start->index.x, start->index.y, end->index.x, end->index.y);
 }
+
+void MyUtils::CenterText(sf::Text* textToCenter)
+{
+    textToCenter->setOrigin(textToCenter->getLocalBounds().width / 2.0f, textToCenter->getLocalBounds().height / 2.0f);
+}

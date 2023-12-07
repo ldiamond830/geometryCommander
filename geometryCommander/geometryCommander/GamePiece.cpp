@@ -134,8 +134,8 @@ GamePiece::GamePiece(int _xPos, int _yPos)
 	health = 10;
 	moveRange = 5;
 	attackRange = 9;
-	maxDamage = 20;
-	minDamage = 10;
+	maxDamage = 5;
+	minDamage = 3;
 	accuracy = 75;
 
 	projectile = new sf::RectangleShape(sf::Vector2f(20, 20));

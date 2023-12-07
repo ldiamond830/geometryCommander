@@ -128,6 +128,8 @@ GameManager::~GameManager()
 
 void GameManager::Update()
 {
+	
+
 	switch (currentState) {
 	
 		//wait for player to input move
@@ -216,9 +218,10 @@ void GameManager::Update()
 			}
 
 			//delete the dead piece
+			grid->gridBoxes[playerPieceList[i]->GetIndex().x][playerPieceList[i]->GetIndex().y]->occupyingPiece = nullptr;
+			grid->gridBoxes[playerPieceList[i]->GetIndex().x][playerPieceList[i]->GetIndex().y]->SetType(empty);
 			delete playerPieceList[i];
 			playerPieceList.erase(playerPieceList.begin() + i);
-			grid->GetBoxFromOccupyingPiece(playerPieceList[i])->occupyingPiece = nullptr;
 		}
 	}
 
@@ -234,7 +237,8 @@ void GameManager::Update()
 			}
 
 			//delete the dead piece
-			grid->GetBoxFromOccupyingPiece(enemyPieceList[i])->occupyingPiece = nullptr;
+			grid->gridBoxes[enemyPieceList[i]->GetIndex().x][enemyPieceList[i]->GetIndex().y]->occupyingPiece = nullptr;
+			grid->gridBoxes[enemyPieceList[i]->GetIndex().x][enemyPieceList[i]->GetIndex().y]->SetType(empty);
 			delete enemyPieceList[i];
 			enemyPieceList.erase(enemyPieceList.begin() + i);
 		}

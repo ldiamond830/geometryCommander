@@ -1,7 +1,12 @@
-﻿  Generating code
-  Previous IPDB not found, fall back to full compilation.
-C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\PlayerPiece.cpp(126): warning C4715: 'PlayerPiece::isPositionFlanked': not all control paths return a value
+﻿  AppManager.cpp
+  geometryCommander.cpp
+C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\geometryCommander.cpp(35,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Generating code
 C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(416): warning C4715: 'EnemyPiece::isPositionFlanked': not all control paths return a value
-  All 964 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
-  Finished generating code
-  geometryCommander.vcxproj -> C:\repoTemp\geometryCommander\geometryCommander\Release\geometryCommander.exe
+C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\PlayerPiece.cpp(126): warning C4715: 'PlayerPiece::isPositionFlanked': not all control paths return a value
+C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\AppManager.cpp(31): warning C4715: 'AppManager::CreateInstance': not all control paths return a value
+C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\geometryCommander.cpp(45): error C4700: uninitialized local variable 'appManager' used
+  470 of 1030 functions (45.6%) were compiled, the rest were copied from previous compilation.
+    66 functions were new in current compilation
+    94 functions had inline decision re-evaluated but remain unchanged
+LINK : fatal error LNK1257: code generation failed

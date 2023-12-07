@@ -7,7 +7,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <memory>
-
+#include "AppManager.h"
 #include "GameManager.h"
 using namespace std;
 
@@ -36,12 +36,12 @@ void wrapper(){
     int screenWidth = 800;
     int screenHeight = 600;
     sf::RenderWindow window(sf::VideoMode(screenWidth, screenHeight), "Game");
-    GameManager* gameManger = GameManager::CreateInstance(&window, screenWidth, screenHeight, 10, 10, 4, 4);
-    //GameManager* gameManger = GameManager::CreateInstance(&window, screenWidth, screenHeight, "maps/testMap.txt");
+    AppManager* appManager = AppManager::CreateInstance(&window, screenWidth, screenHeight);
+
     // run the program as long as the window is open
     while (window.isOpen())
     {
-        gameManger->Update();
+        appManager->Update();
 
         // check all the window's events that were triggered since the last iteration of the loop
         sf::Event event;
@@ -55,12 +55,12 @@ void wrapper(){
         // clear the window with black color
         window.clear(sf::Color::Black);
 
-        gameManger->Draw();
+        appManager->Draw();
         // end the current frame
 
         window.display();
     }
-    GameManager::DeleteInstance();
+    AppManager::DeleteInstance();
     //delete enemyLeakTest;
     //delete playerLeakTest;
     //delete gameManagerLeakTest;
