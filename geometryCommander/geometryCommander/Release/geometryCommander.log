@@ -1,29 +1,7 @@
-﻿  AppManager.cpp
-C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\AppManager.h(3,10): fatal  error C1083: Cannot open include file: 'SFML/Window.hpp': No such file or directory
-  AssaultPlayerPiece.cpp
-C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(3,10): fatal  error C1083: Cannot open include file: 'SFML/Window.hpp': No such file or directory
-  AudioManager.cpp
-C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\AudioManager.h(3,10): fatal  error C1083: Cannot open include file: 'SFML/Audio.hpp': No such file or directory
-  BehaviorTreeNode.cpp
-  EnemyPiece.cpp
-C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(3,10): fatal  error C1083: Cannot open include file: 'SFML/Window.hpp': No such file or directory
-  GameManager.cpp
-C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\GameManager.h(3,10): fatal  error C1083: Cannot open include file: 'SFML/Window.hpp': No such file or directory
-  GamePiece.cpp
-C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(3,10): fatal  error C1083: Cannot open include file: 'SFML/Window.hpp': No such file or directory
-  geometryCommander.cpp
-C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\geometryCommander.cpp(6,10): fatal  error C1083: Cannot open include file: 'SFML/Window.hpp': No such file or directory
-  Grid.cpp
-C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\Grid.cpp(3,10): fatal  error C1083: Cannot open include file: 'SFML/Window.hpp': No such file or directory
-  GridBox.cpp
-C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\GridBox.cpp(3,10): fatal  error C1083: Cannot open include file: 'SFML/Window.hpp': No such file or directory
-  HeavyPlayerPiece.cpp
-C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(3,10): fatal  error C1083: Cannot open include file: 'SFML/Window.hpp': No such file or directory
-  InputManager.cpp
-C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\InputManager.h(3,10): fatal  error C1083: Cannot open include file: 'SFML/Window.hpp': No such file or directory
-  MyUtils.cpp
-C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\GridBox.h(3,10): fatal  error C1083: Cannot open include file: 'SFML/Window.hpp': No such file or directory
-  PlayerPiece.cpp
-C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(3,10): fatal  error C1083: Cannot open include file: 'SFML/Window.hpp': No such file or directory
-  SniperPlayerPiece.cpp
-C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\GamePiece.h(3,10): fatal  error C1083: Cannot open include file: 'SFML/Window.hpp': No such file or directory
+﻿  Generating code
+  Previous IPDB not found, fall back to full compilation.
+C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\PlayerPiece.cpp(126): warning C4715: 'PlayerPiece::isPositionFlanked': not all control paths return a value
+C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\EnemyPiece.cpp(416): warning C4715: 'EnemyPiece::isPositionFlanked': not all control paths return a value
+  All 964 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  geometryCommander.vcxproj -> C:\repoTemp\geometryCommander\geometryCommander\Release\geometryCommander.exe
