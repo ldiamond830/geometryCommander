@@ -18,8 +18,10 @@ private:
 	sf::Color hoverColor;
 public:
 	Button(sf::Vector2f pos, sf::Vector2f size, sf::Text text, t* _parent, void(t::* _onClick)(), sf::Color _defaultColor = sf::Color::Black, sf::Color _hoverColor = sf::Color::White) {
-		backGround = rect;
-		defaultColor = rect.getFillColor();
+		backGround.setPosition(pos);
+		backGround.setFillColor(_defaultColor);
+		backGround.setSize(size);
+		defaultColor = _defaultColor;
 		hoverColor = _hoverColor;
 		backGround.setOrigin(backGround.getLocalBounds().width / 2.0f, backGround.getLocalBounds().height / 2.0f);
 		label = text;
