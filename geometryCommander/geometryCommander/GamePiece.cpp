@@ -121,28 +121,10 @@ bool GamePiece::ChanceToHit(GamePiece* target)
 		chanceToHit += 15;
 	}
 	float rng = rand() % 100;
-
+	std::cout << "Chance to hit: " << chanceToHit << std::endl << "rng: " << rng << std::endl;
 	return chanceToHit > rng;
 }
-//probably should be deleted
-GamePiece::GamePiece()
-{
-	 xPos = 0;
-	 yPos = 0;
-	 health = 10;
-	 moveRange = 5;
-	 maxDamage = 1;
-	 minDamage = 0;
-	 accuracy = 50;
 
-	 projectile = new sf::RectangleShape(sf::Vector2f(20, 20));
-	 projectile->setFillColor(sf::Color::White);
-	 projectile->setPosition(sf::Vector2f(xPos, yPos));
-	 projectile->setOrigin(10, 10);
-
-	 UIText.setPosition(sf::Vector2f(xPos, yPos));
-	 UIText.setString(std::to_string(health));
-}
 
 GamePiece::GamePiece(int _xPos, int _yPos)
 {
@@ -151,13 +133,13 @@ GamePiece::GamePiece(int _xPos, int _yPos)
 	isDead = false;
 	health = 10;
 	moveRange = 5;
-	attackRange = 7;
-	maxDamage = 3;
-	minDamage = 1;
-	accuracy = 50;
+	attackRange = 9;
+	maxDamage = 20;
+	minDamage = 10;
+	accuracy = 75;
 
 	projectile = new sf::RectangleShape(sf::Vector2f(20, 20));
-	projectile->setFillColor(sf::Color::White);
+	projectile->setFillColor(sf::Color::Magenta);
 	projectile->setPosition(sf::Vector2f(xPos, yPos));
 	projectile->setOrigin(10, 10);
 
@@ -228,7 +210,8 @@ void GamePiece::UpdateProjectile(sf::Vector2f start, sf::Vector2f end)
 			target->DisplayDamageTaken();
 		}
 		
-
+		//reset projectile after hit/miss
+		projectile->setPosition(sf::Vector2f(xPos, yPos));
 		projectileIterator = 0;
 		attacking = false;
 		turnFinished = true;
@@ -249,6 +232,7 @@ void GamePiece::UpdateHealthDisplay()
 
 void GamePiece::DisplayDamageTaken()
 {
+	
 	UpdateHealthDisplay();
 
 	if (health <= 0)

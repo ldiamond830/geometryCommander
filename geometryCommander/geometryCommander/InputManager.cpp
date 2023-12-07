@@ -21,3 +21,19 @@ bool InputManager::isKeyReleased(sf::Keyboard::Key keyToCheck)
     }
 	return false;
 }
+
+bool InputManager::isLeftMouseReleased() {
+	if (!mouseBeingClicked) {
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+			mouseBeingClicked = true;
+		}
+	}
+	else {
+		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+			mouseBeingClicked = false;
+			return true;
+		}
+	}
+
+	return false;
+}

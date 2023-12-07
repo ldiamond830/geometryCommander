@@ -86,11 +86,11 @@ void GameManager::LoadMapFromFile(std::string path, int screenWidth, int screenH
 void GameManager::SpawnPlayerPiece(int x, int y)
 {
 	PlayerPiece* playerPiece;
-	float rng = rand();
-	if (rng < 0.35) {
+	float rng = rand() % 100;
+	if (rng < 35) {
 		playerPiece = new AssaultPlayerPiece(grid->gridBoxes[x][y]->GetCenter().x, grid->gridBoxes[x][y]->GetCenter().y);
 	}
-	else if(rng < 0.67) {
+	else if(rng < 67) {
 		playerPiece = new SniperPlayerPiece(grid->gridBoxes[x][y]->GetCenter().x, grid->gridBoxes[x][y]->GetCenter().y);
 	}
 	else {
@@ -160,12 +160,19 @@ void GameManager::Update()
 
 		//run AI behavior tree
 		case gameState::enemyTurn:
-		//calculate paths to each box for the current piece
-		grid->ClearBoxesInRange();
-		grid->CalculatePaths(selectedEnemyPiece, selectedEnemyPiece->GetMovementRange());
+		//checks if the last enemy died at the end of the last frame to prevent null exception
+		if (enemyPieceList.size() == 0) {
+			currentState = playerWon;
+		}
+		else {
+			//calculate paths to each box for the current piece
+			grid->ClearBoxesInRange();
+			grid->CalculatePaths(selectedEnemyPiece, selectedEnemyPiece->GetMovementRange());
 
-		selectedEnemyPiece->TakeTurn();
-		currentState = enemyTurnSimulation;
+			selectedEnemyPiece->TakeTurn();
+			currentState = enemyTurnSimulation;
+		}
+		
 		break;
 
 		//visualize enemy turn to player
@@ -298,7 +305,7 @@ void GameManager::PlayerInput()
 {
 	input.PlayerInput();
 
-	if(sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+	if(input.isLeftMouseReleased()) {
 		auto clickedBox = grid->GetBoxFromPosition(sf::Mouse::getPosition(*window));
 		//left clicking on a box in move range will move the current piece to that box
 		if (clickedBox != nullptr) {

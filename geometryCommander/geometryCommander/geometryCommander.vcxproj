@@ -102,6 +102,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>sfml-window-s-d.lib;sfml-system-s-d.lib;sfml-graphics-s-d.lib;sfml-audio-s-d.lib;opengl32.lib;winmm.lib;gdi32.lib;freetype.lib;openal32.lib;flac.lib;vorbisenc.lib;vorbisfile.lib;vorbis.lib;ogg.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -133,6 +134,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AppManager.cpp" />
     <ClCompile Include="AssaultPlayerPiece.cpp" />
     <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="BehaviorTreeNode.cpp" />
@@ -149,6 +151,7 @@
     <ClCompile Include="SniperPlayerPiece.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AppManager.h" />
     <ClInclude Include="AssaultPlayerPiece.h" />
     <ClInclude Include="AudioManager.h" />
     <ClInclude Include="BehaviorTreeActionNode.h" />
@@ -163,7 +166,11 @@
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="PlayerPiece.h" />
     <ClInclude Include="MyUtils.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SniperPlayerPiece.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="geometryCommander.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
