@@ -44,6 +44,9 @@ void AppManager::InitTitle()
 
 	UITextList.push_back(titleText);
 	UITextList.push_back(enterText);
+
+	Button<AppManager> testButton = Button<AppManager>(sf::Vector2f(screenWidth/2.0f, 100), sf::Vector2f(20.0f,20.0f), enterText, this, &AppManager::StartGame);
+	//UIButtonList.push_back(std::shared_ptr<Button<AppManager>>(testButton));
 }
 
 AppManager* AppManager::CreateInstance(sf::RenderWindow* window, int screenWidth, int screenHeight)
@@ -95,6 +98,11 @@ void AppManager::Draw()
 		for (sf::Text text : UITextList) {
 			window->draw(text);
 		}
+		/*
+		for (Button button : UIButtonList) {
+			button.Draw(window);
+		}
+		*/
 	}
 }
 

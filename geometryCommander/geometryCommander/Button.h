@@ -25,7 +25,7 @@ public:
 		hoverColor = _hoverColor;
 		backGround.setOrigin(backGround.getLocalBounds().width / 2.0f, backGround.getLocalBounds().height / 2.0f);
 		label = text;
-		MyUtils::CenterText(label);
+		MyUtils::GetInstance()->CenterText(&label);
 		label.setPosition(backGround.getOrigin());
 		parent = _parent;
 		onClick = _onClick;
@@ -64,6 +64,11 @@ public:
 			return false;
 
 		return true;
+	}
+
+	void Draw(sf::RenderWindow* window) {
+		window->draw(backGround);
+		window->draw(label);
 	}
 };
 

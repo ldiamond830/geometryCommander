@@ -137,6 +137,8 @@ GamePiece::GamePiece(int _xPos, int _yPos)
 	maxDamage = 5;
 	minDamage = 3;
 	accuracy = 75;
+	moveSpeed = 0.005f;
+	projectileSpeed = 0.8f;
 
 	projectile = new sf::RectangleShape(sf::Vector2f(20, 20));
 	projectile->setFillColor(sf::Color::Magenta);
@@ -175,7 +177,7 @@ void GamePiece::StartMove(std::stack<sf::Vector2f>* _path)
 	moving = true;
 }
 
-bool GamePiece::MoveToNext(sf::Vector2f desination)
+bool GamePiece::MoveToNext(sf::Vector2f desination, float dt)
 {
 	
 	if (xPos != desination.x || yPos != desination.y) {
@@ -193,7 +195,7 @@ bool GamePiece::MoveToNext(sf::Vector2f desination)
 			yPos = std::lerp(yPos, desination.y, movementIterator);
 		}
 
-		movementIterator += 0.0005;
+		movementIterator += moveSpeed * dt;
 	}
 	else {
 		movementIterator = 0;
@@ -202,7 +204,7 @@ bool GamePiece::MoveToNext(sf::Vector2f desination)
 	return false;
 }
 
-void GamePiece::UpdateProjectile(sf::Vector2f start, sf::Vector2f end)
+void GamePiece::UpdateProjectile(sf::Vector2f start, sf::Vector2f end, float dt)
 {
 	if (abs(projectile->getPosition().x - end.x) <= 0.1 && abs(projectile->getPosition().y - end.y) <= 0.1) {
 		if (!missed) {
@@ -218,7 +220,7 @@ void GamePiece::UpdateProjectile(sf::Vector2f start, sf::Vector2f end)
 	}
 	else {
 		projectile->setPosition(sf::Vector2f(std::lerp(start.x, end.x, projectileIterator), std::lerp(start.y, end.y, projectileIterator)));
-		projectileIterator += 0.0005;
+		projectileIterator += projectileSpeed * dt;
 	}
 }
 
@@ -284,11 +286,11 @@ int GamePiece::GetHealth()
 	return health;
 }
 
-void GamePiece::SimulateAction()
+void GamePiece::SimulateAction(float dt)
 {
 	turnFinished = false;
 	if (moving){
-		if (MoveToNext(path->top())) {
+		if (MoveToNext(path->top(), dt)) {
 			path->pop();
 			AudioManager::GetInstance()->PlayMoveSound();
 		}
@@ -300,7 +302,7 @@ void GamePiece::SimulateAction()
 		UIText.setPosition(sf::Vector2f(xPos, yPos));
 	}
 	else if (attacking) {
-		UpdateProjectile(GetPosition(), targetPosition);
+		UpdateProjectile(GetPosition(), targetPosition, dt);
 	}
 }
 

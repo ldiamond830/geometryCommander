@@ -2,6 +2,7 @@
 #define SFML_STATIC
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include<memory>
 #include "GameManager.h"
 #include "InputManager.h"
 #include "Button.h"
@@ -27,7 +28,7 @@ private:
 	void StartGame();
 	void InitTitle();
 	std::vector<sf::Text> UITextList;
-	std::vector<Button<AppState>> UIButtonList;
+	std::vector<std::shared_ptr<Button<AppManager>>> UIButtonList;
 	InputManager input;
 public:
 	static AppManager* CreateInstance(sf::RenderWindow*, int screenWidth, int screenHeight);

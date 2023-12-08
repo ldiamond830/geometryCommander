@@ -22,6 +22,8 @@ protected:
 	int maxDamage;
 	int minDamage;
 	float radius;
+	float moveSpeed; 
+	float projectileSpeed;
 	bool atDestination = false;
 	int CalcDamage();
 	bool ChanceToHit(GamePiece*);
@@ -29,15 +31,13 @@ protected:
 	GamePiece* target;
 	int accuracy;
 	bool missed;
-
 	sf::Vector2f index;
-	
 	std::stack<sf::Vector2f>* path;
 	bool moving = false;
 	bool attacking = false;
 	sf::RectangleShape* projectile;
-	bool MoveToNext(sf::Vector2f);
-	void UpdateProjectile(sf::Vector2f, sf::Vector2f);
+	bool MoveToNext(sf::Vector2f, float dt);
+	void UpdateProjectile(sf::Vector2f, sf::Vector2f, float dt);
 	float projectileIterator;
 	float movementIterator;
 	sf::Text UIText;
@@ -62,7 +62,7 @@ public:
 	sf::Vector2f GetIndex();
 	int GetHealth();
 	bool turnFinished;
-	virtual void SimulateAction();
+	virtual void SimulateAction(float dt);
 	void SetFont(sf::Font* _UIFont);
 	int GetMovementRange();
 	void SetHealth(int);

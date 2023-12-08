@@ -37,6 +37,7 @@ private:
 	//uses helper method to update UI as well as selection itself
 	void SelectPlayerPiece(int index);
 	InputManager input;
+	sf::Clock deltaClock;
 	bool endTurn;
 	bool CheckEndTurn(bool isPlayer);
 	void NextPiece(int index);

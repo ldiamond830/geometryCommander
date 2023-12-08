@@ -128,7 +128,8 @@ GameManager::~GameManager()
 
 void GameManager::Update()
 {
-	
+	//calculate deltaTime
+	sf::Time dt = deltaClock.restart();
 
 	switch (currentState) {
 	
@@ -150,7 +151,7 @@ void GameManager::Update()
 
 		//visualize player move
 		case gameState::playerTurnSimulation: {
-			selectedPlayerPiece->SimulateAction();
+			selectedPlayerPiece->SimulateAction(dt.asSeconds());
 			//done simulating
 			if (selectedPlayerPiece->turnFinished) {
 				//wait for player input for the next player piece
@@ -179,7 +180,7 @@ void GameManager::Update()
 
 		//visualize enemy turn to player
 		case gameState::enemyTurnSimulation:
-			selectedEnemyPiece->SimulateAction();
+			selectedEnemyPiece->SimulateAction(dt.asSeconds());
 
 			if (selectedEnemyPiece->turnFinished) {
 				//start turn for next enemy piece
