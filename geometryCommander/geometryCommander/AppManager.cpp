@@ -180,10 +180,10 @@ void AppManager::Update()
 		gameManager->Update();
 		break;
 	case playerVictory:
-		cout << "pee urine even";
+		//return to menu/exit not yet implimented
 		break;
 	case enemyVictory:
-		cout << "poo shit even";
+		//return to menu/exit not yet implimented
 		break;
 	}
 }

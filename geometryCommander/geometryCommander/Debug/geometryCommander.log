@@ -1,4 +1,5 @@
-﻿  GameManager.cpp
+﻿  AppManager.cpp
+  GameManager.cpp
 D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(17,29): warning C4018: '<': signed/unsigned mismatch
 D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(21,29): warning C4018: '<': signed/unsigned mismatch
 D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(58,30): warning C4018: '<': signed/unsigned mismatch
@@ -96,4 +97,5 @@ D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCom
               T=float
           ]
 D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(369,83): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
   geometryCommander.vcxproj -> D:\Profiles\lgd1649\Source\Repos\geometryCommander\geometryCommander\Debug\geometryCommander.exe
