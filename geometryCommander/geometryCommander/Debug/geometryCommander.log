@@ -1,7 +1,99 @@
-﻿  AppManager.cpp
-  Button.cpp
-  geometryCommander.cpp
-C:\repoTemp\geometryCommander\geometryCommander\geometryCommander\geometryCommander.cpp(35,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Generating Code...
-  LINK : C:\repoTemp\geometryCommander\geometryCommander\Debug\geometryCommander.exe not found or not built by the last incremental link; performing full link
-  geometryCommander.vcxproj -> C:\repoTemp\geometryCommander\geometryCommander\Debug\geometryCommander.exe
+﻿  GameManager.cpp
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(17,29): warning C4018: '<': signed/unsigned mismatch
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(21,29): warning C4018: '<': signed/unsigned mismatch
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(58,30): warning C4018: '<': signed/unsigned mismatch
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(60,31): warning C4018: '<': signed/unsigned mismatch
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(90,12): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(92,112): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(92,74): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(95,111): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(95,73): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(98,110): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(98,72): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(108,114): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(108,76): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(197,87): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(221,50): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(221,84): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(222,50): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(222,84): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(243,49): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(243,82): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(244,49): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(244,82): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(325,68): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(325,103): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Profiles\lgd1649\source\repos\geometryCommander\geometryCommander\geometryCommander\GameManager.cpp(369,83): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  geometryCommander.vcxproj -> D:\Profiles\lgd1649\Source\Repos\geometryCommander\geometryCommander\Debug\geometryCommander.exe

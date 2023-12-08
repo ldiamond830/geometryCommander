@@ -137,7 +137,7 @@ GamePiece::GamePiece(int _xPos, int _yPos)
 	maxDamage = 5;
 	minDamage = 3;
 	accuracy = 75;
-	moveSpeed = 0.005f;
+	moveSpeed = 0.01f;
 	projectileSpeed = 0.8f;
 
 	projectile = new sf::RectangleShape(sf::Vector2f(20, 20));

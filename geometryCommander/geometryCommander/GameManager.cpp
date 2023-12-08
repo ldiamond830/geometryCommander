@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "AppManager.h"
 GameManager* GameManager::instance = nullptr;
 //default map constructor
 GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenHeight, int rowSize, int columnSize, int playerPieceCount, int enemyPieceCount)
@@ -35,7 +36,7 @@ GameManager::GameManager(sf::RenderWindow* _window, int screenWidth, int screenH
 	}
 	LoadMapFromFile(path, screenWidth, screenHeight);
 	window = _window;
-	SelectPlayerPiece(0);
+ 	SelectPlayerPiece(0);
 	selectedEnemyPiece = enemyPieceList[selectedEnemyPieceIndex];
 	currentState = gameState::playerTurn;
 	input = InputManager();
@@ -204,17 +205,15 @@ void GameManager::Update()
 				}
 			}
 			break;
+
 	}
 
 	//check for dead pieces at the end of each turn
 	for (unsigned int i = 0; i < playerPieceList.size(); i++)
 	{
 		if (playerPieceList[i]->isDead) {
-			if (playerPieceList.size() == 0) {
-				currentState = enemyWon;
-			}
 			//if there are remaining player pieces and the selected piece has just died select the next one
-			else if (selectedPlayerPiece == playerPieceList[i]) {
+			if (selectedPlayerPiece == playerPieceList[i] && playerPieceList.size() > 1) {
 				NextPiece(1);
 			}
 
@@ -223,17 +222,20 @@ void GameManager::Update()
 			grid->gridBoxes[playerPieceList[i]->GetIndex().x][playerPieceList[i]->GetIndex().y]->SetType(empty);
 			delete playerPieceList[i];
 			playerPieceList.erase(playerPieceList.begin() + i);
+
+			//check for lose condition
+			if (playerPieceList.size() == 0) {
+				AppManager::GetInstance()->PlayerLose();
+			}
 		}
 	}
 
 	for (unsigned int i = 0; i < enemyPieceList.size(); i++)
 	{
 		if (enemyPieceList[i]->isDead) {
-			if (enemyPieceList.size() == 0) {
-				currentState = playerWon;
-			}
+			
 			//if there are remaining enemy pieces and the selected piece has just died select the next one
-			else if (selectedEnemyPiece == enemyPieceList[i]) {
+			if (selectedEnemyPiece == enemyPieceList[i] && enemyPieceList.size() > 1) {
 				NextEnemyPiece();
 			}
 
@@ -242,6 +244,10 @@ void GameManager::Update()
 			grid->gridBoxes[enemyPieceList[i]->GetIndex().x][enemyPieceList[i]->GetIndex().y]->SetType(empty);
 			delete enemyPieceList[i];
 			enemyPieceList.erase(enemyPieceList.begin() + i);
+
+			if (enemyPieceList.size() == 0) {
+				AppManager::GetInstance()->PlayerWin();
+			}
 		}
 	}
 }

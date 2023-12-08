@@ -74,12 +74,11 @@ void Grid::Draw(sf::RenderWindow* window)
 
 void Grid::CalculateHCosts(int endX, int endY)
 {
-	for (int x = 0; x < gridHeight; x++)
+	for (int x = 0; x < gridWidth; x++)
 	{
-		for (int y = 0; y < gridWidth; y++)
+		for (int y = 0; y < gridHeight; y++)
 		{
 			gridBoxes[x][y]->SetHCost(endX, endY);
-			
 		}
 	}
 }
@@ -188,9 +187,9 @@ void Grid::FindPath(GridBox* start, GridBox* end)
 		}
 	}
 
-	for (int x = 0; x < gridHeight; x++)
+	for (int x = 0; x < gridWidth; x++)
 	{
-		for (int y = 0; y < gridWidth; y++)
+		for (int y = 0; y < gridHeight; y++)
 		{
 			gridBoxes[x][y]->ResetParent();
 		}

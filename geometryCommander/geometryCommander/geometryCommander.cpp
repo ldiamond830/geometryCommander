@@ -18,7 +18,7 @@ int main()
     wrapper();
 
     if (_CrtDumpMemoryLeaks()) {
-         cout << "memory leak";
+         //cout << "memory leak";
     }
     return 0;
 }

@@ -12,6 +12,12 @@ void InputManager::PlayerInput()
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
 		mostRecentKey = sf::Keyboard::Enter;
 	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+		mostRecentKey = sf::Keyboard::Up;
+	}
+	else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+		mostRecentKey = sf::Keyboard::Down;
+	}
 }
 
 bool InputManager::isKeyReleased(sf::Keyboard::Key keyToCheck)
