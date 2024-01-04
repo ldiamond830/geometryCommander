@@ -32,14 +32,31 @@ bool InputManager::isKeyReleased(sf::Keyboard::Key keyToCheck)
 }
 
 bool InputManager::isLeftMouseReleased() {
-	if (!mouseBeingClicked) {
+	if (!leftMouseBeingClicked) {
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-			mouseBeingClicked = true;
+			leftMouseBeingClicked = true;
 		}
 	}
 	else {
 		if (!sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-			mouseBeingClicked = false;
+			leftMouseBeingClicked = false;
+			return true;
+		}
+	}
+
+	return false;
+}
+
+bool InputManager::isRightMouseReleased()
+{
+	if (!rightMouseBeingClicked) {
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
+			rightMouseBeingClicked = true;
+		}
+	}
+	else {
+		if (!sf::Mouse::isButtonPressed(sf::Mouse::Right)) {
+			rightMouseBeingClicked = false;
 			return true;
 		}
 	}

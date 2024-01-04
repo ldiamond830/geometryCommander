@@ -8,10 +8,13 @@ class InputManager
 {
 private:
 	sf::Keyboard::Key mostRecentKey;
-	bool mouseBeingClicked;
+	bool leftMouseBeingClicked;
+	bool rightMouseBeingClicked;
+
 public:
 	void PlayerInput();
 	bool isKeyReleased(sf::Keyboard::Key);
 	bool isLeftMouseReleased();
+	bool isRightMouseReleased();
 };
 

@@ -338,6 +338,16 @@ void GameManager::PlayerInput()
 			}
 		}
 	}
+	else if (input.isRightMouseReleased()) 
+	{
+		auto clickedBox = grid->GetBoxFromPosition(sf::Mouse::getPosition(*window));
+		//left clicking on a box in move range will move the current piece to that box
+		if (clickedBox != nullptr) {
+			selectedPlayerPiece->ThrowGrenade(sf::Vector2f(clickedBox->GetCenter().x, clickedBox->GetCenter().y));
+			selectedPlayerPiece->turnTaken = true;
+			currentState = gameState::playerTurnSimulation;
+		}
+	}
 	//mouse click takes priority over switching piece
 	//Q and E cycle the currently selected piece
 	else if (input.isKeyReleased(sf::Keyboard::Q)) {

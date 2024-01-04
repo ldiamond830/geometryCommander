@@ -10,6 +10,7 @@ private:
 	sf::SoundBuffer dieSound;
 	sf::SoundBuffer attackSound;
 	sf::SoundBuffer hitSound;
+	sf::SoundBuffer grenadeSound;
 	AudioManager();
 	static AudioManager* instance;
 public:
@@ -20,5 +21,6 @@ public:
 	void PlayDieSound();
 	void PlayHitSound();
 	void PlayAttackSound();
+	void PlayGrenadeSound();
 };
 

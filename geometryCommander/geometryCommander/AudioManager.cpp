@@ -18,6 +18,9 @@ AudioManager::AudioManager() {
 	if (!hitSound.loadFromFile("sounds/hit.wav")) {
 		std::cout << "error loading hit sound";
 	}
+	if (!grenadeSound.loadFromFile("sounds/grenade.wav")) {
+		std::cout << "error loading grenade sound";
+	}
 }
 
 AudioManager* AudioManager::GetInstance()
@@ -69,6 +72,14 @@ void AudioManager::PlayAttackSound()
 {
 	if (playback.getStatus() != sf::SoundSource::Status::Playing) {
 		playback.setBuffer(attackSound);
+		playback.play();
+	}
+}
+
+void AudioManager::PlayGrenadeSound()
+{
+	if (playback.getStatus() != sf::SoundSource::Status::Playing) {
+		playback.setBuffer(grenadeSound);
 		playback.play();
 	}
 }

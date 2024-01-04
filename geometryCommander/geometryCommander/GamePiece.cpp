@@ -140,10 +140,15 @@ GamePiece::GamePiece(int _xPos, int _yPos)
 	moveSpeed = 0.01f;
 	projectileSpeed = 0.8f;
 
-	projectile = new sf::RectangleShape(sf::Vector2f(20, 20));
-	projectile->setFillColor(sf::Color::Magenta);
-	projectile->setPosition(sf::Vector2f(xPos, yPos));
-	projectile->setOrigin(10, 10);
+	bullet = new sf::RectangleShape(sf::Vector2f(20, 20));
+	bullet->setFillColor(sf::Color::Magenta);
+	bullet->setPosition(sf::Vector2f(xPos, yPos));
+	bullet->setOrigin(10, 10);
+
+	grenade = new sf::CircleShape(7.5f);
+	grenade->setFillColor(sf::Color::Magenta);
+	grenade->setPosition(sf::Vector2f(xPos, yPos));
+	grenade->setOrigin(grenade->getRadius()/2.0f, grenade->getRadius() / 2.0f);
 
 	UIText.setOrigin(15, 15);
 	UIText.setPosition(sf::Vector2f(xPos, yPos));
@@ -155,13 +160,17 @@ GamePiece::GamePiece(int _xPos, int _yPos)
 
 GamePiece::~GamePiece()
 {
-	delete projectile;
+	delete bullet;
+	delete grenade;
 }
 
 void GamePiece::Draw(sf::RenderWindow* window)
 {
 	if (attacking) {
-		window->draw(*projectile);
+		window->draw(*bullet);
+	}
+	if (throwingGrenade) {
+		window->draw(*grenade);
 	}
 	window->draw(UIText);
 }
@@ -206,20 +215,64 @@ bool GamePiece::MoveToNext(sf::Vector2f desination, float dt)
 
 void GamePiece::UpdateProjectile(sf::Vector2f start, sf::Vector2f end, float dt)
 {
-	if (abs(projectile->getPosition().x - end.x) <= 0.1 && abs(projectile->getPosition().y - end.y) <= 0.1) {
+	if (abs(bullet->getPosition().x - end.x) <= 0.1 && abs(bullet->getPosition().y - end.y) <= 0.1) {
 		if (!missed) {
 			//updates the target's health in the UI when the projectile hits rather than right after the damage caluclation
 			target->DisplayDamageTaken();
 		}
 		
 		//reset projectile after hit/miss
-		projectile->setPosition(sf::Vector2f(xPos, yPos));
+		bullet->setPosition(sf::Vector2f(xPos, yPos));
 		projectileIterator = 0;
 		attacking = false;
 		turnFinished = true;
 	}
 	else {
-		projectile->setPosition(sf::Vector2f(std::lerp(start.x, end.x, projectileIterator), std::lerp(start.y, end.y, projectileIterator)));
+		bullet->setPosition(sf::Vector2f(std::lerp(start.x, end.x, projectileIterator), std::lerp(start.y, end.y, projectileIterator)));
+		projectileIterator += projectileSpeed * dt;
+	}
+}
+
+void GamePiece::UpdateGrenade(sf::Vector2f start, sf::Vector2f end, float dt)
+{
+	if (grenadeExploaded) {
+		static float timer = 0;
+		timer += dt;
+		if (timer >= 1) {
+			turnFinished = true;
+			throwingGrenade = false;
+			timer = 0;
+		}
+	}
+	else if (abs(grenade->getPosition().x - end.x) <= 0.1 && abs(grenade->getPosition().y - end.y) <= 0.1) {
+		
+		grenadeExploaded = true;
+		grenade->setScale(sf::Vector2f(7, 7));
+		grenade->setOrigin(grenade->getRadius(), grenade->getRadius());
+		grenade->setPosition(end);
+
+		auto grid = GameManager::GetInstance()->GetGrid();
+		auto box = grid->GetBoxFromPosition((sf::Vector2i)end);
+
+		AudioManager::GetInstance()->PlayGrenadeSound();
+		
+		for (int x = box->index.x - 1; x <= box->index.x + 1; x++) {
+			for (int y = box->index.y - 1; y <= box->index.y + 1; y++) 
+			{
+				//Don't check out of bounds of the grid.
+				if (x < 0 || x > grid->GetWidth() - 1 || y < 0 || y > grid->GetHeight() - 1) {
+					continue;
+				}
+
+				if (grid->gridBoxes[x][y]->occupyingPiece != nullptr) {
+					grid->gridBoxes[x][y]->occupyingPiece->TakeDamage(1);
+					grid->gridBoxes[x][y]->occupyingPiece->DisplayDamageTaken();
+				}
+			}
+		}
+	}
+	else {
+		grenade->setPosition(sf::Vector2f(std::lerp(start.x, end.x, projectileIterator), std::lerp(start.y, end.y, projectileIterator)));
 		projectileIterator += projectileSpeed * dt;
 	}
 }
@@ -304,6 +357,9 @@ void GamePiece::SimulateAction(float dt)
 	else if (attacking) {
 		UpdateProjectile(GetPosition(), targetPosition, dt);
 	}
+	else if (throwingGrenade) {
+		UpdateGrenade(GetPosition(), targetPosition, dt);
+	}
 }
 
 void GamePiece::SetFont(sf::Font* _UIFont)
@@ -319,6 +375,13 @@ int GamePiece::GetMovementRange()
 void GamePiece::SetHealth(int newHealth)
 {
 	health = newHealth;
+}
+
+void GamePiece::ThrowGrenade(sf::Vector2f pos)
+{
+	throwingGrenade = true;
+	hasGrenade = false;
+	targetPosition = pos;
 }
 
 

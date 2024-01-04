@@ -21,10 +21,12 @@ protected:
 	int attackRange;
 	int maxDamage;
 	int minDamage;
+	int grenadeDamage;
 	float radius;
 	float moveSpeed; 
 	float projectileSpeed;
 	bool atDestination = false;
+
 	int CalcDamage();
 	bool ChanceToHit(GamePiece*);
 	sf::Vector2f targetPosition;
@@ -35,9 +37,13 @@ protected:
 	std::stack<sf::Vector2f>* path;
 	bool moving = false;
 	bool attacking = false;
-	sf::RectangleShape* projectile;
+	bool throwingGrenade = false;
+	bool grenadeExploaded = false;
+	sf::RectangleShape* bullet;
+	sf::CircleShape* grenade;
 	bool MoveToNext(sf::Vector2f, float dt);
 	void UpdateProjectile(sf::Vector2f, sf::Vector2f, float dt);
+	void UpdateGrenade(sf::Vector2f, sf::Vector2f, float dt);
 	float projectileIterator;
 	float movementIterator;
 	sf::Text UIText;
@@ -62,9 +68,11 @@ public:
 	sf::Vector2f GetIndex();
 	int GetHealth();
 	bool turnFinished;
+	bool hasGrenade = true;
 	virtual void SimulateAction(float dt);
 	void SetFont(sf::Font* _UIFont);
 	int GetMovementRange();
 	void SetHealth(int);
+	void ThrowGrenade(sf::Vector2f pos);
 };
 
