@@ -20,6 +20,7 @@ bool GamePiece::ChanceToHit(GamePiece* target)
 	//move both manhatann distance calculations to a utils class
 	float dist = abs(index.x - target->index.x) + abs(index.y - target->index.y);
 	bool flank = false;
+
 	//point blank
 	if (dist < 2) {
 		chanceToHit += 20;
@@ -139,6 +140,7 @@ GamePiece::GamePiece(int _xPos, int _yPos)
 	accuracy = 75;
 	moveSpeed = 0.01f;
 	projectileSpeed = 0.8f;
+	grenadeDamage = 3;
 
 	bullet = new sf::RectangleShape(sf::Vector2f(20, 20));
 	bullet->setFillColor(sf::Color::Magenta);
@@ -152,10 +154,10 @@ GamePiece::GamePiece(int _xPos, int _yPos)
 
 	UIText.setOrigin(15, 15);
 	UIText.setPosition(sf::Vector2f(xPos, yPos));
-	UpdateHealthDisplay();
 	UIText.setStyle(sf::Text::Bold);
 	UIText.setCharacterSize(25);
 	UIText.setFillColor(sf::Color::White);
+	UpdateHealthDisplay();
 }
 
 GamePiece::~GamePiece()
@@ -190,6 +192,7 @@ bool GamePiece::MoveToNext(sf::Vector2f desination, float dt)
 {
 	
 	if (xPos != desination.x || yPos != desination.y) {
+
 		if (abs(xPos - desination.x) <= 0.1) {
 			xPos = desination.x;
 		}
@@ -264,8 +267,9 @@ void GamePiece::UpdateGrenade(sf::Vector2f start, sf::Vector2f end, float dt)
 					continue;
 				}
 
+				//deal damage to all enemies in the hit box or adjacent boxes
 				if (grid->gridBoxes[x][y]->occupyingPiece != nullptr) {
-					grid->gridBoxes[x][y]->occupyingPiece->TakeDamage(1);
+					grid->gridBoxes[x][y]->occupyingPiece->TakeDamage(grenadeDamage);
 					grid->gridBoxes[x][y]->occupyingPiece->DisplayDamageTaken();
 				}
 			}
@@ -286,8 +290,7 @@ void GamePiece::UpdateHealthDisplay()
 }
 
 void GamePiece::DisplayDamageTaken()
-{
-	
+{	
 	UpdateHealthDisplay();
 
 	if (health <= 0)

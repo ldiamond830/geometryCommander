@@ -12,26 +12,28 @@ public:
 	~EnemyPiece();
 	void Draw(sf::RenderWindow* window) override;
 	void TakeTurn();
-	//reset to protected after testing
-	bool FlankInRange();
-	void Advance();
+
 protected:
 	sf::CircleShape* visual;
 	sf::Vector2f* flankPosition;
 	BehaviorTreeNode* BehaviorTreeRoot;
 	std::vector<BehaviorTreeNode*> BehaviorTreeDeleteList;
 	virtual void ConstructBehaviorTree();
+
 	//B Tree condition methods
 	bool IsInCover();
 	bool IsFlanked();
 	bool AnyTargetOutOfCover();
 	bool AnyTargetInRange();
 	bool AnyTargetPointBlank();
+	bool FlankInRange();
+
 	//B Tree Behavior methods
 	void MoveToCover();
 	void AttackPlayerPiece();
 	void MoveToFlank();
-	
+	void Advance();
+
 	//helper methods
 	GamePiece* SelectTarget();
 	bool TargetInRange(GamePiece*);

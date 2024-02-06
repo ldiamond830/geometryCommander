@@ -19,7 +19,8 @@ void PlayerPiece::Draw(sf::RenderWindow* window)
 {
 	visual->setPosition(xPos, yPos);
 	window->draw(*visual);
-	//draws projecile, will update in the future to clean
+
+	//parent class draws projectiles
 	GamePiece::Draw(window);
 }
 

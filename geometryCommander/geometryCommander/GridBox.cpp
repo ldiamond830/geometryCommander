@@ -43,8 +43,6 @@ GridBox::~GridBox()
 	if (path != nullptr) {
 		delete path;
 	}
-	
-	//delete occupyingPiece;
 }
 
 void GridBox::SetType(gridBoxType newType)
@@ -56,11 +54,7 @@ void GridBox::SetType(gridBoxType newType)
 void GridBox::Draw(sf::RenderWindow* window)
 {
 	sf::Color test = visual->getFillColor();
-	/*
-	if (inPlayerMoveRange) {
-		visual->setFillColor(sf::Color(0, 0, 255));
-	}
-	*/
+
 	window->draw(*visual);
 }
 
@@ -172,11 +166,10 @@ void GridBox::SetTypeValues()
 		else {
 			visual->setFillColor(sf::Color(0, 0, 0));
 		}
-		
 		break;
 
 	case occupied:
-		gCost = INT_MAX;
+		gCost = INT_MAX; // can't be moved through
 		visual->setFillColor(sf::Color(0, 0, 0));
 		break;
 
@@ -186,7 +179,7 @@ void GridBox::SetTypeValues()
 		break;
 
 	case fullCover:
-		gCost = INT_MAX;
+		gCost = INT_MAX; // can't be moved through
 		visual->setFillColor(sf::Color(255, 255, 255));
 		break;
 	}

@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>D:\Github\geometryCommander\geometryCommander\Release\geometryCommander.exe</FullPath>
+      <FullPath>C:\repoTemp\geometryCommander\geometryCommander\Release\geometryCommander.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

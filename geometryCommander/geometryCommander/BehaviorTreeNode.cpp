@@ -15,17 +15,7 @@ BehaviorTreeNode::BehaviorTreeNode()
 
 BehaviorTreeNode::~BehaviorTreeNode()
 {
-	/*
-	if (leftChild != nullptr) {
-		delete leftChild;
-		leftChild = nullptr;
-	}
-	if (rightChild != nullptr) {
-		delete rightChild;
-		rightChild = nullptr;
-	}
-	*/
-	
+	//destruction all tree nodes is handled by enemeyPiece class so left child and right child shouldn't be cleared here
 }
 
 void BehaviorTreeNode::Traverse()

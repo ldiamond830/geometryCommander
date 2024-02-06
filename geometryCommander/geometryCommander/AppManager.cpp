@@ -10,6 +10,7 @@ AppManager::AppManager(sf::RenderWindow* _window, int _screenWidth, int _screenH
 	screenHeight = _screenHeight;
 	currentState = title;
 	input = InputManager();
+
 	if (!UIFont.loadFromFile("arial.ttf")) {
 		cout << "Error loading font";
 	}
@@ -57,9 +58,6 @@ void AppManager::InitTitle()
 
 	UITextList.push_back(titleText);
 	UITextList.push_back(enterText);
-
-	//Button<AppManager> testButton = Button<AppManager>(sf::Vector2f(screenWidth/2.0f, 100), sf::Vector2f(20.0f,20.0f), enterText, this, &AppManager::StartGame);
-	//UIButtonList.push_back(std::shared_ptr<Button<AppManager>>(testButton));
 }
 
 void AppManager::InitMapSelect()
@@ -87,6 +85,7 @@ void AppManager::InitMapSelect()
 		string mapName;
 		getline(fileReader, mapName);
 
+		//add map options to screen
 		sf::Text* mapText = new sf::Text();
 		mapText->setFont(UIFont);
 		mapText->setString(mapName);
@@ -179,6 +178,7 @@ void AppManager::Update()
 	case game:
 		gameManager->Update();
 		break;
+
 	case playerVictory:
 		//return to menu/exit not yet implimented
 		break;
@@ -197,11 +197,6 @@ void AppManager::Draw()
 		for (sf::Text* text : UITextList) {
 			window->draw(*text);
 		}
-		/*
-		for (Button button : UIButtonList) {
-			button.Draw(window);
-		}
-		*/
 	}
 }
 

@@ -321,7 +321,6 @@ void GameManager::PlayerInput()
 		//left clicking on a box in move range will move the current piece to that box
 		if (clickedBox != nullptr) {
 			if (clickedBox->inPlayerMoveRange) {
-				//std::cout << "Start: (X=" << selectedPlayerPiece->GetIndex().x << ", Y=" << selectedPlayerPiece->GetIndex().y << ") End: (X=" << clickedBox->index.x << ", Y=" << clickedBox->index.y << ")" << std::endl;
 				grid->MovePiece(grid->gridBoxes[selectedPlayerPiece->GetIndex().x][selectedPlayerPiece->GetIndex().y], clickedBox);
 				selectedPlayerPiece->turnTaken = true;
 				currentState = gameState::playerTurnSimulation;
@@ -399,6 +398,7 @@ bool GameManager::CheckEndTurn(bool isPlayer)
 			}
 		}
 	}
+
 	return endTurn;
 }
 

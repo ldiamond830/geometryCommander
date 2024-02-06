@@ -22,8 +22,6 @@ EnemyPiece::~EnemyPiece()
 	if (flankPosition != nullptr) {
 		delete flankPosition;
 	}
-	//bugged on acc of multiple nodes having the same child, need to figure out if there is a way to keep them all being deleted at once or just use a copy constuctor to create several identical nodes
-	//delete BehaviorTreeRoot;
 
 	for (BehaviorTreeNode* node : BehaviorTreeDeleteList) {
 		delete node;
@@ -314,7 +312,9 @@ GamePiece* EnemyPiece::SelectTarget()
 			return playerPiece;
 		}
 	}
+
 	//error case, should never be returned since the method call checks if there are any targets in range before hand
+	std::cout << "error with enemy target selection";
 	return nullptr;
 }
 

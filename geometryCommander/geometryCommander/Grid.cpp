@@ -35,7 +35,7 @@ Grid::Grid() : Grid(800, 600, 10, 10)
 	gridBoxes[0][7]->SetType(halfCover);
 }
 
-//used with loading a grid from path so creates all boxes as empty and then each box's type is set in GameManager.cpp
+//used for loading a grid from path so creates all boxes as empty and then each box's type is set in GameManager.cpp
 Grid::Grid(int screenWidth, int screenHeight, int rowSize, int columnSize)
 {
 	this->gridWidth = rowSize;
@@ -95,6 +95,7 @@ void Grid::FindPath(GridBox* start, GridBox* end)
 	bool complete = false;
 	
 	std::stack<sf::Vector2f>* scopedPath = new std::stack <sf::Vector2f>();
+
 	while (!complete) {
 		for (int x = currentCell->index.x - 1; x <= currentCell->index.x + 1; x++) {
 			for (int y = currentCell->index.y - 1; y <= currentCell->index.y + 1; y++) {
@@ -117,6 +118,7 @@ void Grid::FindPath(GridBox* start, GridBox* end)
 					continue;
 				}
 
+				//don't check boxes that can't be moved through
 				if (gridBoxes[x][y]->GetType() == fullCover || gridBoxes[x][y]->GetType() == occupied) {
 					continue;
 				}
@@ -134,15 +136,14 @@ void Grid::FindPath(GridBox* start, GridBox* end)
 					closeList.push_back(end);
 
 					GridBox* pathCell = end;
-					//path.push(new GridBox(*end));
 					scopedPath->push(sf::Vector2f(end->GetCenter()));
-					//Vertex* currentParent = pathCell->GetParent();
+
 					while (pathCell->index.x != start->index.x || pathCell->index.y != start->index.y) {
-						//path.push(new GridBox(*pathCell->GetParent()));
 						scopedPath->push(sf::Vector2f(pathCell->GetParent()->GetCenter()));
 						pathCell = pathCell->GetParent();
 					}
 					scopedPath->pop();
+
 					//stores path in gridbox for use when moving a piece
 					end->path = scopedPath;
 					complete = true;
@@ -161,7 +162,6 @@ void Grid::FindPath(GridBox* start, GridBox* end)
 					if (doesntContainCell) {
 						openList.push_back(gridBoxes[x][y]);
 					}
-
 				}
 			}
 		}
@@ -182,7 +182,7 @@ void Grid::FindPath(GridBox* start, GridBox* end)
 			openList.erase(openList.begin() + shortestIndex);
 		}
 		else {
-			//no path found
+			//if a path hasn't been found and there are no more boxes in the open list a path cannot be found and the loop is ended
 			complete = true;
 		}
 	}
@@ -244,7 +244,6 @@ GridBox* Grid::GetBoxFromPosition(sf::Vector2i position)
 	return nullptr;
 }
 
-//this method may be unessesary 
 GridBox* Grid::GetBoxFromOccupyingPiece(GamePiece* piece)
 {
 	for (std::vector<GridBox*> boxList : gridBoxes)
