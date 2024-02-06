@@ -212,7 +212,7 @@ void Grid::MoveEnemyPiece(GridBox* start, GridBox* end)
 }
 
 
-//updates all relevant values when a piece is spawned or moves
+//updates all relevant values when a piece is spawned or moves 
 void Grid::UpdateOccupyingPiece(GridBox* box, GamePiece* piece)
 {
 	box->SetOccupyingPiece(piece);

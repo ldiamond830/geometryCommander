@@ -2,7 +2,6 @@
 
 void InputManager::PlayerInput()
 {
-	//only keys currently in use
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
 		mostRecentKey = sf::Keyboard::Q;
 	}

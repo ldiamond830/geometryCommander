@@ -36,7 +36,6 @@ void PlayerPiece::Deselect()
 
 bool PlayerPiece::isPositionFlanked(sf::Vector2f pos)
 {
-
 	GameManager* gameManagerInstance = GameManager::GetInstance();
 	bool flanked = false;
 	Grid* grid = gameManagerInstance->GetGrid();

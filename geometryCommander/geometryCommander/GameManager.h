@@ -34,7 +34,6 @@ private:
 	std::vector<PlayerPiece*> playerPieceList;
 	gameState currentState;
 	void PlayerInput();
-	//uses helper method to update UI as well as selection itself
 	void SelectPlayerPiece(int index);
 	InputManager input;
 	sf::Clock deltaClock;
